@@ -31,7 +31,7 @@ fun AppDrawer(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(vertical = 10.dp)
-                .verticalScroll(rememberScrollState())
+                //.verticalScroll(rememberScrollState())
         ) {
             AppScreen.entries.forEach { screen ->
                 NavigationItem(

@@ -73,19 +73,20 @@ fun PaymentPointCard(
                 Text(text = point.address, color = Text2, fontSize = 14.sp, lineHeight = 18.sp)
             }
 
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(text = "График работы:", color = Text2, fontSize = 15.sp, fontWeight = FontWeight.Medium)
                 point.schedule.forEach { item ->
-                    Column(
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(20.dp)
                     ) {
-                        // Days section with blue line
+                        // Days section
                         Column(
-                            modifier = Modifier.width(IntrinsicSize.Min),
-                            verticalArrangement = Arrangement.spacedBy(4.dp)
+                            modifier = Modifier.width(intrinsicSize = IntrinsicSize.Min),
+                            verticalArrangement = Arrangement.spacedBy(6.dp)
                         ) {
-                            Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                                 item.days.forEach { day ->
                                     Surface(
                                         modifier = Modifier.size(width = 36.dp, height = 20.dp),
@@ -102,17 +103,18 @@ fun PaymentPointCard(
                                     }
                                 }
                             }
+                            // The blue line under days (only for working days)
                             if (!item.isHoliday) {
                                 HorizontalDivider(
                                     thickness = 2.dp,
                                     color = BrandColor1,
-                                    modifier = Modifier.fillMaxWidth()
+                                    modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(1.dp))
                                 )
                             }
                         }
                         
                         // Time section
-                        Column(modifier = Modifier.padding(start = 2.dp)) {
+                        Column {
                             Text(
                                 text = item.time,
                                 color = if (item.isHoliday) BrandColor2 else BrandColor1,
@@ -120,11 +122,7 @@ fun PaymentPointCard(
                                 fontWeight = FontWeight.Bold
                             )
                             if (item.breakTime != null) {
-                                Text(
-                                    text = item.breakTime,
-                                    color = Text2,
-                                    fontSize = 14.sp
-                                )
+                                Text(text = item.breakTime, color = Text2, fontSize = 14.sp)
                             }
                         }
                     }
