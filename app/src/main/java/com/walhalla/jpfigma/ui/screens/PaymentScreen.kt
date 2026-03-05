@@ -18,16 +18,15 @@ import com.walhalla.jpfigma.ui.theme.*
 @Composable
 fun PaymentScreen(
     modifier: Modifier = Modifier,
-    accountNumber: String,
-    onAccountChange: (String) -> Unit,
-    amount: String,
-    onAmountChange: (String) -> Unit,
-    email: String,
-    onEmailChange: (String) -> Unit,
-    onPayClick: () -> Unit,
-    paymentMethods: List<PaymentMethod>,
-    paymentPoints: List<PaymentPoint>
+    onPayClick: () -> Unit = {}
 ) {
+    val paymentMethods = MockData.getPaymentMethods()
+    val paymentPoints = MockData.getPaymentPoints()
+
+    var accountNumber by remember { mutableStateOf("12345678") }
+    var amount by remember { mutableStateOf("200") }
+    var email by remember { mutableStateOf("") }
+
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -53,11 +52,11 @@ fun PaymentScreen(
         item {
             OnlinePaymentCard(
                 accountNumber = accountNumber,
-                onAccountChange = onAccountChange,
+                onAccountChange = { accountNumber = it },
                 amount = amount,
-                onAmountChange = onAmountChange,
+                onAmountChange = { amount = it },
                 email = email,
-                onEmailChange = onEmailChange,
+                onEmailChange = { email = it },
                 onPayClick = onPayClick
             )
         }
@@ -77,29 +76,6 @@ fun PaymentScreen(
 fun PaymentScreenPreview() {
     JpFigmaTheme {
         PaymentScreen(
-            accountNumber = "12345678",
-            onAccountChange = {},
-            amount = "200",
-            onAmountChange = {},
-            email = "",
-            onEmailChange = {},
-            onPayClick = {},
-            paymentMethods = listOf(
-                PaymentMethod(1, "Оплата через СБЕРБАНК", "Оплата доступна через \"СберБанк\" с комиссией 1%"),
-                PaymentMethod(2, "Оплата услуг ЛДС в отделениях почты ЛНР", "Вы можете пополнить счет в отделениях почты ЛНР.")
-            ),
-            paymentPoints = listOf(
-                PaymentPoint(
-                    1, 
-                    "Пункт приёма платежей", 
-                    "кв. Жукова 4 Б/1, главный офис ЛДС", 
-                    listOf(
-                        ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "с 9:00 до 18:00", "перерыв с 13:00 до 13:45"),
-                        ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)
-                    ),
-                    imageUrl = "https://www.figma.com/api/mcp/asset/e76c7f92-d81b-48d1-81e5-2638909afa9c"
-                )
-            )
         )
     }
 }

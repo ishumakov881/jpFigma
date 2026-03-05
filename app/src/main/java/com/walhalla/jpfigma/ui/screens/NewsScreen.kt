@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.components.MoreButton
 import com.walhalla.jpfigma.ui.components.NewsCard
 import com.walhalla.jpfigma.ui.components.NewsListItem
+import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.model.NewsItem
 import com.walhalla.jpfigma.ui.theme.*
 
@@ -23,10 +24,11 @@ import com.walhalla.jpfigma.ui.theme.*
 fun NewsScreen(
     modifier: Modifier = Modifier,
     title: String = "Новости",
-    featuredNews: List<NewsItem>,
-    otherNews: List<NewsItem>,
     onMoreClick: () -> Unit = {}
 ) {
+    val featuredNews = MockData.getFeaturedNews()
+    val otherNews = MockData.getOtherNews()
+    
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -91,17 +93,8 @@ fun NewsScreen(
 @Preview(showBackground = true)
 @Composable
 fun NewsScreenPreview() {
-    val demoFeatured = listOf(
-        NewsItem(1, "21 августа 2024", "Санитарный день 23/08/25", "https://www.figma.com/api/mcp/asset/3257da2c-e1ad-4381-b477-3a3f4d84437d", true),
-        NewsItem(2, "21 октября 2021", "Аккия! Получайте бонусы при подключении. До 1000 руб на Ваш счёт", "https://www.figma.com/api/mcp/asset/1c257877-cac0-476e-9b54-35b87b3dd0ad")
-    )
-    val demoOther = listOf(
-        NewsItem(3, "03 фев. 2019", "Профилактические работы.", hasDot = true),
-        NewsItem(4, "03 фев. 2019", "Профилактические работы.", hasDot = true),
-        NewsItem(5, "03 фев. 2019", "Профилактические работы.")
-    )
     
     JpFigmaTheme {
-        NewsScreen(featuredNews = demoFeatured, otherNews = demoOther)
+        NewsScreen()
     }
 }

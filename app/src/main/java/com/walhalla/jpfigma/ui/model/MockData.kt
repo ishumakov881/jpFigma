@@ -67,4 +67,66 @@ object MockData {
             imageUrl = "https://www.figma.com/api/mcp/asset/8b222851-fb00-439e-b2fe-b70eeb060603"
         )
     )
+
+    fun getAccountInfo() = AccountInfo(
+        status = "Активен",
+        balance = "515.33",
+        balanceUntil = "до 26 авг 2024г. включительно",
+        tariffName = "Безлим 100+ и ТВ",
+        accountNumber = "12345678",
+        fullName = "Иванов А.А.",
+        address = "г. Луганск, ул. 26 Бакинских коммисаров, 138",
+        phone = "+7 (959) *** 22 06",
+        internetStatus = "PPPOE подключено",
+        macAddress = "F1:D3:34:45:A1:43",
+        tvStatus = "Подключено"
+    )
+
+    fun getUserServicePackage() = UserServicePackage(
+        packageName = "Безлим 100+ и ТВ",
+        services = listOf(
+            ServiceDetail("Доступ в сеть Интернет", "359"),
+            ServiceDetail("Кабельное телевидение", "120", oldPrice = "150", hasOffer = true),
+            ServiceDetail("Реальный IP", "120"),
+            ServiceDetail("SMS оповещения", "30"),
+            ServiceDetail("Локальная сеть", "0"),
+            ServiceDetail("ЛДС почта", "0"),
+            ServiceDetail("ЛДС Free Wi-Fi", "0")
+        ),
+        totalPrice = "619",
+        oldTotalPrice = "649"
+    )
+
+    fun getSubscriberProfile() = SubscriberProfile(
+        accountNumber = "12345678",
+        fullName = "Иванов Александр Александрович",
+        address = "г. Луганск, ул. 26 Бакинских коммисаров, 138",
+        phones = listOf(
+            PhoneInfo("+7 (959) 123 22 06", isPrimary = true, isActualized = true),
+            PhoneInfo("+7 (959) 123 22 32", isActualized = true),
+            PhoneInfo("+7 (959) 123 22 44", isActualized = false)
+        )
+    )
+
+    fun getPaidServices() = listOf(
+        ServiceInfo(1, "Тарифный план", "Безлим 100 и ТВ", ServiceStatusType.ACTIVE),
+        ServiceInfo(2, "Гипер", "Не доступно на Вашем тарифе", ServiceStatusType.NOT_AVAILABLE, canOpen = false),
+        ServiceInfo(3, "Реальный IP-адрес", "Не подключено", ServiceStatusType.NOT_CONNECTED),
+        ServiceInfo(4, "Блокировка аккаунта", "Не активирована", ServiceStatusType.NOT_CONNECTED),
+        ServiceInfo(5, "Уведомления", "Не подключено", ServiceStatusType.NOT_CONNECTED)
+    )
+
+    fun getFreeServices() = listOf(
+        ServiceInfo(6, "Смена пароля", isFree = true),
+        ServiceInfo(7, "Локальная сеть", statusType = ServiceStatusType.ACTIVE, isFree = true),
+        ServiceInfo(8, "Почта", statusType = ServiceStatusType.ACTIVE, isFree = true),
+        ServiceInfo(9, "Внутренняя телефонная сеть НАДОФОН", statusType = ServiceStatusType.ACTIVE, isFree = true),
+        ServiceInfo(10, "FREE WI-FI", statusType = ServiceStatusType.ACTIVE, isFree = true)
+    )
+
+    fun getNotificationSettings() = listOf(
+        ServiceDetail("SMS оповещения", "30", isMainService = true),
+        ServiceDetail("E-mail рассылка", "0", isMainService = true),
+        ServiceDetail("Telegram бот", "0", isMainService = true)
+    )
 }

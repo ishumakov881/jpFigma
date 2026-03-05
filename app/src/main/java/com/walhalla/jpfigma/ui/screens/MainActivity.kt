@@ -5,14 +5,16 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.WifiCalling3
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.walhalla.jpfigma.ui.components.AppDrawer
 import com.walhalla.jpfigma.ui.model.AppScreen
-import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.theme.JpFigmaTheme
 import kotlinx.coroutines.launch
 
@@ -26,11 +28,6 @@ class MainActivity : ComponentActivity() {
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
                 val scope = rememberCoroutineScope()
                 var currentScreen by remember { mutableStateOf(AppScreen.MESSAGES) }
-                
-                // Payment Screen State
-                var accountNumber by remember { mutableStateOf("12345678") }
-                var amount by remember { mutableStateOf("200") }
-                var email by remember { mutableStateOf("") }
 
                 ModalNavigationDrawer(
                     drawerState = drawerState,
@@ -54,31 +51,39 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             )
+                        },
+                        floatingActionButton = {
+                            FloatingActionButton(
+                                shape = CircleShape,
+                                onClick = {},
+                                containerColor = Color(0xFF4CAF50)
+                            ) {
+                                Icon(Icons.Default.WifiCalling3, contentDescription = null)
+                            }
                         }
                     ) { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
                             when (currentScreen) {
+                                AppScreen.MY_ACCOUNT -> {
+                                    AccountScreen()
+                                }
+                                AppScreen.PROFILE -> {
+                                    ProfileScreen()
+                                }
+                                AppScreen.SERVICES -> {
+                                    ServicesScreen()
+                                }
+                                AppScreen.NOTIFICATIONS -> {
+                                    NotificationsScreen()
+                                }
                                 AppScreen.MESSAGES -> {
-                                    MessagesScreen(messages = MockData.getMessages())
+                                    MessagesScreen()
                                 }
                                 AppScreen.NEWS -> {
-                                    NewsScreen(
-                                        featuredNews = MockData.getFeaturedNews(),
-                                        otherNews = MockData.getOtherNews()
-                                    )
+                                    NewsScreen()
                                 }
                                 AppScreen.PAYMENT_METHODS -> {
-                                    PaymentScreen(
-                                        accountNumber = accountNumber,
-                                        onAccountChange = { accountNumber = it },
-                                        amount = amount,
-                                        onAmountChange = { amount = it },
-                                        email = email,
-                                        onEmailChange = { email = it },
-                                        onPayClick = { /* Handle Pay */ },
-                                        paymentMethods = MockData.getPaymentMethods(),
-                                        paymentPoints = MockData.getPaymentPoints()
-                                    )
+                                    PaymentScreen()
                                 }
                                 else -> {
                                     Box(

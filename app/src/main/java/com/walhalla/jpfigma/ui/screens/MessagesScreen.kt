@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.components.MessageItem
 import com.walhalla.jpfigma.ui.components.MoreButton
 import com.walhalla.jpfigma.ui.model.Message
+import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.theme.*
 
 /**
@@ -29,9 +30,9 @@ import com.walhalla.jpfigma.ui.theme.*
 fun MessagesScreen(
     modifier: Modifier = Modifier,
     title: String = "Сообщения",
-    messages: List<Message>,
     onMoreClick: () -> Unit = {}
 ) {
+    val messages = MockData.getMessages()
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -92,32 +93,7 @@ fun MessagesScreen(
 fun MessagesScreenPreview() {
     JpFigmaTheme {
         MessagesScreen(
-            messages = listOf(
-                Message(
-                    id = 1,
-                    date = "03 фев. 2019",
-                    title = "Внимание",
-                    content = "23 августа 2025г. - санитарный день. Точки приёма платежей выходные. Оплатить можно будет онлайн или в терминалах. Техническая поддержка будет работать в штатном режиме.",
-                    hasIcon = true
-                ),
-                Message(
-                    id = 2,
-                    date = "03 фев. 2019",
-                    content = "Уважаемые абоненты компании ЛДС. Добавлен новый способ оплаты услуг - оплата услуг компании ЛДС в отделениях почты ЛНР.",
-                    hasIcon = true,
-                    moreLinkText = "Подробнее"
-                ),
-                Message(
-                    id = 3,
-                    date = "03 фев. 2019",
-                    content = "Уважаемые абоненты компании ЛДС."
-                ),
-                Message(
-                    id = 4,
-                    date = "03 фев. 2019",
-                    content = "Уважаемые абоненты компании ЛДС."
-                )
-            )
+
         )
     }
 }
