@@ -73,33 +73,46 @@ fun PaymentPointCard(
                 Text(text = point.address, color = Text2, fontSize = 14.sp, lineHeight = 18.sp)
             }
 
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(text = "График работы:", color = Text2, fontSize = 15.sp, fontWeight = FontWeight.Medium)
                 point.schedule.forEach { item ->
-                    Row(
+                    Column(
                         modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(20.dp)
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                            item.days.forEach { day ->
-                                Surface(
-                                    modifier = Modifier.size(width = 36.dp, height = 20.dp),
-                                    shape = RoundedCornerShape(5.dp),
-                                    color = if (item.isHoliday) BrandColor2 else Color(0xFFF1F1F1)
-                                ) {
-                                    Box(contentAlignment = Alignment.Center) {
-                                        Text(
-                                            text = day,
-                                            color = if (item.isHoliday) Color.White else BrandColor1,
-                                            fontSize = 13.sp
-                                        )
+                        // Days section with blue line
+                        Column(
+                            modifier = Modifier.width(IntrinsicSize.Min),
+                            verticalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                                item.days.forEach { day ->
+                                    Surface(
+                                        modifier = Modifier.size(width = 36.dp, height = 20.dp),
+                                        shape = RoundedCornerShape(5.dp),
+                                        color = if (item.isHoliday) BrandColor2 else Color(0xFFF1F1F1)
+                                    ) {
+                                        Box(contentAlignment = Alignment.Center) {
+                                            Text(
+                                                text = day,
+                                                color = if (item.isHoliday) Color.White else BrandColor1,
+                                                fontSize = 13.sp
+                                            )
+                                        }
                                     }
                                 }
                             }
+                            if (!item.isHoliday) {
+                                HorizontalDivider(
+                                    thickness = 2.dp,
+                                    color = BrandColor1,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+                            }
                         }
                         
-                        Column {
+                        // Time section
+                        Column(modifier = Modifier.padding(start = 2.dp)) {
                             Text(
                                 text = item.time,
                                 color = if (item.isHoliday) BrandColor2 else BrandColor1,
@@ -107,7 +120,11 @@ fun PaymentPointCard(
                                 fontWeight = FontWeight.Bold
                             )
                             if (item.breakTime != null) {
-                                Text(text = item.breakTime, color = Text2, fontSize = 14.sp)
+                                Text(
+                                    text = item.breakTime,
+                                    color = Text2,
+                                    fontSize = 14.sp
+                                )
                             }
                         }
                     }
