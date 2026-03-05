@@ -20,7 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.components.AccountCard
-import com.walhalla.jpfigma.ui.components.HorizontalDivider
+
 import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.theme.*
 
