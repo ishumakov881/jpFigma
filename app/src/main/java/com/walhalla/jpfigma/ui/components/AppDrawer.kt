@@ -33,7 +33,7 @@ fun AppDrawer(
                 .padding(vertical = 10.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            AppScreen.values().forEach { screen ->
+            AppScreen.entries.forEach { screen ->
                 NavigationItem(
                     screen = screen,
                     isSelected = screen == currentScreen,

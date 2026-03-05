@@ -63,6 +63,6 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.ktor3)
-
+    implementation("com.github.alexvarboffin:JCTheme:1.0.0")
 
 }
