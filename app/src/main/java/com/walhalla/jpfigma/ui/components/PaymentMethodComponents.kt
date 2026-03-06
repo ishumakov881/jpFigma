@@ -13,16 +13,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
-
-import com.walhalla.jpfigma.ui.model.PaymentMethod
-import com.walhalla.jpfigma.ui.model.PaymentPoint
+import coil3.compose.SubcomposeAsyncImage
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun PaymentMethodCard(
     modifier: Modifier = Modifier,
-    method: PaymentMethod,
+    title: String,
+    description: String,
+    hasDetailButton: Boolean = true,
     onDetailClick: () -> Unit = {}
 ) {
     Surface(
@@ -31,16 +30,16 @@ fun PaymentMethodCard(
         color = Color.White
     ) {
         Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(15.dp)) {
-            Text(text = method.title, color = TitleColor, fontSize = 20.sp)
+            Text(text = title, color = TitleColor, fontSize = 20.sp)
             Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.Top) {
                 Text(
-                    text = method.description,
+                    text = description,
                     modifier = Modifier.weight(1f),
                     color = Text2,
                     fontSize = 14.sp,
                     lineHeight = 18.sp
                 )
-                if (method.hasDetailButton) {
+                if (hasDetailButton) {
                     Button(
                         onClick = onDetailClick,
                         colors = ButtonDefaults.buttonColors(containerColor = SecondaryBtn),
@@ -58,7 +57,10 @@ fun PaymentMethodCard(
 @Composable
 fun PaymentPointCard(
     modifier: Modifier = Modifier,
-    point: PaymentPoint
+    title: String,
+    address: String,
+    imageUrl: String? = null,
+    scheduleContent: @Composable ColumnScope.() -> Unit
 ) {
     Surface(
         modifier = modifier.fillMaxWidth(),
@@ -66,78 +68,97 @@ fun PaymentPointCard(
         color = Color.White
     ) {
         Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(15.dp)) {
-            Text(text = point.title, color = TitleColor, fontSize = 20.sp)
+            Text(text = title, color = TitleColor, fontSize = 20.sp)
             
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(text = "Адрес:", color = Text2, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                Text(text = point.address, color = Text2, fontSize = 14.sp, lineHeight = 18.sp)
+                Text(text = address, color = Text2, fontSize = 14.sp, lineHeight = 18.sp)
             }
 
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(text = "График работы:", color = Text2, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                point.schedule.forEach { item ->
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(20.dp)
-                    ) {
-                        // Days section
-                        Column(
-                            modifier = Modifier.width(intrinsicSize = IntrinsicSize.Min),
-                            verticalArrangement = Arrangement.spacedBy(6.dp)
-                        ) {
-                            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                                item.days.forEach { day ->
-                                    Surface(
-                                        modifier = Modifier.size(width = 36.dp, height = 20.dp),
-                                        shape = RoundedCornerShape(5.dp),
-                                        color = if (item.isHoliday) BrandColor2 else Color(0xFFF1F1F1)
-                                    ) {
-                                        Box(contentAlignment = Alignment.Center) {
-                                            Text(
-                                                text = day,
-                                                color = if (item.isHoliday) Color.White else BrandColor1,
-                                                fontSize = 13.sp
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                            // The blue line under days (only for working days)
-                            if (!item.isHoliday) {
-                                HorizontalDivider(
-                                    thickness = 2.dp,
-                                    color = BrandColor1,
-                                    modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(1.dp))
-                                )
-                            }
-                        }
-                        
-                        // Time section
-                        Column {
-                            Text(
-                                text = item.time,
-                                color = if (item.isHoliday) BrandColor2 else BrandColor1,
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                            if (item.breakTime != null) {
-                                Text(text = item.breakTime, color = Text2, fontSize = 14.sp)
-                            }
-                        }
-                    }
-                }
+                scheduleContent()
             }
 
-            if (point.imageUrl != null) {
-                AsyncImage(
-                    model = point.imageUrl,
+            if (imageUrl != null) {
+                SubcomposeAsyncImage(
+                    model = imageUrl,
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(300.dp)
                         .clip(RoundedCornerShape(10.dp)),
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Crop,
+                    loading = {
+                        Box(modifier = Modifier.fillMaxSize().background(LineColor), contentAlignment = Alignment.Center) {
+                            CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                        }
+                    },
+                    error = {
+                        Box(modifier = Modifier.fillMaxSize().background(LineColor), contentAlignment = Alignment.Center) {
+                            Text("Map Error", color = Text3)
+                        }
+                    }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun ScheduleItemRow(
+    modifier: Modifier = Modifier,
+    days: List<String>,
+    time: String,
+    breakTime: String? = null,
+    isHoliday: Boolean = false
+) {
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Column(
+            modifier = Modifier.width(IntrinsicSize.Min),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                days.forEach { day ->
+                    Surface(
+                        modifier = Modifier.size(width = 36.dp, height = 20.dp),
+                        shape = RoundedCornerShape(5.dp),
+                        color = if (isHoliday) BrandColor2 else Color(0xFFF1F1F1)
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Text(
+                                text = day,
+                                color = if (isHoliday) Color.White else BrandColor1,
+                                fontSize = 13.sp
+                            )
+                        }
+                    }
+                }
+            }
+            if (!isHoliday) {
+                HorizontalDivider(
+                    thickness = 2.dp,
+                    color = BrandColor1,
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+        }
+        
+        Column(modifier = Modifier.padding(start = 2.dp)) {
+            Text(
+                text = time,
+                color = if (isHoliday) BrandColor2 else BrandColor1,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
+            if (breakTime != null) {
+                Text(
+                    text = breakTime,
+                    color = Text2,
+                    fontSize = 14.sp
                 )
             }
         }

@@ -15,18 +15,43 @@ import com.walhalla.jpfigma.ui.components.*
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
 
+/**
+ * Payment Screen.
+ * Uses [MockData] for demonstration.
+ */
 @Composable
-fun PaymentScreen(
-    modifier: Modifier = Modifier,
-    onPayClick: () -> Unit = {}
-) {
-    val paymentMethods = MockData.getPaymentMethods()
-    val paymentPoints = MockData.getPaymentPoints()
+fun PaymentScreen() {
+    val methods = MockData.getPaymentMethods()
+    val points = MockData.getPaymentPoints()
 
     var accountNumber by remember { mutableStateOf("12345678") }
     var amount by remember { mutableStateOf("200") }
     var email by remember { mutableStateOf("") }
 
+    PaymentScreenContent(
+        accountNumber = accountNumber,
+        onAccountChange = { accountNumber = it },
+        amount = amount,
+        onAmountChange = { amount = it },
+        email = email,
+        onEmailChange = { email = it },
+        paymentMethods = methods,
+        paymentPoints = points
+    )
+}
+
+@Composable
+fun PaymentScreenContent(
+    accountNumber: String,
+    onAccountChange: (String) -> Unit,
+    amount: String,
+    onAmountChange: (String) -> Unit,
+    email: String,
+    onEmailChange: (String) -> Unit,
+    paymentMethods: List<PaymentMethod>,
+    paymentPoints: List<PaymentPoint>,
+    modifier: Modifier = Modifier
+) {
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -52,21 +77,38 @@ fun PaymentScreen(
         item {
             OnlinePaymentCard(
                 accountNumber = accountNumber,
-                onAccountChange = { accountNumber = it },
+                onAccountChange = onAccountChange,
                 amount = amount,
-                onAmountChange = { amount = it },
+                onAmountChange = onAmountChange,
                 email = email,
-                onEmailChange = { email = it },
-                onPayClick = onPayClick
+                onEmailChange = onEmailChange,
+                onPayClick = { }
             )
         }
 
         items(paymentMethods) { method ->
-            PaymentMethodCard(method = method)
+            PaymentMethodCard(
+                title = method.title,
+                description = method.description,
+                hasDetailButton = method.hasDetailButton
+            )
         }
 
         items(paymentPoints) { point ->
-            PaymentPointCard(point = point)
+            PaymentPointCard(
+                title = point.title,
+                address = point.address,
+                imageUrl = point.imageUrl
+            ) {
+                point.schedule.forEach { schedule ->
+                    ScheduleItemRow(
+                        days = schedule.days,
+                        time = schedule.time,
+                        breakTime = schedule.breakTime,
+                        isHoliday = schedule.isHoliday
+                    )
+                }
+            }
         }
     }
 }
@@ -75,7 +117,6 @@ fun PaymentScreen(
 @Composable
 fun PaymentScreenPreview() {
     JpFigmaTheme {
-        PaymentScreen(
-        )
+        PaymentScreen()
     }
 }

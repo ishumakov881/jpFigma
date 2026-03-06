@@ -15,37 +15,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.ui.model.AppScreen
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun AppDrawer(
     modifier: Modifier = Modifier,
-    currentScreen: AppScreen,
-    onScreenSelected: (AppScreen) -> Unit
+    menuItems: List<String>,
+    selectedItem: String,
+    onItemClick: (String) -> Unit
 ) {
+    val drawerWidth = 300.dp
+    val cornerRadius = 25.dp
+
     ModalDrawerSheet(
-        modifier = modifier.width(300.dp),
-        drawerShape = RoundedCornerShape(topEnd = 25.dp, bottomEnd = 25.dp),
+        modifier = modifier.width(drawerWidth),
+        drawerShape = RoundedCornerShape(topEnd = cornerRadius, bottomEnd = cornerRadius),
         drawerContainerColor = Color.White
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(vertical = 10.dp)
-                //.verticalScroll(rememberScrollState())
+                .verticalScroll(rememberScrollState())
         ) {
-            AppScreen.entries.forEach { screen ->
+            menuItems.forEach { title ->
                 NavigationItem(
-                    screen = screen,
-                    isSelected = screen == currentScreen,
-                    counter = when(screen) {
-                        AppScreen.SUPPORT -> 2
-                        AppScreen.MESSAGES -> 16
+                    title = title,
+                    isSelected = title == selectedItem,
+                    counter = when(title) {
+                        "Техподдержка" -> 2
+                        "Сообщения" -> 16
                         else -> null
                     },
-                    hasDot = screen == AppScreen.NEWS,
-                    onClick = { onScreenSelected(screen) }
+                    hasDot = title == "Новости",
+                    onClick = { onItemClick(title) }
                 )
             }
         }
@@ -54,29 +57,34 @@ fun AppDrawer(
 
 @Composable
 private fun NavigationItem(
-    screen: AppScreen,
+    modifier: Modifier = Modifier,
+    title: String,
     isSelected: Boolean,
     counter: Int? = null,
     hasDot: Boolean = false,
     onClick: () -> Unit
 ) {
+    val itemHeight = 50.dp
+    val horizontalPadding = 20.dp
+    val iconSize = 20.dp
+    val dotSize = 8.dp
+
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .height(50.dp)
+            .height(itemHeight)
             .clickable(onClick = onClick)
-            .padding(horizontal = 20.dp),
+            .padding(horizontal = horizontalPadding),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        // Placeholder for Icon
         Surface(
-            modifier = Modifier.size(20.dp),
+            modifier = Modifier.size(iconSize),
             color = if (isSelected) BrandColor1.copy(alpha = 0.2f) else Color.LightGray.copy(alpha = 0.3f)
         ) {}
 
         Text(
-            text = screen.title,
+            text = title,
             modifier = Modifier.weight(1f),
             color = if (isSelected) BrandColor1 else MenuText,
             fontSize = 15.sp
@@ -97,7 +105,7 @@ private fun NavigationItem(
         }
 
         if (hasDot) {
-            Canvas(modifier = Modifier.size(8.dp)) {
+            Canvas(modifier = Modifier.size(dotSize)) {
                 drawCircle(color = BrandColor2)
             }
         }

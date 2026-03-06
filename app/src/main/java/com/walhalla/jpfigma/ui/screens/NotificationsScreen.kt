@@ -1,32 +1,37 @@
 package com.walhalla.jpfigma.ui.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.ui.components.*
+import com.walhalla.jpfigma.ui.components.NotificationItemData
+import com.walhalla.jpfigma.ui.components.NotificationsScreenBody
 import com.walhalla.jpfigma.ui.model.MockData
-import com.walhalla.jpfigma.ui.theme.*
+import com.walhalla.jpfigma.ui.theme.JpFigmaTheme
 
-/**
- * Screen for managing notification settings.
- * Fetches data internally from [MockData].
- */
 @Composable
-fun NotificationsScreen(
-    modifier: Modifier = Modifier,
-    title: String = "Услуга Уведомления"
-) {
+fun NotificationsScreen() {
+    val title = MockData.NotificationsScreen.title
+    val description = MockData.NotificationsScreen.description
+    val initialItems = MockData.NotificationsScreen.items
+    
+    // Using local state for toggles in demo screen
+    val itemsState = remember {
+        mutableStateListOf(*initialItems.mapIndexed { index, it ->
+            NotificationItemData(index, it.name, it.price, index == 0) // Default some enabled
+        }.toTypedArray())
+    }
+
+    NotificationsScreenBody(
+        title = title,
+        description = description,
+        items = itemsState,
+        onToggleItem = { id, enabled ->
+            val index = itemsState.indexOfFirst { it.id == id }
+            if (index != -1) {
+                itemsState[index] = itemsState[index].copy(isEnabled = enabled)
+            }
+        },
+        onSaveClick = {}
+    )
 }
 
 @Preview(showBackground = true)

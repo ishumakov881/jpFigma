@@ -1,55 +1,53 @@
 package com.walhalla.jpfigma.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.ui.model.Message
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun MessageItem(
     modifier: Modifier = Modifier,
-    message: Message
+    date: String,
+    content: String,
+    title: String? = null,
+    hasIcon: Boolean = false,
+    moreLinkText: String? = null
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 10.dp)
     ) {
-        // Date and Icon row
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Text(
-                text = message.date,
+                text = date,
                 color = Text3,
                 fontSize = 11.sp
             )
-            if (message.hasIcon) {
+            if (hasIcon) {
                 Surface(
                     modifier = Modifier.size(14.dp),
-                    color = OrangeIconColor // Envelope color
-                ) {
-                    // Empty for now or Icon
-                }
+                    color = OrangeIconColor
+                ) {}
             }
         }
         
-        // Title (optional)
-        if (message.title != null) {
+        if (title != null) {
             Text(
-                text = message.title,
+                text = title,
                 color = Text1,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.SemiBold,
@@ -57,13 +55,12 @@ fun MessageItem(
             )
         }
         
-        // Content with optional blue "more" link
         val contentText = buildAnnotatedString {
-            append(message.content)
-            if (message.moreLinkText != null) {
+            append(content)
+            if (moreLinkText != null) {
                 append(" ")
                 withStyle(style = SpanStyle(color = BrandColor1)) {
-                    append(message.moreLinkText)
+                    append(moreLinkText)
                 }
             }
         }

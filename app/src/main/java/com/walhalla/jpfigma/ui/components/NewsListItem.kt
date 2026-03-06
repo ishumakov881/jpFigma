@@ -9,14 +9,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.ui.model.NewsItem
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun NewsListItem(
     modifier: Modifier = Modifier,
-    news: NewsItem
+    date: String,
+    title: String,
+    hasDot: Boolean = false
 ) {
+    val dotSize = 8.sp
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -27,11 +30,11 @@ fun NewsListItem(
             horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             Text(
-                text = news.date,
+                text = date,
                 color = Text3,
                 fontSize = 11.sp
             )
-            if (news.hasDot) {
+            if (hasDot) {
                 Canvas(modifier = Modifier.size(8.dp)) {
                     drawCircle(color = Color(0xFFF04E23))
                 }
@@ -39,7 +42,7 @@ fun NewsListItem(
         }
         
         Text(
-            text = news.title,
+            text = title,
             color = Text2,
             fontSize = 14.sp,
             lineHeight = 18.sp,

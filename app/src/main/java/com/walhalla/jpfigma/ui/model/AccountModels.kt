@@ -21,7 +21,6 @@ data class ServiceDetail(
     val hasOffer: Boolean = false,
     val isMainService: Boolean = false
 )
-
 data class UserServicePackage(
     val packageName: String,
     val services: List<ServiceDetail>,

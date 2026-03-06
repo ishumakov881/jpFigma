@@ -1,24 +1,34 @@
 package com.walhalla.jpfigma.ui.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.ui.components.*
+import androidx.compose.ui.tooling.preview.Preview
+import com.walhalla.jpfigma.ui.components.PaymentsScreenBody
+import com.walhalla.jpfigma.ui.components.TransactionData
 import com.walhalla.jpfigma.ui.model.MockData
-import com.walhalla.jpfigma.ui.theme.*
+import com.walhalla.jpfigma.ui.theme.JpFigmaTheme
 
 @Composable
-fun PaymentsScreen(
-    modifier: Modifier = Modifier
-) {
-   //@@@
+fun PaymentsScreen() {
+    val title = MockData.PaymentsScreen.title
+    val transactions = MockData.PaymentsScreen.transactions
+    val incomes = transactions.filter { it.isIncome }.map {
+        TransactionData(it.date, it.description, it.amount, it.isIncome, it.balanceAfter)
+    }
+    val expenses = transactions.filter { !it.isIncome }.map {
+        TransactionData(it.date, it.description, it.amount, it.isIncome, it.balanceAfter)
+    }
+
+    PaymentsScreenBody(
+        title = title,
+        incomes = incomes,
+        expenses = expenses
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PaymentsScreenPreview() {
+    JpFigmaTheme {
+        PaymentsScreen()
+    }
 }

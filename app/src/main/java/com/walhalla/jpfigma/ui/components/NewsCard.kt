@@ -13,45 +13,64 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
-
-import com.walhalla.jpfigma.ui.model.NewsItem
+import coil3.compose.SubcomposeAsyncImage
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun NewsCard(
     modifier: Modifier = Modifier,
-    news: NewsItem
+    date: String,
+    title: String,
+    imageUrl: String? = null,
+    hasDot: Boolean = false
 ) {
+    val cardHeight = 120.dp
+    val imageSize = 120.dp
+    val borderRadius = 20.dp
+    val dotSize = 8.dp
+
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .height(120.dp),
-        shape = RoundedCornerShape(20.dp),
+            .height(cardHeight),
+        shape = RoundedCornerShape(borderRadius),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(modifier = Modifier.fillMaxSize()) {
-            // Image section
-            if (news.imageUrl != null) {
-                AsyncImage(
-                    model = news.imageUrl,
+            if (imageUrl != null) {
+                SubcomposeAsyncImage(
+                    model = imageUrl,
                     contentDescription = null,
                     modifier = Modifier
-                        .size(120.dp)
-                        .clip(RoundedCornerShape(20.dp)),
-                    contentScale = ContentScale.Crop
+                        .size(imageSize)
+                        .clip(RoundedCornerShape(borderRadius)),
+                    contentScale = ContentScale.Crop,
+                    loading = {
+                        Box(
+                            modifier = Modifier.fillMaxSize().background(LineColor),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                        }
+                    },
+                    error = {
+                        Box(
+                            modifier = Modifier.fillMaxSize().background(LineColor),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text("!", color = Text3)
+                        }
+                    }
                 )
             } else {
-                // Placeholder if no image
                 Box(
                     modifier = Modifier
-                        .size(120.dp)
-                        .background(LineColor, RoundedCornerShape(20.dp))
+                        .size(imageSize)
+                        .background(LineColor, RoundedCornerShape(borderRadius))
                 )
             }
 
-            // Content section
             Column(
                 modifier = Modifier
                     .padding(10.dp)
@@ -63,19 +82,19 @@ fun NewsCard(
                     horizontalArrangement = Arrangement.spacedBy(5.dp)
                 ) {
                     Text(
-                        text = news.date,
+                        text = date,
                         color = Text3,
                         fontSize = 14.sp
                     )
-                    if (news.hasDot) {
-                        Canvas(modifier = Modifier.size(8.dp)) {
+                    if (hasDot) {
+                        Canvas(modifier = Modifier.size(dotSize)) {
                             drawCircle(color = Color(0xFFF04E23))
                         }
                     }
                 }
                 
                 Text(
-                    text = news.title,
+                    text = title,
                     color = Text1,
                     fontSize = 15.sp,
                     lineHeight = 19.sp,
