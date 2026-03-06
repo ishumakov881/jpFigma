@@ -48,18 +48,7 @@ fun PaymentsScreenBody(
                 horizontalPadding = 20.dp
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
-                    incomes.forEachIndexed { index, transaction ->
-                        PaymentTransactionItem(
-                            date = transaction.date,
-                            description = transaction.description,
-                            amount = transaction.amount,
-                            isIncome = transaction.isIncome,
-                            balanceAfter = transaction.balanceAfter
-                        )
-                        if (index < incomes.size - 1) {
-                            HorizontalDivider(color = LineColor)
-                        }
-                    }
+
                 }
             }
         }
@@ -73,16 +62,7 @@ fun PaymentsScreenBody(
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     expenses.forEachIndexed { index, transaction ->
-                        PaymentTransactionItem(
-                            date = transaction.date,
-                            description = transaction.description,
-                            amount = transaction.amount,
-                            isIncome = transaction.isIncome,
-                            balanceAfter = transaction.balanceAfter
-                        )
-                        if (index < expenses.size - 1) {
-                            HorizontalDivider(color = LineColor)
-                        }
+
                     }
                 }
             }
