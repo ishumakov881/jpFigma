@@ -94,6 +94,9 @@ class MainActivity : ComponentActivity() {
                                 AppScreen.PAYMENT_METHODS -> {
                                     PaymentScreen()
                                 }
+                                AppScreen.PAYMENTS -> {
+                                    PaymentsScreen()
+                                }
                                 else -> {
                                     Box(
                                         modifier = Modifier.fillMaxSize(),

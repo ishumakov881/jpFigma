@@ -22,3 +22,12 @@ data class PaymentPoint(
     val schedule: List<ScheduleItem>,
     val imageUrl: String? = null
 )
+
+data class PaymentTransaction(
+    val id: Int,
+    val date: String,
+    val description: String,
+    val amount: String,
+    val isIncome: Boolean,
+    val balanceAfter: String? = null
+)
