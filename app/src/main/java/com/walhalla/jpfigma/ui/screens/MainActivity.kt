@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.walhalla.jpfigma.ui.components.AppDrawer
 import com.walhalla.jpfigma.ui.model.AppScreen
+import com.walhalla.jpfigma.ui.screens.MockScreens.PaymentsScreen
 import com.walhalla.jpfigma.ui.theme.JpFigmaTheme
 import kotlinx.coroutines.launch
 

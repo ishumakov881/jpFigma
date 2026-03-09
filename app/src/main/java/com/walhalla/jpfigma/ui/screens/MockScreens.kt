@@ -134,11 +134,23 @@ object MockScreens {
 
     @Composable
     fun PaymentsScreen() {
-        val title = MockData.PaymentsScreen.title
-
+        val data = MockData.PaymentsScreen
 
         PaymentsScreenBody(
-            title = title
+            title = data.title,
+            dateFrom = data.dateFrom,
+            dateTo = data.dateTo,
+            btnShow = data.btnShow,
+            btnHistory = data.btnHistory,
+            headerDate = data.headerDate,
+            headerDescription = data.headerDescription,
+            transactions = data.transactions,
+            balanceLabel = data.balanceLabel,
+            balanceValue = data.balanceValue,
+            balanceUntil = data.balanceUntil,
+            btnTopUp = data.btnTopUp,
+            iconCalendar = data.iconCalendar,
+            iconWallet = data.iconWallet
         )
     }
 }

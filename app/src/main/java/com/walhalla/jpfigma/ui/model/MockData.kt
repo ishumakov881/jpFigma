@@ -90,7 +90,32 @@ object MockData {
 
     object PaymentsScreen {
         val title = "Платежи"
-
+        val dateFrom = "1.05.2025"
+        val dateTo = "20.05.2025"
+        val btnShow = "Показать"
+        val btnHistory = "История баланса"
+        
+        val headerDate = "Дата"
+        val headerDescription = "Сумма и вид платежа"
+        
+        val transactions = listOf(
+            PaymentTransaction(1, "01 дек 2025", "Абонплата", "-35.30", false),
+            PaymentTransaction(2, "02 мая 2025", "Пополнение баланса", "1500.00", true, hasReceipt = true),
+            PaymentTransaction(3, "02 мая 2025", "Абонплата", "-35.30", false),
+            PaymentTransaction(4, "03 мая 2025", "Абонплата", "-35.30", false),
+            PaymentTransaction(5, "04 мая 2025", "Абонплата", "-35.30", false),
+            PaymentTransaction(6, "05 мая 2025", "Абонплата", "-35.30", false),
+            PaymentTransaction(7, "06 мая 2025", "Абонплата", "-35.30", false),
+            PaymentTransaction(8, "07 мая 2025", "Абонплата", "-35.30", false)
+        )
+        
+        val balanceLabel = "Ваш баланс:"
+        val balanceValue = "515.33"
+        val balanceUntil = "Оплачено до 26 июня 2025г. включительно"
+        val btnTopUp = "Пополнить счёт"
+        
+        val iconCalendar = "https://www.figma.com/api/mcp/asset/eca56b5e-bd4e-48d7-84c1-dff4f234b28f"
+        val iconWallet = "https://www.figma.com/api/mcp/asset/d2102efe-adbd-4297-bb6f-de2ff6de221a"
     }
 
     object NotificationsScreen {

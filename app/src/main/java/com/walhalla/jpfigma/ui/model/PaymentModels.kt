@@ -28,6 +28,7 @@ data class PaymentTransaction(
     val date: String,
     val description: String,
     val amount: String,
-    val isIncome: Boolean,
-    val balanceAfter: String? = null
+    val isPositive: Boolean,
+    val balanceAfter: String? = null,
+    val hasReceipt: Boolean = false
 )
