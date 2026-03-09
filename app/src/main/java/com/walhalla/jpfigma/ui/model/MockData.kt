@@ -97,4 +97,77 @@ object MockData {
             PaymentTransaction(4, "01 июл. 2024 00:01", "Списание по тарифу \"Безлим 100+ и ТВ\"", "619", false, "634.33")
         )
     }
+
+    object NotificationsScreen {
+        val screenTitle = "Услуга “Уведомления”"
+        val description = "Если Вы не хотите остаться без интернета в самый неподходящий момент, Вам необходима услуга «Уведомления». Эта услуга поможет вовремя пополнять счет, чтобы баланс не оказался отрицательным неожиданно для Вас. Данная информация будет высылаться выбранным вами способом."
+        val advantagesTitle = "Преимущества уведомлений"
+        val advantages = listOf(
+            "подписка на услугу доступна в Вашем личном кабинете;",
+            "возможность выбора платного/бесплатного варианта услуги;",
+            "Вы можете настроить параметры уведомлений так, как Вам удобно."
+        )
+        val warningTextPrefix = "Услуга не подключена. "
+        val warningTextSuffix = "Если хотите воспользоваться услугой - выберите вариант уведомлений и нажмите кнопку “Активировать” в приведенной ниже таблице. Для подтверждения необходимо будет ввести пароль."
+        val settingsTitle = "Настройка услуги “Уведомления”"
+        val settingsGroups = listOf(
+            SettingsGroup(
+                title = "SMS",
+                items = listOf(
+                    SettingItem("Наступление отрицательного баланса", isAvailable = true),
+                    SettingItem("Достижение определённой суммы на Вашем балансе", isAvailable = false),
+                    SettingItem("Предупреждение за 1 день до отключения", isAvailable = false),
+                    SettingItem("Пополнение счёта", isAvailable = false),
+                    SettingItem("Рекомендуемый платёж", isAvailable = false),
+                    SettingItem("Восстановление пароля", isAvailable = true, label = "3 раза/30 дней")
+                ),
+                actionText = "Активировать",
+                price = "бесплатно"
+            ),
+            SettingsGroup(
+                title = "SMS Премиум",
+                items = listOf(
+                    SettingItem("Наступление отрицательного баланса", isAvailable = true),
+                    SettingItem("Достижение определённой суммы на Вашем балансе", isAvailable = true),
+                    SettingItem("Предупреждение за 1 день до отключения", isAvailable = true),
+                    SettingItem("Пополнение счёта", isAvailable = true),
+                    SettingItem("Рекомендуемый платёж", isAvailable = true),
+                    SettingItem("Восстановление пароля", isAvailable = true, label = "3 раза/30 дней")
+                ),
+                actionText = "Активировать",
+                price = "4,50 руб/30 дней"
+            ),
+            SettingsGroup(
+                title = "Приложение ЛДС онлайн",
+                items = listOf(
+                    SettingItem("Наступление отрицательного баланса", isAvailable = true),
+                    SettingItem("Достижение определённой суммы на Вашем балансе", isAvailable = true),
+                    SettingItem("Предупреждение за 1 день до отключения", isAvailable = true),
+                    SettingItem("Пополнение счёта", isAvailable = true),
+                    SettingItem("Рекомендуемый платёж", isAvailable = true),
+                    SettingItem("Восстановление пароля", isAvailable = false)
+                ),
+                actionText = "Активировать",
+                price = "бесплатно"
+            )
+        )
+        // Image URLs from Figma context
+        val imgCheck = "https://www.figma.com/api/mcp/asset/9e7fa575-6515-4435-a826-162927cfff50"
+        val imgNotAvailable = "https://www.figma.com/api/mcp/asset/5710d6ac-7304-4f8e-a662-38764dda95ba"
+        val imgQuestion = "https://www.figma.com/api/mcp/asset/e46002a3-1c5a-49f5-9813-142d68a890c1"
+        val imgWarning = "https://www.figma.com/api/mcp/asset/ead46fb3-07b8-48ff-9805-a2aae6f663fe"
+    }
 }
+
+data class SettingsGroup(
+    val title: String,
+    val items: List<SettingItem>,
+    val actionText: String,
+    val price: String
+)
+
+data class SettingItem(
+    val text: String,
+    val isAvailable: Boolean,
+    val label: String? = null
+)
