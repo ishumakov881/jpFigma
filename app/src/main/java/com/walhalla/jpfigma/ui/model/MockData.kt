@@ -157,6 +157,131 @@ object MockData {
         val imgQuestion = "https://www.figma.com/api/mcp/asset/e46002a3-1c5a-49f5-9813-142d68a890c1"
         val imgWarning = "https://www.figma.com/api/mcp/asset/ead46fb3-07b8-48ff-9805-a2aae6f663fe"
     }
+
+    object LinkedAccountsScreen {
+        val screenTitle = "Услуга “Связанные аккаунты”"
+        val descriptionPart1 = "\"Связанные аккаунты\" - удобное решение для управления несколькими  лицевыми счетами. Все счета в одном профиле: контролируйте баланс и  оплачивайте быстро и просто. Более подробно с услугой можно ознакомиться "
+        val descriptionLink = "здесь"
+        val descriptionPart2 = "."
+        val freeServiceTitle = "Услуга “Связанные аккаунты” предоставляется "
+        val freeServiceStatus = "бесплатно"
+
+        val mainAccount = LinkedAccount(
+            name = "Ваш аккаунт",
+            type = AccountType.MAIN,
+            balance = "515.33",
+            paidUntil = "Оплачено до 26.05.2025г. включительно",
+            accountNumber = "12345678",
+            tariff = "Безлим 300 + ТВ",
+            linkedCount = 6
+        )
+
+        val linkedAccounts = listOf(
+            LinkedAccount(
+                name = "Мама",
+                type = AccountType.VIEW_ONLY,
+                balance = "50.62",
+                paidUntil = "Оплачено до 30.05.2025г. включительно",
+                accountNumber = "22345678",
+                tariff = "Домашнее ТВ",
+                actions = listOf(AccountAction.EDIT, AccountAction.REFILL, AccountAction.UNLINK)
+            ),
+            LinkedAccount(
+                name = "Тёща",
+                type = AccountType.VIEW_ONLY,
+                balance = "-15.21",
+                paidUntil = "Услуги не предоставляются",
+                accountNumber = "32345678",
+                tariff = "Безлим 90 + ТВ",
+                actions = listOf(AccountAction.EDIT, AccountAction.REFILL, AccountAction.UNLINK),
+                isAlert = true
+            ),
+            LinkedAccount(
+                name = "Работа",
+                type = AccountType.FULL_CONTROL,
+                balance = "1561.04",
+                paidUntil = "Оплачено до 14.08.2025г. включительно",
+                accountNumber = "42345678",
+                tariff = "Офис-90",
+                actions = listOf(AccountAction.EDIT, AccountAction.REFILL, AccountAction.GO_TO, AccountAction.UNLINK)
+            ),
+            LinkedAccount(
+                name = "Магазин",
+                type = AccountType.FULL_CONTROL,
+                balance = "11.65",
+                paidUntil = "Оплачено до 14.05.2025г. включительно",
+                accountNumber = "44345678",
+                tariff = "IoT",
+                actions = listOf(AccountAction.EDIT, AccountAction.REFILL, AccountAction.GO_TO, AccountAction.UNLINK),
+                balanceColorType = BalanceColorType.ORANGE
+            ),
+            LinkedAccount(
+                name = "Квартира 12",
+                type = AccountType.FULL_CONTROL,
+                balance = "122.15",
+                paidUntil = "Аккаунт заблокирован пользователем",
+                accountNumber = "44345678",
+                tariff = "Безлим 90 + ТВ",
+                actions = listOf(AccountAction.EDIT, AccountAction.REFILL, AccountAction.GO_TO, AccountAction.UNLINK),
+                balanceColorType = BalanceColorType.GREY
+            ),
+            LinkedAccount(
+                name = "Квартира 27",
+                type = AccountType.FINANCIAL_LINK,
+                balance = "0.00",
+                paidUntil = "Оплачивается с основного",
+                accountNumber = "44345678",
+                tariff = "Безлим 100+",
+                actions = listOf(AccountAction.EDIT, AccountAction.REFILL, AccountAction.GO_TO, AccountAction.UNLINK),
+                balanceColorType = BalanceColorType.GREY,
+                isPaidFromMain = true
+            )
+        )
+
+        val btnLinkAccount = "Привязать аккаунт"
+
+        // Icons
+        val iconEdit = "https://www.figma.com/api/mcp/asset/516f3e0b-0b05-4af6-9574-5f587284b256"
+        val iconRefill = "https://www.figma.com/api/mcp/asset/56ef7e82-a9ad-4065-95d4-fb1e585fa796"
+        val iconUnlink = "https://www.figma.com/api/mcp/asset/811ec7d7-1b73-4260-a752-e1af316a741e"
+        val iconGoTo = "https://www.figma.com/api/mcp/asset/cc715ad5-f74a-4ac3-b1b8-1a135c35b7cf"
+        val iconLinked = "https://www.figma.com/api/mcp/asset/ed6fdbb0-84f0-4ef1-b192-aa75afb9ff3d"
+        val iconPlus = "https://www.figma.com/api/mcp/asset/1d6f3d9a-7a8d-4e39-952b-f36115069ae4"
+        val iconList = "https://www.figma.com/api/mcp/asset/99b56b27-68ab-48bc-bdcc-6f386300f5d5"
+        val iconGrid = "https://www.figma.com/api/mcp/asset/b71fbe59-096f-48e0-9d46-21c489b25326"
+    }
+}
+
+data class LinkedAccount(
+    val name: String,
+    val type: AccountType,
+    val balance: String,
+    val paidUntil: String,
+    val accountNumber: String,
+    val tariff: String,
+    val linkedCount: Int? = null,
+    val actions: List<AccountAction> = emptyList(),
+    val isAlert: Boolean = false,
+    val balanceColorType: BalanceColorType = BalanceColorType.GREEN,
+    val isPaidFromMain: Boolean = false
+)
+
+enum class AccountType(val label: String) {
+    MAIN("Основной"),
+    VIEW_ONLY("Только просмотр"),
+    FULL_CONTROL("Полное управление"),
+    FINANCIAL_LINK("Финансовая привязка")
+}
+
+enum class AccountAction(val label: String) {
+    EDIT("Редактировать"),
+    REFILL("Пополнить"),
+    UNLINK("Отвязать"),
+    GO_TO("Перейти")
+}
+
+enum class BalanceColorType {
+    GREEN, RED, ORANGE, GREY
 }
 
 data class SettingsGroup(
