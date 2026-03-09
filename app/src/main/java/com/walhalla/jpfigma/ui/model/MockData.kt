@@ -250,6 +250,65 @@ object MockData {
         val iconList = "https://www.figma.com/api/mcp/asset/99b56b27-68ab-48bc-bdcc-6f386300f5d5"
         val iconGrid = "https://www.figma.com/api/mcp/asset/b71fbe59-096f-48e0-9d46-21c489b25326"
     }
+
+    object ReferFriendScreen {
+        val screenTitle = "Подключи друга"
+        
+        val descriptionParagraphs = listOf(
+            "Подключите своего друга к ЛДС и получите бонус в виде пополнения счета для себя и для друга. Суммарно бонус составляет 180 руб. Вы и только Вы решаете, какую часть бонуса взять себе, а какую подарить другу!",
+            "Двигая бегунок по шкале в ту или иную сторону, Вы сможете выставить размеры бонусов для Вас и Вашего друга в пределах 180 руб.",
+            "В акции принимают участие только заявки на подключение, заполненные в электронной форме."
+        )
+
+        val steps = listOf(
+            "Выберите по шкале бонусов, сколько получите Вы и Ваш друг.",
+            "Укажите Ваш логин.",
+            "Заполните контакты Вашего друга."
+        )
+
+        val section1Title = "Баланс бонусов"
+        val section1Subtitle = "Передвигайте бегунок, чтоб определить, кому сколько достанется"
+
+        val section2Title = "Ваши данные"
+        val section2Warning = "Внимание! Вы уже должны быть подключены к сети"
+        val section2InputLabel = "Введите Ваш лицевой счёт или логин"
+        val section2InputPlaceholder = "Введите Ваш лицевой счёт или логин"
+
+        val section3Title = "Данные подключаемого друга"
+        val section3Warning = "Внимание! Здесь должны быть указаны данные того человека, которого мы должны подключить!"
+        
+        val inputNameLabel = "Имя Вашего друга"
+        val inputNamePlaceholder = "Введит имя друга"
+        
+        val inputPhoneLabel = "Мобильный телефон"
+        val inputPhonePlaceholder = "Введите номер телефона"
+        val inputPhoneHint = "В формате: +7 959 123 45 67"
+        
+        val inputCityLabel = "Населённый пункт"
+        val inputCityPlaceholder = "Выберите населённый нункт"
+        
+        val inputStreetLabel = "Квартал / улица"
+        val inputStreetPlaceholder = "Квартал / улица"
+        val inputStreetHint = "(введите не менее 3-х символов из названия квартала или улицы)"
+        
+        val inputHouseLabel = "Дом"
+        val inputHousePlaceholder = "Номер дома"
+        
+        val inputFlatLabel = "Квартира"
+        val inputFlatPlaceholder = "Номер квартиры"
+        
+        val inputSourceLabel = "Откуда узнали"
+        val inputSourcePlaceholder = "Выберите вариант"
+        
+        val inputInfoLabel = "Дополнительная информация"
+        val inputInfoPlaceholder = "Дополнительная информация"
+        
+        val requiredFieldsHint = "* - поля обязательны для заполнения"
+        val submitButtonText = "Оставить заявку"
+        
+        val imgEllipse = "https://www.figma.com/api/mcp/asset/31b10f8d-b850-4c74-ae00-178baa7f19b3"
+        val imgShape = "https://www.figma.com/api/mcp/asset/18e1f3fd-b732-46af-8bba-4187ecc6f687"
+    }
 }
 
 data class LinkedAccount(
