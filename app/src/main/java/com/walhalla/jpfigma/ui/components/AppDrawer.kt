@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -13,8 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.walhalla.jpfigma.R
+import com.walhalla.jpfigma.ui.model.AppScreen
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
@@ -66,8 +70,23 @@ private fun NavigationItem(
 ) {
     val itemHeight = 50.dp
     val horizontalPadding = 20.dp
-    val iconSize = 20.dp
+    val iconSize = 24.dp
     val dotSize = 8.dp
+
+    val iconRes = when (title) {
+        AppScreen.MY_ACCOUNT.title -> R.drawable.ic_00
+        AppScreen.PROFILE.title -> R.drawable.icons_1
+        AppScreen.SERVICES.title -> R.drawable.icons_2
+        AppScreen.NOTIFICATIONS.title -> R.drawable.icons_3
+        AppScreen.LINKED_ACCOUNTS.title -> R.drawable.icons_4
+        AppScreen.PAYMENT_METHODS.title -> R.drawable.icons_5
+        AppScreen.PAYMENTS.title -> R.drawable.icons_6
+        AppScreen.SUPPORT.title -> R.drawable.icons_7
+        AppScreen.MESSAGES.title -> R.drawable.icons_8
+        AppScreen.DOCUMENTS.title -> R.drawable.icons_9
+        AppScreen.NEWS.title -> R.drawable.icons_10
+        else -> R.drawable.ic_00
+    }
 
     Row(
         modifier = modifier
@@ -76,12 +95,14 @@ private fun NavigationItem(
             .clickable(onClick = onClick)
             .padding(horizontal = horizontalPadding),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Surface(
+        Icon(
+            painter = painterResource(id = iconRes),
+            contentDescription = null,
             modifier = Modifier.size(iconSize),
-            color = if (isSelected) BrandColor1.copy(alpha = 0.2f) else Color.LightGray.copy(alpha = 0.3f)
-        ) {}
+            tint = if (isSelected) BrandColor1 else Color(0xFF8A9CAF)
+        )
 
         Text(
             text = title,
