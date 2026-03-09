@@ -135,18 +135,10 @@ object MockScreens {
     @Composable
     fun PaymentsScreen() {
         val title = MockData.PaymentsScreen.title
-        val transactions = MockData.PaymentsScreen.transactions
-        val incomes = transactions.filter { it.isIncome }.map {
-            TransactionData(it.date, it.description, it.amount, it.isIncome, it.balanceAfter)
-        }
-        val expenses = transactions.filter { !it.isIncome }.map {
-            TransactionData(it.date, it.description, it.amount, it.isIncome, it.balanceAfter)
-        }
+
 
         PaymentsScreenBody(
-            title = title,
-            incomes = incomes,
-            expenses = expenses
+            title = title
         )
     }
 }

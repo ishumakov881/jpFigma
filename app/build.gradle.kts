@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("com.quittle.svg-2-android-vector") version "0.1.0"
 }
 android {
     namespace = "com.walhalla.jpfigma"
@@ -41,10 +40,6 @@ android {
     }
 }
 
-svg2vector {
-    svgDir.set(file("${project.rootDir}/../tmp_svg"))
-    vectorDir.set(file("${project.projectDir}/src/main/res/drawable"))
-}
 
 dependencies {
     implementation(libs.androidx.core.ktx)

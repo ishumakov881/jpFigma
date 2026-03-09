@@ -90,12 +90,7 @@ object MockData {
 
     object PaymentsScreen {
         val title = "Платежи"
-        val transactions = listOf(
-            PaymentTransaction(1, "21 авг. 2024 14:20", "Пополнение через СБЕРБАНК", "1000", true, "1515.33"),
-            PaymentTransaction(2, "01 авг. 2024 00:01", "Списание по тарифу \"Безлим 100+ и ТВ\"", "619", false, "515.33"),
-            PaymentTransaction(3, "20 июл. 2024 10:15", "Пополнение (терминал)", "500", true, "1134.33"),
-            PaymentTransaction(4, "01 июл. 2024 00:01", "Списание по тарифу \"Безлим 100+ и ТВ\"", "619", false, "634.33")
-        )
+
     }
 
     object NotificationsScreen {

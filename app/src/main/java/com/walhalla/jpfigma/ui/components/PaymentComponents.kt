@@ -16,9 +16,7 @@ import com.walhalla.jpfigma.ui.theme.*
 @Composable
 fun PaymentsScreenBody(
     modifier: Modifier = Modifier,
-    title: String,
-    incomes: List<TransactionData>,
-    expenses: List<TransactionData>
+    title: String
 ) {
    //
 }
