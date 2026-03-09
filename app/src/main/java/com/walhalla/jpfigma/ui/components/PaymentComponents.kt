@@ -20,54 +20,7 @@ fun PaymentsScreenBody(
     incomes: List<TransactionData>,
     expenses: List<TransactionData>
 ) {
-    val backgroundColor = Color(0xFFF4F7FB)
-    val cardPadding = 20.dp
-
-    LazyColumn(
-        modifier = modifier
-            .fillMaxSize()
-            .background(backgroundColor),
-        contentPadding = PaddingValues(cardPadding),
-        verticalArrangement = Arrangement.spacedBy(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        item {
-            Text(
-                text = title,
-                color = TitleColor,
-                fontSize = 22.sp,
-                modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
-            )
-        }
-
-        // Incomes
-        item {
-            AccountCard(
-                title = "Приходы на счёт",
-                gradient = Brush.linearGradient(listOf(Color(0xFFCCE6FF), Color(0xFF95C5F3))),
-                horizontalPadding = 20.dp
-            ) {
-                Column(modifier = Modifier.fillMaxWidth()) {
-
-                }
-            }
-        }
-
-        // Expenses
-        item {
-            AccountCard(
-                title = "Списания со счёта",
-                gradient = Brush.linearGradient(listOf(Color(0xFFFFE4CC), Color(0xFFF3BD95))),
-                horizontalPadding = 20.dp
-            ) {
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    expenses.forEachIndexed { index, transaction ->
-
-                    }
-                }
-            }
-        }
-    }
+   //
 }
 
 data class TransactionData(
@@ -77,3 +30,4 @@ data class TransactionData(
     val isIncome: Boolean,
     val balanceAfter: String? = null
 )
+

@@ -86,15 +86,7 @@ object MockData {
         )
     }
 
-    object NotificationsScreen {
-        val title = "Услуга Уведомления"
-        val description = "Услуга «Уведомления» позволяет получать оперативную информацию о состоянии Вашего лицевого счёта, проводимых технических работах и акциях."
-        val items = listOf(
-            ServiceDetail("SMS оповещения", "30", isMainService = true),
-            ServiceDetail("E-mail рассылка", "0", isMainService = true),
-            ServiceDetail("Telegram бот", "0", isMainService = true)
-        )
-    }
+
 
     object PaymentsScreen {
         val title = "Платежи"

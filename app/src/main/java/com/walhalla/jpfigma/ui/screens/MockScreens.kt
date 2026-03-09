@@ -99,27 +99,7 @@ object MockScreens {
     }
     @Composable
     fun NotificationsScreen() {
-        val title = MockData.NotificationsScreen.title
-        val description = MockData.NotificationsScreen.description
-        val initialItems = MockData.NotificationsScreen.items
-        
-        val itemsState = remember {
-            mutableStateListOf(*initialItems.mapIndexed { index, it ->
-                NotificationItemData(index, it.name, it.price, index == 0)
-            }.toTypedArray())
-        }
 
-        NotificationsScreenBody(
-            title = title,
-            description = description,
-            items = itemsState,
-            onToggleItem = { id, enabled ->
-                val index = itemsState.indexOfFirst { it.id == id }
-                if (index != -1) {
-                    itemsState[index] = itemsState[index].copy(isEnabled = enabled)
-                }
-            }
-        )
     }
 
     @Composable
