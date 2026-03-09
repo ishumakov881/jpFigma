@@ -41,6 +41,11 @@ android {
     }
 }
 
+svg2vector {
+    svgDir.set(file("${project.rootDir}/../tmp_svg"))
+    vectorDir.set(file("${project.projectDir}/src/main/res/drawable"))
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
