@@ -44,14 +44,18 @@ class MainActivity : ComponentActivity() {
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
                 val scope = rememberCoroutineScope()
                 var currentScreen by remember { mutableStateOf(AppScreen.MESSAGES) }
+                val screens = remember { AppScreen.entries.map { it.title } }
 
                 ModalNavigationDrawer(
                     drawerState = drawerState,
                     drawerContent = {
                         AppDrawer(
-                            currentScreen = currentScreen,
-                            onScreenSelected = { screen ->
-                                currentScreen = screen
+                            menuItems = screens,
+                            selectedItem = currentScreen.title,
+                            onItemClick = { title ->
+                                AppScreen.entries.find { it.title == title }?.let {
+                                    currentScreen = it
+                                }
                                 scope.launch { drawerState.close() }
                             }
                         )
@@ -78,7 +82,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     ) { innerPadding ->
-                        Box(modifier = Modifier.Companion.padding(innerPadding)) {
+                        Box(modifier = Modifier.padding(innerPadding)) {
                             when (currentScreen) {
                                 AppScreen.MY_ACCOUNT -> {
                                     AccountScreen()
@@ -114,8 +118,8 @@ class MainActivity : ComponentActivity() {
 
                                 else -> {
                                     Box(
-                                        modifier = Modifier.Companion.fillMaxSize(),
-                                        contentAlignment = Alignment.Companion.Center
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentAlignment = Alignment.Center
                                     ) {
                                         Text("Экран '${currentScreen.title}' в разработке")
                                     }

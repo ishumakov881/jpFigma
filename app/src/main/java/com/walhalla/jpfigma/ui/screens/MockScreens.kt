@@ -3,6 +3,7 @@ package com.walhalla.jpfigma.ui.screens
 import androidx.compose.runtime.*
 import com.walhalla.jpfigma.ui.components.*
 import com.walhalla.jpfigma.ui.model.MockData
+import com.walhalla.jpfigma.ui.model.ServiceStatusType
 
 object MockScreens {
 
@@ -61,10 +62,28 @@ object MockScreens {
     fun ServicesScreen() {
         val title = MockData.ServicesScreen.title
         val paid = MockData.ServicesScreen.paid.map {
-            ServiceItemData(it.id, it.name, it.statusText, it.statusType, it.canOpen, it.isFree)
+            ServiceItemData(
+                id = it.id,
+                name = it.name,
+                statusText = it.statusText,
+                isActive = it.statusType == ServiceStatusType.ACTIVE,
+                isNotAvailable = it.statusType == ServiceStatusType.NOT_AVAILABLE,
+                isNotConnected = it.statusType == ServiceStatusType.NOT_CONNECTED,
+                canOpen = it.canOpen,
+                isFree = it.isFree
+            )
         }
         val free = MockData.ServicesScreen.free.map {
-            ServiceItemData(it.id, it.name, it.statusText, it.statusType, it.canOpen, it.isFree)
+            ServiceItemData(
+                id = it.id,
+                name = it.name,
+                statusText = it.statusText,
+                isActive = it.statusType == ServiceStatusType.ACTIVE,
+                isNotAvailable = it.statusType == ServiceStatusType.NOT_AVAILABLE,
+                isNotConnected = it.statusType == ServiceStatusType.NOT_CONNECTED,
+                canOpen = it.canOpen,
+                isFree = it.isFree
+            )
         }
 
         ServicesScreenBody(
@@ -74,6 +93,10 @@ object MockScreens {
         )
     }
 
+    @Composable
+    fun PaymentScreen(){
+
+    }
     @Composable
     fun NotificationsScreen() {
         val title = MockData.NotificationsScreen.title
