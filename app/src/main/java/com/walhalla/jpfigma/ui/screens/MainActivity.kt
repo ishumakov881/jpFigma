@@ -100,6 +100,10 @@ class MainActivity : ComponentActivity() {
                                     NotificationsScreen()
                                 }
 
+                                AppScreen.LINKED_ACCOUNTS -> {
+                                    LinkedAccountsScreen()
+                                }
+
                                 AppScreen.MESSAGES -> {
                                     MessagesScreen()
                                 }
