@@ -95,7 +95,13 @@ object MockScreens {
 
     @Composable
     fun PaymentScreen() {
-        PaymentScreenBody()
+        val data = MockData.PaymentMethodsScreen
+        PaymentScreenBody(
+            title = data.title,
+            description = data.description,
+            onlinePaymentData = data,
+            paymentPoints = data.paymentPoints
+        )
     }
 
     @Composable

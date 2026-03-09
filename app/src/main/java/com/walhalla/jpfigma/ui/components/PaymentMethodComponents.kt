@@ -1,8 +1,11 @@
 package com.walhalla.jpfigma.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -11,161 +14,326 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.SubcomposeAsyncImage
+import com.walhalla.jpfigma.ui.model.MockData
+import com.walhalla.jpfigma.ui.model.PaymentPoint
+import com.walhalla.jpfigma.ui.model.ScheduleItem
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
-fun PaymentScreenBody(modifier: Modifier = Modifier) {
-
-}
-
-@Composable
-fun PaymentMethodCard(
+fun PaymentScreenBody(
     modifier: Modifier = Modifier,
-    title: String,
-    description: String,
-    hasDetailButton: Boolean = true,
-    onDetailClick: () -> Unit = {}
+    title: String = MockData.PaymentMethodsScreen.title,
+    description: String = MockData.PaymentMethodsScreen.description,
+    onlinePaymentData: MockData.PaymentMethodsScreen = MockData.PaymentMethodsScreen,
+    paymentPoints: List<PaymentPoint> = MockData.PaymentMethodsScreen.paymentPoints
 ) {
-    Surface(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
-        color = Color.White
+    val scrollState = rememberScrollState()
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color(0xFFF5F5F5))
+            .verticalScroll(scrollState)
+            .padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(15.dp)) {
-            Text(text = title, color = TitleColor, fontSize = 20.sp)
-            Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.Top) {
-                Text(
-                    text = description,
-                    modifier = Modifier.weight(1f),
-                    color = Text2,
-                    fontSize = 14.sp,
-                    lineHeight = 18.sp
-                )
-                if (hasDetailButton) {
-                    Button(
-                        onClick = onDetailClick,
-                        colors = ButtonDefaults.buttonColors(containerColor = SecondaryBtn),
-                        shape = RoundedCornerShape(20.dp),
-                        contentPadding = PaddingValues(horizontal = 20.dp, vertical = 10.dp)
-                    ) {
-                        Text(text = "Детальнее", color = BrandColor1, fontSize = 15.sp)
-                    }
-                }
-            }
+        Text(
+            text = title,
+            color = TitleColor,
+            fontSize = 26.sp,
+            lineHeight = 28.6.sp,
+            fontWeight = FontWeight.Normal
+        )
+
+        Text(
+            text = description,
+            color = Text2,
+            fontSize = 16.sp,
+            lineHeight = 20.8.sp
+        )
+
+        OnlinePaymentCard(onlinePaymentData)
+
+        SberPaymentCard(
+            logoUrl = onlinePaymentData.sberLogo,
+            titlePrefix = onlinePaymentData.sberTitle,
+            description = onlinePaymentData.sberDescription,
+            btnText = onlinePaymentData.btnDetails,
+            iconArrowUrl = onlinePaymentData.iconArrowRight
+        )
+
+        SimplePaymentCard(
+            title = onlinePaymentData.postTitle,
+            description = onlinePaymentData.postDescription,
+            btnText = onlinePaymentData.btnDetails,
+            iconArrowUrl = onlinePaymentData.iconArrowRight
+        )
+
+        TerminalPaymentCard(
+            title = onlinePaymentData.terminalTitle,
+            description = onlinePaymentData.terminalDescription,
+            imageUrl = onlinePaymentData.terminalImage
+        )
+
+        paymentPoints.forEach { point ->
+            PaymentPointCard(point)
         }
     }
 }
 
 @Composable
-fun PaymentPointCard(
-    modifier: Modifier = Modifier,
-    title: String,
-    address: String,
-    imageUrl: String? = null,
-    scheduleContent: @Composable ColumnScope.() -> Unit
-) {
-    Surface(
-        modifier = modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
-        color = Color.White
+fun OnlinePaymentCard(data: MockData.PaymentMethodsScreen) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(Color(0xFFD5E6F5))
+            .padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(15.dp)) {
-            Text(text = title, color = TitleColor, fontSize = 20.sp)
-            
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text(text = "Адрес:", color = Text2, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                Text(text = address, color = Text2, fontSize = 14.sp, lineHeight = 18.sp)
-            }
+        Text(text = data.onlinePaymentTitle, fontSize = 20.sp, color = TitleColor)
+        Text(text = data.onlinePaymentSubtitle, fontSize = 14.sp, color = TitleColor, lineHeight = 17.5.sp)
 
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(text = "График работы:", color = Text2, fontSize = 15.sp, fontWeight = FontWeight.Medium)
-                scheduleContent()
-            }
+        Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
+            PaymentInput(label = data.labelAccountNumber, value = "12345678", modifier = Modifier.weight(1.2f))
+            PaymentInput(label = data.labelAmount, value = "200", suffix = "₽", modifier = Modifier.weight(0.8f))
+        }
 
-            if (imageUrl != null) {
-                SubcomposeAsyncImage(
-                    model = imageUrl,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp)
-                        .clip(RoundedCornerShape(10.dp)),
-                    contentScale = ContentScale.Crop,
-                    loading = {
-                        Box(modifier = Modifier.fillMaxSize().background(LineColor), contentAlignment = Alignment.Center) {
-                            CircularProgressIndicator(modifier = Modifier.size(24.dp))
-                        }
-                    },
-                    error = {
-                        Box(modifier = Modifier.fillMaxSize().background(LineColor), contentAlignment = Alignment.Center) {
-                            Text("Map Error", color = Text3)
-                        }
-                    }
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text(text = data.labelEmail, fontSize = 16.sp, color = Text2)
+            PaymentInput(label = "E-mail", value = "")
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp))
+                .background(White)
+                .padding(horizontal = 30.dp, vertical = 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text(text = "Сумма платежа", fontSize = 18.sp, color = TitleColor)
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+                Text(text = "200", fontSize = 26.sp, fontWeight = FontWeight.Bold, color = TitleColor)
+                Text(text = "₽", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TitleColor)
+            }
+            Button(
+                onClick = { },
+                modifier = Modifier.fillMaxWidth().height(60.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = BrandColor1),
+                shape = RoundedCornerShape(30.dp)
+            ) {
+                Text(text = data.btnPay, color = White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            }
+            Text(
+                text = data.consentText,
+                fontSize = 13.sp,
+                color = SecondaryText,
+                textAlign = TextAlign.Center,
+                lineHeight = 15.6.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun PaymentInput(label: String, value: String, suffix: String? = null, modifier: Modifier = Modifier) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(56.dp)
+            .clip(RoundedCornerShape(5.dp))
+            .background(White)
+            .padding(horizontal = 15.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        Text(text = label, color = Color(0xFF60778E), fontSize = 14.sp)
+        Text(text = value, color = Text2, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+        if (suffix != null) {
+            Text(text = suffix, color = Text2, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        }
+    }
+}
+
+@Composable
+fun SberPaymentCard(logoUrl: String, titlePrefix: String, description: String, btnText: String, iconArrowUrl: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(White)
+            .padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(15.dp)
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text(text = titlePrefix, fontSize = 20.sp, color = TitleColor)
+            AsyncImageWithPlaceholder(imageUrl = logoUrl, modifier = Modifier.width(149.dp).height(23.dp))
+        }
+        Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.Top) {
+            Text(text = description, modifier = Modifier.weight(1f), color = Text2, fontSize = 14.sp, lineHeight = 18.2.sp)
+            DetailsButton(btnText, iconArrowUrl)
+        }
+    }
+}
+
+@Composable
+fun SimplePaymentCard(title: String, description: String, btnText: String, iconArrowUrl: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(White)
+            .padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(15.dp)
+    ) {
+        Text(text = title, fontSize = 20.sp, color = TitleColor)
+        Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.Top) {
+            Text(text = description, modifier = Modifier.weight(1f), color = Text2, fontSize = 14.sp, lineHeight = 18.2.sp)
+            DetailsButton(btnText, iconArrowUrl)
+        }
+    }
+}
+
+@Composable
+fun TerminalPaymentCard(title: String, description: String, imageUrl: String) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(White)
+            .padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        Text(text = title, fontSize = 20.sp, color = TitleColor)
+        Text(text = description, color = Text2, fontSize = 14.sp, lineHeight = 18.2.sp)
+        AsyncImageWithPlaceholder(
+            imageUrl = imageUrl,
+            modifier = Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(10.dp))
+        )
+    }
+}
+
+@Composable
+fun PaymentPointCard(point: PaymentPoint) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(White)
+            .padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(15.dp)
+    ) {
+        Text(text = point.title, fontSize = 20.sp, color = TitleColor)
+        
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text(text = "Адрес:", fontSize = 15.sp, fontWeight = FontWeight.Medium, color = Text2)
+            Text(text = point.address, fontSize = 14.sp, color = Text2, lineHeight = 18.2.sp)
+        }
+
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text(text = "График работы:", fontSize = 15.sp, fontWeight = FontWeight.Medium, color = Text2)
+            point.schedule.forEach { schedule ->
+                ScheduleItemRow(
+                    days = schedule.days,
+                    time = schedule.time,
+                    breakTime = schedule.breakTime,
+                    isHoliday = schedule.isHoliday
                 )
             }
+        }
+
+        if (point.imageUrl != null) {
+            AsyncImageWithPlaceholder(
+                imageUrl = point.imageUrl,
+                modifier = Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(10.dp))
+            )
         }
     }
 }
 
 @Composable
 fun ScheduleItemRow(
-    modifier: Modifier = Modifier,
     days: List<String>,
     time: String,
     breakTime: String? = null,
     isHoliday: Boolean = false
 ) {
-    Column(
-        modifier = modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
-    ) {
-        Column(
-            modifier = Modifier.width(IntrinsicSize.Min),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-        ) {
-            Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                days.forEach { day ->
-                    Surface(
-                        modifier = Modifier.size(width = 36.dp, height = 20.dp),
-                        shape = RoundedCornerShape(5.dp),
-                        color = if (isHoliday) BrandColor2 else Color(0xFFF1F1F1)
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Text(
-                                text = day,
-                                color = if (isHoliday) Color.White else BrandColor1,
-                                fontSize = 13.sp
-                            )
-                        }
-                    }
+    Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+            days.forEach { day ->
+                Box(
+                    modifier = Modifier
+                        .size(width = 36.dp, height = 20.dp)
+                        .clip(RoundedCornerShape(5.dp))
+                        .background(if (isHoliday) BrandColor2 else Color(0xFFF1F1F1)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = day,
+                        color = if (isHoliday) White else BrandColor1,
+                        fontSize = 13.sp
+                    )
                 }
             }
-            if (!isHoliday) {
-                HorizontalDivider(
-                    thickness = 2.dp,
-                    color = BrandColor1,
-                    modifier = Modifier.fillMaxWidth()
-                )
-            }
         }
-        
-        Column(modifier = Modifier.padding(start = 2.dp)) {
-            Text(
-                text = time,
-                color = if (isHoliday) BrandColor2 else BrandColor1,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold
-            )
-            if (breakTime != null) {
+        if (!isHoliday) {
+            HorizontalDivider(color = BrandColor1, thickness = 2.dp, modifier = Modifier.width(226.dp))
+            Column {
                 Text(
-                    text = breakTime,
-                    color = Text2,
-                    fontSize = 14.sp
+                    text = time,
+                    color = BrandColor1,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
                 )
+                if (breakTime != null) {
+                    Text(text = breakTime, color = Text2, fontSize = 14.sp)
+                }
             }
+        } else {
+            Text(text = "выходной", color = BrandColor2, fontSize = 16.sp, fontWeight = FontWeight.Bold)
         }
     }
+}
+
+@Composable
+fun DetailsButton(text: String, iconUrl: String) {
+    Row(
+        modifier = Modifier
+            .height(40.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(SecondaryBtn)
+            .padding(horizontal = 20.dp)
+            .clickable { },
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        Text(text = text, color = BrandColor1, fontSize = 15.sp)
+        AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(18.dp))
+    }
+}
+
+@Composable
+fun AsyncImageWithPlaceholder(imageUrl: String, modifier: Modifier = Modifier) {
+    SubcomposeAsyncImage(
+        model = imageUrl,
+        contentDescription = null,
+        modifier = modifier,
+        contentScale = ContentScale.Fit,
+        loading = {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                CircularProgressIndicator(modifier = Modifier.size(24.dp))
+            }
+        },
+        error = {
+            Box(modifier = Modifier.fillMaxSize().background(Color.LightGray), contentAlignment = Alignment.Center) {
+                Text("Error", fontSize = 10.sp)
+            }
+        }
+    )
 }
