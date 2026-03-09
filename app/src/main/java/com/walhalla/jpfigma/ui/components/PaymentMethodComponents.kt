@@ -17,6 +17,11 @@ import coil3.compose.SubcomposeAsyncImage
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
+fun PaymentScreenBody(modifier: Modifier = Modifier) {
+
+}
+
+@Composable
 fun PaymentMethodCard(
     modifier: Modifier = Modifier,
     title: String,

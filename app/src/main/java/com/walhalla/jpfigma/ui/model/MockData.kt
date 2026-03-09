@@ -271,6 +271,66 @@ object MockData {
         val iconGrid = "https://www.figma.com/api/mcp/asset/b71fbe59-096f-48e0-9d46-21c489b25326"
     }
 
+    object PaymentMethodsScreen {
+        val title = "Способы оплаты"
+        val description = "Оплатить услуги компании Луганские Домашние Сети можно следующими способами:"
+        
+        val onlinePaymentTitle = "Оплата онлайн"
+        val onlinePaymentSubtitle = "Введите номер Вашего лицевого счета и сумму платежа"
+        val labelAccountNumber = "Лицевой счёт"
+        val labelAmount = "Сумма"
+        val labelEmail = "E-mail (необязательно)"
+        val btnPay = "Оплатить"
+        val consentText = "Нажимая на кнопку \"Оплатить\", Вы соглашаетесь с условиями на обработку персональных данных"
+        
+        val sberTitle = "Оплата через"
+        val sberDescription = "Оплата услуг компнании ООО \"Луганские сети\" доступна через \"СберБанк\" с комиссией 1%"
+        val btnDetails = "Детальнее"
+        
+        val postTitle = "Оплата услуг ЛДС в отделениях почты ЛНР"
+        val postDescription = "Вы можете пополнить счет в отделениях почты ЛНР."
+        
+        val terminalTitle = "Оплата услуг ЛДС с помощью платежных терминалов"
+        val terminalDescription = "Абоненты ЛДС могут произвести оплату в сети платежных терминалов, которые расположены в магазинах и супермаркетах Вашего населенного пункта. Для оплаты услуг Вам потребуется лицевой счет, который был присвоен Вам при подключении. Номер лицевого счета указан в памятке пользователя. Для восстановления номера лицевого счета в случае его утери обратитесь в техническую поддержку компании ЛДС."
+        val terminalImage = "https://www.figma.com/api/mcp/asset/2f96e6dd-e28d-4f16-a097-dcb2f616ad87"
+        
+        val paymentPoints = listOf(
+            PaymentPoint(
+                id = 1,
+                title = "Пункт приёма платежей",
+                address = "кв. Жукова 4Б/1, главный офис ЛДС",
+                schedule = listOf(
+                    ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "9:00 - 18:00", "перерыв с 13:00 до 13:45"),
+                    ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)
+                ),
+                imageUrl = "https://www.figma.com/api/mcp/asset/8c100d7c-2948-4822-b440-11b140ac59fe"
+            ),
+            PaymentPoint(
+                id = 2,
+                title = "Информационный центр ЛДС",
+                address = "ул. Королева, 78, ТЦ \"Каштан\", модуль возле с/м \"Лелека\"",
+                schedule = listOf(
+                    ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "9:00 - 18:00", "перерыв с 13:00 до 13:45"),
+                    ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)
+                ),
+                imageUrl = "https://www.figma.com/api/mcp/asset/a24d2c97-8feb-4096-9b06-c1e0e876ab22"
+            ),
+            PaymentPoint(
+                id = 3,
+                title = "Сервисный центр в пгт. Белореченский",
+                address = "Луганская обл. Лутугинский р-н пгт.Белореченский ул.Ленина дом 13. Магазин Феникс-маркет",
+                schedule = listOf(
+                    ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "8:00 - 14:00", "без перерыва"),
+                    ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)
+                ),
+                imageUrl = "https://www.figma.com/api/mcp/asset/7f53f165-033c-4dbc-8ac1-58466b29d44c"
+            )
+        )
+        
+        val sberLogo = "https://www.figma.com/api/mcp/asset/74eb2ed5-c8b3-4c85-91ce-806c45439343"
+        val iconArrowRight = "https://www.figma.com/api/mcp/asset/33a1936a-8799-4609-87fa-9701fb09c0a0"
+    }
+
     object ReferFriendScreen {
         val screenTitle = "Подключи друга"
         

@@ -11,7 +11,7 @@ object MockScreens {
     fun AccountScreen() {
         val account = MockData.AccountScreen.account
         val pkg = MockData.AccountScreen.packages
-        val services = pkg.services.map { 
+        val services = pkg.services.map {
             ServicePriceData(it.name, it.price, it.oldPrice, it.hasOffer)
         }
 
@@ -94,9 +94,10 @@ object MockScreens {
     }
 
     @Composable
-    fun PaymentScreen(){
-
+    fun PaymentScreen() {
+        PaymentScreenBody()
     }
+
     @Composable
     fun NotificationsScreen() {
 
