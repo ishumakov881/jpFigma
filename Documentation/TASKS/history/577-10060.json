@@ -1,0 +1,102 @@
+const imgVector = "https://www.figma.com/api/mcp/asset/bb2197b2-0bbe-49b8-8054-9da14f3c6c31";
+const imgEllipse = "https://www.figma.com/api/mcp/asset/2f7b9ef5-807c-4b64-8e26-6808d20c670f";
+const imgWarning = "https://www.figma.com/api/mcp/asset/d8d9cb0d-1c79-4af4-9585-f702f0bb4aaa";
+const imgMainLogo = "https://www.figma.com/api/mcp/asset/112920b2-aff7-4e06-97d7-56464ad9790f";
+const imgGroup1 = "https://www.figma.com/api/mcp/asset/0fcf44bf-207b-47a5-a053-57ace5cef0d5";
+
+function Icons({ className }: { className?: string }) {
+  return (
+    <div className={className || ""} data-name="icons" data-node-id="446:1939">
+      <div className="relative size-[24px]" data-name="Property 1=messages" data-node-id="446:1938">
+        <div className="absolute inset-[16.67%_8.33%]" data-name="Vector" data-node-id="446:1937">
+          <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function TopBarWarningSignal({ className }: { className?: string }) {
+  return (
+    <div className={className || ""} data-name="TopBar - warning_signal" data-node-id="446:1998">
+      <div className="relative" data-name="Size=Default, type=red" data-node-id="446:2010">
+        <div className="absolute inset-[16.67%]" data-name="Ellipse" data-node-id="446:2011">
+          <img alt="" className="absolute block max-w-none size-full" src={imgEllipse} />
+        </div>
+        <div className="absolute inset-[30.56%_31.94%_35.31%_30.56%]" data-name="warning" data-node-id="446:2012">
+          <img alt="" className="absolute block max-w-none size-full" src={imgWarning} />
+        </div>
+        <div className="absolute inset-1/4 overflow-clip" data-name="icons-warning" data-node-id="446:2013" />
+      </div>
+    </div>
+  );
+}
+
+function MainLogo({ className }: { className?: string }) {
+  return (
+    <button className={className || "block cursor-pointer relative"} data-name="MainLogo" data-node-id="301:203">
+      <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgMainLogo} />
+    </button>
+  );
+}
+
+function MobileMenu({ className }: { className?: string }) {
+  return (
+    <div className={className || ""} data-name="MobileMenu" data-node-id="459:1670">
+      <div className="relative" data-name="type=open-menu, status=Default" data-node-id="459:1671">
+        <div className="absolute inset-[27.5%]" data-node-id="459:1672">
+          <img alt="" className="absolute block max-w-none size-full" src={imgGroup1} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Header({ className }: { className?: string }) {
+  return (
+    <div className={className || ""} data-name="HEADER" data-node-id="446:1945">
+      <div className="bg-[var(--headerbg,white)] content-stretch flex gap-[20px] h-[60px] items-center justify-center px-[20px] relative w-[768px]" data-name="Property 1=768" data-node-id="457:1709">
+        <MobileMenu className="relative shrink-0 size-[40px]" />
+        <div className="content-stretch flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-px min-w-px relative" data-node-id="457:1710">
+          <div className="content-stretch flex gap-[20px] items-center justify-center relative shrink-0" data-node-id="457:1711">
+            <MainLogo className="block cursor-pointer h-[40px] relative shrink-0 w-[72.329px]" />
+            <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#1880d0] text-[15px] text-center uppercase whitespace-nowrap" data-node-id="457:1713" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <p className="leading-[1.25]">Личный кабинет</p>
+            </div>
+          </div>
+          <div className="flex flex-[1_0_0] flex-row items-center self-stretch">
+            <div className="bg-white content-stretch flex flex-[1_0_0] gap-[20px] h-full items-center justify-end min-h-px min-w-px relative" data-node-id="457:1714">
+              <div className="content-stretch flex gap-[2px] items-center pr-[5px] relative shrink-0" data-name="TopBar - warning_signal-2" data-node-id="457:1715">
+                <TopBarWarningSignal className="overflow-clip relative shrink-0 size-[36px]" />
+                <p className="font-['Roboto:Bold',sans-serif] font-bold leading-[normal] relative shrink-0 text-[#db2525] text-[14px] whitespace-nowrap" data-node-id="I457:1715;446:2022" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  Внимание!
+                </p>
+              </div>
+              <div className="content-stretch flex gap-[5px] items-center relative shrink-0" data-node-id="457:1716">
+                <Icons className="overflow-clip relative shrink-0 size-[24px]" />
+                <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#f25b23] text-[14px] text-center whitespace-nowrap" data-node-id="457:1718" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[1.25]">52</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Header1() {
+  return <Header className="bg-[var(--headerbg,white)] content-stretch flex gap-[20px] items-center justify-center px-[20px] relative size-full" />;
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: Text-1: #313E49, Brand Color - 1: #1880D0, Red: #DB2525.
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.
+[Tool 'get_design_context' provided the following image data with mime-type: image/png]

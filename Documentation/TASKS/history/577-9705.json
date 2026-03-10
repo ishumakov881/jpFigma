@@ -1,0 +1,208 @@
+const imgVector = "https://www.figma.com/api/mcp/asset/d1d02fbe-86bd-4bd5-9974-8fc4945cf65c";
+const imgVector1 = "https://www.figma.com/api/mcp/asset/58b18880-d4f1-4d5e-be29-6ac591261c4d";
+const imgVector2 = "https://www.figma.com/api/mcp/asset/3e7296d7-7790-4318-b1fb-46766f4119d1";
+const imgVector3 = "https://www.figma.com/api/mcp/asset/1c57b8e1-ec82-4a62-a15a-4dbd19c728b1";
+const imgVector4 = "https://www.figma.com/api/mcp/asset/6e40ad68-34ea-4fe7-920d-be9e93fa42ba";
+const imgVector5 = "https://www.figma.com/api/mcp/asset/589ce7bf-b6cc-4d5e-8d4d-9eb590e959b0";
+const imgVector6 = "https://www.figma.com/api/mcp/asset/ceb77456-c9fa-4bbc-a73c-c8d7ed7dd79d";
+const imgVector7 = "https://www.figma.com/api/mcp/asset/50310f8a-93fc-4010-8987-f0d940eb77ef";
+const imgVector8 = "https://www.figma.com/api/mcp/asset/759c3fc2-a862-4164-826b-d5802a74b9f3";
+const imgVector9 = "https://www.figma.com/api/mcp/asset/0d61c9d5-9381-4565-9314-3c2d58731bb7";
+const imgVector10 = "https://www.figma.com/api/mcp/asset/bc6e54d3-c256-4ef7-80c9-309012e8b7fb";
+const imgEllipse2 = "https://www.figma.com/api/mcp/asset/9f65a95c-cd8e-4acc-90fb-3ebd627b76b8";
+const imgVector11 = "https://www.figma.com/api/mcp/asset/322a8c72-2698-4473-bf02-d85d45afac2f";
+const imgVector12 = "https://www.figma.com/api/mcp/asset/27819690-3021-486e-b30e-d0e07d595540";
+const imgVector13 = "https://www.figma.com/api/mcp/asset/1547bbea-7981-48a1-bb72-046e0d234502";
+const imgVectorStroke = "https://www.figma.com/api/mcp/asset/fa82786a-d7c1-430c-a043-ffa82afbd47e";
+const imgVectorStroke1 = "https://www.figma.com/api/mcp/asset/8c25407a-0114-4661-9bce-86eb76a4688a";
+
+export default function LeftMenu() {
+  return (
+    <div className="content-stretch flex flex-col items-start relative size-full" data-name="Left-menu" data-node-id="577:9705">
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3110">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3110;510:3095">
+          <div className="absolute inset-[8.33%]" data-name="Vector" data-node-id="I577:9705;510:3110;510:3095;510:3303">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3110;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Мой аккаунт</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3119">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3119;510:3095">
+          <div className="absolute bottom-[25.51%] left-[8.33%] right-[9.64%] top-1/4" data-name="Vector" data-node-id="I577:9705;510:3119;510:3095;510:3343">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector1} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3119;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Профиль абонента</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3126">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3126;510:3095">
+          <div className="absolute inset-[8.33%]" data-name="Vector" data-node-id="I577:9705;510:3126;510:3095;510:3445">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector2} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3126;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Услуги</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;541:5851">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;541:5851;510:3211">
+          <div className="absolute inset-[8.33%_12.76%_12.51%_12.76%]" data-name="Vector" data-node-id="I577:9705;541:5851;510:3211;509:2860">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector3} />
+          </div>
+        </div>
+        <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#1880d0] text-[15px] whitespace-nowrap" data-node-id="I577:9705;541:5851;510:3212" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Уведомления</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3133">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3133;510:3095">
+          <div className="absolute inset-[8.33%]" data-name="Vector" data-node-id="I577:9705;510:3133;510:3095;510:3298">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector4} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3133;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Связанные аккаунты</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3142">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3142;510:3095">
+          <div className="absolute inset-[18.75%_8.33%]" data-name="Vector" data-node-id="I577:9705;510:3142;510:3095;510:3431">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector5} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3142;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Способы оплаты</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3149">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3149;510:3095">
+          <div className="absolute inset-[12.49%_8.32%_12.5%_7.12%]" data-name="Vector" data-node-id="I577:9705;510:3149;510:3095;510:3422">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector6} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3149;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Платежи</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3156">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3156;510:3095">
+          <div className="-translate-x-1/2 absolute aspect-[17/19.364215850830078] bottom-[8.33%] left-1/2 top-[8.33%]" data-name="Vector" data-node-id="I577:9705;510:3156;510:3095;510:3358">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector7} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3156;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Техподдержка</p>
+        </div>
+        <div className="bg-[#f04e23] content-stretch flex flex-col items-start px-[6px] py-[4px] relative rounded-[8px] shrink-0" data-name="menu-item-counter" data-node-id="I577:9705;510:3156;510:3092">
+          <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-center text-white whitespace-nowrap" data-node-id="I577:9705;510:3156;510:3092;510:3090" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <p className="leading-[1.25]">2</p>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;773:27320">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;773:27320;510:3095">
+          <div className="absolute inset-[16.67%_8.33%]" data-name="Vector" data-node-id="I577:9705;773:27320;510:3095;541:7100">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector8} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;773:27320;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Сообщения</p>
+        </div>
+        <div className="bg-[#f04e23] content-stretch flex flex-col items-start px-[6px] py-[4px] relative rounded-[8px] shrink-0" data-name="menu-item-counter" data-node-id="I577:9705;773:27320;510:3092">
+          <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[10px] text-center text-white whitespace-nowrap" data-node-id="I577:9705;773:27320;510:3092;510:3090" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <p className="leading-[1.25]">16</p>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3163">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3163;510:3095">
+          <div className="absolute inset-[8.33%_16.67%]" data-name="Vector" data-node-id="I577:9705;510:3163;510:3095;510:3391">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector9} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3163;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Документы</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3170">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3170;510:3211">
+          <div className="absolute inset-[12.5%]" data-name="Vector" data-node-id="I577:9705;510:3170;510:3211;510:3379">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector10} />
+          </div>
+        </div>
+        <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#2f4863] text-[15px] whitespace-nowrap" data-node-id="I577:9705;510:3170;510:3212" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Новости</p>
+        </div>
+        <div className="relative shrink-0 size-[8px]" data-node-id="I577:9705;510:3170;510:3220">
+          <img alt="" className="absolute block max-w-none size-full" src={imgEllipse2} />
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3177">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3177;510:3095">
+          <div className="absolute inset-[8.33%_8.43%_8.43%_8.33%]" data-name="Vector" data-node-id="I577:9705;510:3177;510:3095;510:3376">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector11} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3177;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Доступные акции</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3227">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3227;510:3095">
+          <div className="absolute inset-[12.5%_8.33%]" data-name="Vector" data-node-id="I577:9705;510:3227;510:3095;510:3276">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector12} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3227;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Полезное для абонентов</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3234">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3234;510:3095">
+          <div className="absolute inset-[8.33%]" data-name="Vector" data-node-id="I577:9705;510:3234;510:3095;510:3352">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVector13} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3234;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Локальные ресурсы</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3241">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3241;510:3095">
+          <div className="absolute inset-[12.5%_4.17%_16.67%_8.33%]" data-name="Vector (Stroke)" data-node-id="I577:9705;510:3241;510:3095;510:3269">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVectorStroke} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3241;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Подключи друга</p>
+        </div>
+      </div>
+      <div className="content-stretch flex gap-[10px] h-[50px] items-center px-[20px] py-[10px] relative shrink-0 w-full" data-name="menu-item" data-node-id="I577:9705;510:3248">
+        <div className="relative shrink-0 size-[20px]" data-name="icons" data-node-id="I577:9705;510:3248;510:3095">
+          <div className="absolute inset-[12.5%_14.58%_10.42%_16.67%]" data-name="Vector (Stroke)" data-node-id="I577:9705;510:3248;510:3095;510:3405">
+            <img alt="" className="absolute block max-w-none size-full" src={imgVectorStroke1} />
+          </div>
+        </div>
+        <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#2f4863] text-[15px]" data-node-id="I577:9705;510:3248;510:3068" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.2]">Выход</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: menu-icon: #9EB0C3, menu-text: #2F4863, Brand Color - 1: #1880D0, White: #FFFFFF, Brand Color - 2: #F04E23.
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.
+[Tool 'get_design_context' provided the following image data with mime-type: image/png]

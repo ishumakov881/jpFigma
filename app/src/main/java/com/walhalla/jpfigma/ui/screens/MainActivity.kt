@@ -30,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.walhalla.jpfigma.ui.components.AppDrawer
+import com.walhalla.jpfigma.ui.components.MainTopAppBar
 import com.walhalla.jpfigma.ui.model.AppScreen
 import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.offers.OffersScreen
@@ -66,23 +67,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Scaffold(
                         topBar = {
-                            TopAppBar(
-                                title = { Text(currentScreen.title) },
-                                navigationIcon = {
-                                    IconButton(onClick = { scope.launch { drawerState.open() } }) {
-                                        Icon(Icons.Default.Menu, contentDescription = "Меню")
-                                    }
-                                }
-                            )
-                        },
-                        floatingActionButton = {
-                            FloatingActionButton(
-                                shape = CircleShape,
-                                onClick = {},
-                                containerColor = Color(0xFF4CAF50)
-                            ) {
-                                Icon(Icons.Default.WifiCalling3, contentDescription = null)
-                            }
+                            MainTopAppBar(onMenuClick = { scope.launch { drawerState.open() } })
                         }
                     ) { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
