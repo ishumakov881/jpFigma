@@ -1,5 +1,6 @@
 package com.walhalla.jpfigma.ui.model
 
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.offers.Offer
 
 object MockData {
@@ -117,18 +118,14 @@ object MockData {
         )
     }
 
-
-
     object PaymentsScreen {
         val title = "Платежи"
         val dateFrom = "1.05.2025"
         val dateTo = "20.05.2025"
         val btnShow = "Показать"
         val btnHistory = "История баланса"
-        
         val headerDate = "Дата"
         val headerDescription = "Сумма и вид платежа"
-        
         val transactions = listOf(
             PaymentTransaction(1, "01 дек 2025", "Абонплата", "-35.30", false),
             PaymentTransaction(2, "02 мая 2025", "Пополнение баланса", "1500.00", true, hasReceipt = true),
@@ -139,14 +136,14 @@ object MockData {
             PaymentTransaction(7, "06 мая 2025", "Абонплата", "-35.30", false),
             PaymentTransaction(8, "07 мая 2025", "Абонплата", "-35.30", false)
         )
-        
         val balanceLabel = "Ваш баланс:"
         val balanceValue = "515.33"
         val balanceUntil = "Оплачено до 26 июня 2025г. включительно"
         val btnTopUp = "Пополнить счёт"
         
-        val iconCalendar = "https://www.figma.com/api/mcp/asset/eca56b5e-bd4e-48d7-84c1-dff4f234b28f"
-        val iconWallet = "https://www.figma.com/api/mcp/asset/d2102efe-adbd-4297-bb6f-de2ff6de221a"
+        // Local Resources
+        val iconCalendar = R.drawable.ic_calendar
+        val iconWallet = R.drawable.ic_wallet
     }
 
     object NotificationsScreen {
@@ -202,11 +199,11 @@ object MockData {
                 price = "бесплатно"
             )
         )
-        // Image URLs from Figma context
-        val imgCheck = "https://www.figma.com/api/mcp/asset/9e7fa575-6515-4435-a826-162927cfff50"
-        val imgNotAvailable = "https://www.figma.com/api/mcp/asset/5710d6ac-7304-4f8e-a662-38764dda95ba"
-        val imgQuestion = "https://www.figma.com/api/mcp/asset/e46002a3-1c5a-49f5-9813-142d68a890c1"
-        val imgWarning = "https://www.figma.com/api/mcp/asset/ead46fb3-07b8-48ff-9805-a2aae6f663fe"
+        // Local Resources
+        val imgCheck = R.drawable.ic_check
+        val imgNotAvailable = R.drawable.ic_not_available
+        val imgQuestion = R.drawable.ic_question
+        val imgWarning = R.drawable.ic_warning
     }
 
     object LinkedAccountsScreen {
@@ -291,21 +288,20 @@ object MockData {
 
         val btnLinkAccount = "Привязать аккаунт"
 
-        // Icons
-        val iconEdit = "https://www.figma.com/api/mcp/asset/516f3e0b-0b05-4af6-9574-5f587284b256"
-        val iconRefill = "https://www.figma.com/api/mcp/asset/56ef7e82-a9ad-4065-95d4-fb1e585fa796"
-        val iconUnlink = "https://www.figma.com/api/mcp/asset/811ec7d7-1b73-4260-a752-e1af316a741e"
-        val iconGoTo = "https://www.figma.com/api/mcp/asset/cc715ad5-f74a-4ac3-b1b8-1a135c35b7cf"
-        val iconLinked = "https://www.figma.com/api/mcp/asset/ed6fdbb0-84f0-4ef1-b192-aa75afb9ff3d"
-        val iconPlus = "https://www.figma.com/api/mcp/asset/1d6f3d9a-7a8d-4e39-952b-f36115069ae4"
-        val iconList = "https://www.figma.com/api/mcp/asset/99b56b27-68ab-48bc-bdcc-6f386300f5d5"
-        val iconGrid = "https://www.figma.com/api/mcp/asset/b71fbe59-096f-48e0-9d46-21c489b25326"
+        // Local Resources
+        val iconEdit = R.drawable.ic_edit
+        val iconRefill = R.drawable.ic_refill
+        val iconUnlink = R.drawable.ic_unlink
+        val iconGoTo = R.drawable.ic_goto
+        val iconLinked = R.drawable.ic_linked
+        val iconPlus = R.drawable.ic_plus
+        val iconList = R.drawable.ic_list
+        val iconGrid = R.drawable.ic_grid
     }
 
     object PaymentMethodsScreen {
         val title = "Способы оплаты"
         val description = "Оплатить услуги компании Луганские Домашние Сети можно следующими способами:"
-        
         val onlinePaymentTitle = "Оплата онлайн"
         val onlinePaymentSubtitle = "Введите номер Вашего лицевого счета и сумму платежа"
         val labelAccountNumber = "Лицевой счёт"
@@ -313,103 +309,48 @@ object MockData {
         val labelEmail = "E-mail (необязательно)"
         val btnPay = "Оплатить"
         val consentText = "Нажимая на кнопку \"Оплатить\", Вы соглашаетесь с условиями на обработку персональных данных"
-        
         val sberTitle = "Оплата через"
         val sberDescription = "Оплата услуг компнании ООО \"Луганские сети\" доступна через \"СберБанк\" с комиссией 1%"
         val btnDetails = "Детальнее"
-        
         val postTitle = "Оплата услуг ЛДС в отделениях почты ЛНР"
         val postDescription = "Вы можете пополнить счет в отделениях почты ЛНР."
-        
         val terminalTitle = "Оплата услуг ЛДС с помощью платежных терминалов"
         val terminalDescription = "Абоненты ЛДС могут произвести оплату в сети платежных терминалов, которые расположены в магазинах и супермаркетах Вашего населенного пункта. Для оплаты услуг Вам потребуется лицевой счет, который был присвоен Вам при подключении. Номер лицевого счета указан в памятке пользователя. Для восстановления номера лицевого счета в случае его утери обратитесь в техническую поддержку компании ЛДС."
         val terminalImage = "https://www.figma.com/api/mcp/asset/2f96e6dd-e28d-4f16-a097-dcb2f616ad87"
-        
         val paymentPoints = listOf(
-            PaymentPoint(
-                id = 1,
-                title = "Пункт приёма платежей",
-                address = "кв. Жукова 4Б/1, главный офис ЛДС",
-                schedule = listOf(
-                    ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "9:00 - 18:00", "перерыв с 13:00 до 13:45"),
-                    ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)
-                ),
-                imageUrl = "https://www.figma.com/api/mcp/asset/8c100d7c-2948-4822-b440-11b140ac59fe"
-            ),
-            PaymentPoint(
-                id = 2,
-                title = "Информационный центр ЛДС",
-                address = "ул. Королева, 78, ТЦ \"Каштан\", модуль возле с/м \"Лелека\"",
-                schedule = listOf(
-                    ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "9:00 - 18:00", "перерыв с 13:00 до 13:45"),
-                    ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)
-                ),
-                imageUrl = "https://www.figma.com/api/mcp/asset/a24d2c97-8feb-4096-9b06-c1e0e876ab22"
-            ),
-            PaymentPoint(
-                id = 3,
-                title = "Сервисный центр в пгт. Белореченский",
-                address = "Луганская обл. Лутугинский р-н пгт.Белореченский ул.Ленина дом 13. Магазин Феникс-маркет",
-                schedule = listOf(
-                    ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "8:00 - 14:00", "без перерыва"),
-                    ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)
-                ),
-                imageUrl = "https://www.figma.com/api/mcp/asset/7f53f165-033c-4dbc-8ac1-58466b29d44c"
-            )
+            PaymentPoint(1, "Пункт приёма платежей", "кв. Жукова 4Б/1, главный офис ЛДС", listOf(ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "9:00 - 18:00", "перерыв с 13:00 до 13:45"), ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)), "https://www.figma.com/api/mcp/asset/8c100d7c-2948-4822-b440-11b140ac59fe"),
+            PaymentPoint(2, "Информационный центр ЛДС", "ул. Королева, 78, ТЦ \"Каштан\", модуль возле с/м \"Лелека\"", listOf(ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "9:00 - 18:00", "перерыв с 13:00 до 13:45"), ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)), "https://www.figma.com/api/mcp/asset/a24d2c97-8feb-4096-9b06-c1e0e876ab22"),
+            PaymentPoint(3, "Сервисный центр в пгт. Белореченский", "Луганская обл. Лутугинский р-н пгт.Белореченский ул.Ленина дом 13. Магазин Феникс-маркет", listOf(ScheduleItem(listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"), "8:00 - 14:00", "без перерыва"), ScheduleItem(listOf("ВС"), "выходной", isHoliday = true)), "https://www.figma.com/api/mcp/asset/7f53f165-033c-4dbc-8ac1-58466b29d44c")
         )
-        
-        val sberLogo = "https://www.figma.com/api/mcp/asset/74eb2ed5-c8b3-4c85-91ce-806c45439343"
-        val iconArrowRight = "https://www.figma.com/api/mcp/asset/33a1936a-8799-4609-87fa-9701fb09c0a0"
+        // Local Resources
+        val sberLogo = R.drawable.ic_sber_logo
+        val iconArrowRight = R.drawable.ic_arrow_right_blue
     }
 
     object HyperScreen {
         val title = "Услуга “Гипер”"
-        val serviceInfo = HyperServiceInfo(
-            currentSpeed = 250,
-            targetSpeed = 250,
-            currentPrice = 834,
-            targetPrice = 834
-        )
-        
-        val maxTariffParams = listOf(
-            HyperParameter("Скорость", "до 1 Гбит/с"),
-            HyperParameter("Шаг", "+50 Мбит/с"),
-            HyperParameter("Повышение", "в любое время"),
-            HyperParameter("Понижение", "через 30 дней")
-        )
-        
-        val aboutItems = listOf(
-            "Получите доступ к сети интернет со скоростью до 1 Гбит/с!",
-            "Закажите столько скорости, сколько нужно именно Вам.",
-            "Добавьте самостоятельно к Вашему тарифу 50 Мбит/с и более.",
-            "Увеличить скорость доступа можно в любой момент.",
-            "Услуга доступна для абонентов с тарифами: \"Безлим 300\", \"Jump 200\", \"ЛДС-250\".",
-            "Активировать услугу можно из личного кабинета.",
-            "Снижение скорости доступно через 30 дней с момента последнего заказа."
-        )
-        
+        val serviceInfo = HyperServiceInfo(250, 250, 834, 834)
+        val maxTariffParams = listOf(HyperParameter("Скорость", "до 1 Гбит/с"), HyperParameter("Шаг", "+50 Мбит/с"), HyperParameter("Повышение", "в любое время"), HyperParameter("Понижение", "через 30 дней"))
+        val aboutItems = listOf("Получите доступ к сети интернет со скоростью до 1 Гбит/с!", "Закажите столько скорости, сколько нужно именно Вам.", "Добавьте самостоятельно к Вашему тарифу 50 Мбит/с и более.", "Увеличить скорость доступа можно в любой момент.", "Услуга доступна для абонентов с тарифами: \"Безлим 300\", \"Jump 200\", \"ЛДС-250\".", "Активировать услугу можно из личного кабинета.", "Снижение скорости доступно через 30 дней с момента последнего заказа.")
         val warningText = "Максимальная скорость может быть ограничена техническими параметрами и возможностями используемого клиентского оборудования"
-        
         val btnChangeSpeed = "Изменить скорость"
         
-        // Asset URLs
-        val imgSpeedometer = "https://www.figma.com/api/mcp/asset/speedometer-group" // Using placeholder for complex SVG/Image
-        val iconMinus = "https://www.figma.com/api/mcp/asset/9c19bc47-545c-4e28-9ea6-4f359096c240"
-        val iconPlus = "https://www.figma.com/api/mcp/asset/fcaa1cae-6278-4e06-9a52-b002fc6f358f"
-        val iconDot = "https://www.figma.com/api/mcp/asset/8c579039-7bf4-4067-ad5c-f38cfe9fe86f"
-        val iconWarning = "https://www.figma.com/api/mcp/asset/d8c079e7-eb12-4d09-b9de-a123d83b58e9"
-        val imgDashedLine = "https://www.figma.com/api/mcp/asset/76dc05dc-caff-412d-aab4-5f5c61d17360"
+        // Local Resources
+        val iconMinus = R.drawable.ic_minus_circle
+        val iconPlus = R.drawable.ic_plus_circle
+        val iconDot = R.drawable.ic_bullet_dot
+        val iconWarning = R.drawable.ic_warning
     }
 
     object AccountInfoDialog {
         val title = "Лицевой счёт"
         val description = "Лицевой счет, он же номер договора, нужен для оплаты услуг Интернет и кабельного телевидения от ЛДС в терминалах самообслуживания."
+        val iconClose = R.drawable.ic_dialog_close
     }
 
     object ChangeTariffScreen {
         val title = "Сменить тариф"
         val filterOptions = listOf("Интернет", "Интернет и ТВ", "ТВ")
-        
         val tariffs = listOf(
             TariffInfo(1, "Безлим 300 и ТВ", "130", "Мбит/с", "210", "каналов", true, "933", "₽/30 дней"),
             TariffInfo(2, "Безлим 100+ и ТВ", "130", "Мбит/с", "210", "каналов", true, "834", "₽/30 дней", isCurrent = true, speedIconType = "internet--8"),
@@ -417,211 +358,100 @@ object MockData {
             TariffInfo(4, "Безлим 50 и ТВ", "130", "Мбит/с", "210", "каналов", false, "753", "₽/30 дней", speedIconType = "internet--5"),
             TariffInfo(5, "Безлим 25 и ТВ", "130", "Мбит/с", "210", "каналов", false, "732", "₽/30 дней", speedIconType = "internet--3")
         )
-        
-        val importantInfo = listOf(
-            "Минимальный авансовый платеж 250 руб",
-            "Смена акционного тарифа без потери акционного предложения возможна в течение первых 10 дней",
-            "Смена тарифного плана в меньшую сторону возможна через 90 дней с момента подключения для тарифов: Безлим 15, Безлим 50, Безлим 90, Безлим 100+, Безлим 300",
-            "По истечении указанных акционных дней скорость устанавливается равной скорости одноименного тарифа",
-            "Предоставление услуги \"Блокировка аккаунта\" возможно через 6 месяцев с момента подключения",
-            "Срок подключения: до 3-х рабочих дней в зависимости от погодных условий и прочих форс-мажорных обстоятельств",
-            "При подключении выделяется 1 (один) динамический локальный IP адрес",
-            "В стоимость подключения не входит обучение Клиента работе с программным обеспечением",
-            "Бонус зачисляется на лицевой счет абонента единоразово после новой активации"
-        )
-        
+        val importantInfo = listOf("Минимальный авансовый платеж 250 руб", "Смена акционного тарифа без потери акционного предложения возможна в течение первых 10 дней", "Смена тарифного плана в меньшую сторону возможна через 90 дней с момента подключения для тарифов: Безлим 15, Безлим 50, Безлим 90, Безлим 100+, Безлим 300", "По истечении указанных акционных дней скорость устанавливается равной скорости одноименного тарифа", "Предоставление услуги \"Блокировка аккаунта\" возможно через 6 месяцев с момента подключения", "Срок подключения: до 3-х рабочих дней в зависимости от погодных условий и прочих форс-мажорных обстоятельств", "При подключении выделяется 1 (один) динамический локальный IP адрес", "В стоимость подключения не входит обучение Клиента работе с программным обеспечением", "Бонус зачисляется на лицевой счет абонента единоразово после новой активации")
         val warningSpeedLimit = "Максимальная скорость может быть ограничена техническими параметрами и возможностями используемого клиентского оборудования"
-        
         val localNetworkTitle = "Локальная сеть"
-        val localNetworkItems = listOf(
-            NetworkInfoItem("Внутрисетевой трафик", "постоянно для активного пользователя", "БЕСПЛАТНО"),
-            NetworkInfoItem("Доступ к локальным ресурсам", "постоянно для активного пользователя", "БЕСПЛАТНО")
-        )
-        val localNetworkRules = listOf(
-            "Активный пользователь - пользователь с неотрицательным балансом",
-            "При отрицательном балансе доступ к локальным ресурсам, почте и т.п. блокируется",
-            "При отрицательном балансе доступ открыт только на основной сайт (http://lds.ua), сайт статистики (https://stat.lds.net.ua)"
-        )
-        
+        val localNetworkItems = listOf(NetworkInfoItem("Внутрисетевой трафик", "постоянно для активного пользователя", "БЕСПЛАТНО"), NetworkInfoItem("Доступ к локальным ресурсам", "постоянно для активного пользователя", "БЕСПЛАТНО"))
+        val localNetworkRules = listOf("Активный пользователь - пользователь с неотрицательным балансом", "При отрицательном балансе доступ к локальным ресурсам, почте и т.п. блокируется", "При отрицательном балансе доступ открыт только на основной сайт (http://lds.ua), сайт статистики (https://stat.lds.net.ua)")
         val additionalTitle = "Дополнительно"
-        val additionalChanges = listOf(
-            NetworkInfoItem("Смена тарифного плана на более высокий", "постоянно для активного пользователя", "БЕСПЛАТНО"),
-            NetworkInfoItem("Смена тарифного плана на более низкий или равнозначный", "(при уменьшении или сохранении абонентской платы)", "110 ₽ + абонплата нового тарифного плана", isFree = false)
-        )
+        val additionalChanges = listOf(NetworkInfoItem("Смена тарифного плана на более высокий", "постоянно для активного пользователя", "БЕСПЛАТНО"), NetworkInfoItem("Смена тарифного плана на более низкий или равнозначный", "(при уменьшении или сохранении абонентской платы)", "110 ₽ + абонплата нового тарифного плана", isFree = false))
+        val extraServices = listOf("Восстановление пароля доступа к личному счету и Интернет (требуется предоставление паспорта) - 15 ₽", "Смена параметров основной учетной записи (логин, паспортные данные - требуется предоставление паспорта с пропиской) - 150 ₽", "Блокировка аккаунта при неотрицательном балансе на срок до 6 месяцев (физическое отключение) - 60 ₽", "Включение заблокированного аккаунта (физическое включение) - бесплатно")
         
-        val extraServices = listOf(
-            "Восстановление пароля доступа к личному счету и Интернет (требуется предоставление паспорта) - 15 ₽",
-            "Смена параметров основной учетной записи (логин, паспортные данные - требуется предоставление паспорта с пропиской) - 150 ₽",
-            "Блокировка аккаунта при неотрицательном балансе на срок до 6 месяцев (физическое отключение) - 60 ₽",
-            "Включение заблокированного аккаунта (физическое включение) - бесплатно"
-        )
-        
-        // Asset URLs
-        val iconBack = "https://www.figma.com/api/mcp/asset/de9ce478-b1d8-40f4-ac89-35f4f306b693"
-        val iconDetails = "https://www.figma.com/api/mcp/asset/ff74af80-f053-4ce4-990d-58480e2ad366"
-        val iconDot = "https://www.figma.com/api/mcp/asset/cd9112fc-eaf5-4fa8-a564-de1d8f1725b4"
-        val iconWarning = "https://www.figma.com/api/mcp/asset/44720ab1-e2de-4154-b8e5-f76082ab4019"
-        val imgPriceUp = "https://www.figma.com/api/mcp/asset/efdd3140-5593-4edd-a0ea-311877389aa6"
-        val imgPriceDown = "https://www.figma.com/api/mcp/asset/afa612a3-1c30-4e1e-bb78-a932bbb34767"
-        val iconTv = "https://www.figma.com/api/mcp/asset/b8d67fe8-a15f-4a2a-b158-07ffa3510e35"
-        val iconHyper = "https://www.figma.com/api/mcp/asset/88d75f5d-f008-4f6e-bb10-ee5dbddcef77"
+        // Local Resources
+        val iconBack = R.drawable.ic_back_arrow
+        val iconDetails = R.drawable.ic_details_blue
+        val iconDot = R.drawable.ic_bullet_dot
+        val iconWarning = R.drawable.ic_warning
+        val imgPriceUp = R.drawable.icons_1
+        val imgPriceDown = R.drawable.icons_2
+        val iconTv = R.drawable.ic_tariff_tv
+        val iconHyper = R.drawable.ic_tariff_hyper
     }
 
     object SupportScreen {
         val title = "Техподдержка"
         val phonesTitle = "Наши телефоны 24/7"
         val phonesDescription = "Для улучшения качества обслуживания клиентов и повышения эффективности работы call-центра ваш разговор с оператором может быть записан"
-        
-        val phones = listOf(
-            SupportPhone(listOf("mks", "plus7"), "410"),
-            SupportPhone(listOf("mks"), "(072) 410-0-410"),
-            SupportPhone(listOf("cityphone"), "(0642) 503-503"),
-            SupportPhone(listOf("nadofon"), "(Надофон) 503-503")
-        )
-        
+        val phones = listOf(SupportPhone(listOf("mks", "plus7"), "410"), SupportPhone(listOf("mks"), "(072) 410-0-410"), SupportPhone(listOf("cityphone"), "(0642) 503-503"), SupportPhone(listOf("nadofon"), "(Надофон) 503-503"))
         val btnInternetCall = "Интернет звонок"
         val btnInternetCallHint = "(бесплатно)"
         val btnCallback = "Заказать обратный звонок"
-        
         val messengersTitle = "Мессенджеры"
         val messengersDescription = "Для быстрого и удобного доступа к техподдержке online Вы можете воспользоваться виджетом, размещённым в нижнем правом углу сайта."
-        val messengers = listOf(
-            MessengerLink("vk", "Написать ВКонтакте"),
-            MessengerLink("telegramm", "Написать в Telegram")
-        )
-        
+        val messengers = listOf(MessengerLink("vk", "Написать ВКонтакте"), MessengerLink("telegramm", "Написать в Telegram"))
         val socialChannelsTitle = "Официальные каналы"
         val socialChannels = listOf("vk", "telegramm")
-        
         val warningText = "Для улучшения качества обслуживания клиентов и повышения эффективности работы call-центра Ваш разговор с оператором может быть записан."
-        
         val writeSupportTitle = "Написать в техподдержку"
         val messageLabel = "Сообщение"
         val messagePlaceholder = "Введите сообщение..."
         val btnSend = "Отправить"
-        
         val archiveTitle = "Архив сообщений"
-        val chatMessages = listOf(
-            SupportChatMessage("Оператор", "29 янв 2025 12:15:09", "Не понятно", isOperator = true, status = "read"),
-            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false),
-            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false),
-            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false),
-            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false),
-            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Он то был то пропадал", isOperator = false),
-            SupportChatMessage("Оператор", "29 янв 2025 12:15:09", "Здравствуйте, опишите пожалуйста подробнее Вашу проблему.", isOperator = true),
-            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Здравствуйте, хочу сообщить о проблеме, возникшей у меня вчера с интернетом.", isOperator = false)
-        )
+        val chatMessages = listOf(SupportChatMessage("Оператор", "29 янв 2025 12:15:09", "Не понятно", isOperator = true, status = "read"), SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false), SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false), SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false), SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false), SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Он то был то пропадал", isOperator = false), SupportChatMessage("Оператор", "29 янв 2025 12:15:09", "Здравствуйте, опишите пожалуйста подробнее Вашу проблему.", isOperator = true), SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Здравствуйте, хочу сообщить о проблеме, возникшей у меня вчера с интернетом.", isOperator = false))
         val btnShowMore = "Показать ещё"
         
-        // Asset URLs
-        val iconPhone = "https://www.figma.com/api/mcp/asset/6b0f9bf6-fd56-4be4-aaf1-2dfce2e0bc85"
-        val iconWarning = "https://www.figma.com/api/mcp/asset/6d89e7e9-6b55-4bc1-9fcd-ce80e7b790be"
-        val iconSend = "https://www.figma.com/api/mcp/asset/bfd8c0db-125b-4e7b-a8b4-6ce2a6c80084"
-        val iconOperator = "https://www.figma.com/api/mcp/asset/51919148-fbd8-49e6-af25-133aed845e96"
-        val iconStatusRead = "https://www.figma.com/api/mcp/asset/8b88defd-c0df-4be3-a667-55cf3025c378"
+        // Local Resources
+        val iconPhone = R.drawable.ic_support_phone
+        val iconWarning = R.drawable.ic_support_warning
+        val iconSend = R.drawable.ic_support_send
+        val iconOperator = R.drawable.ic_support_operator
+        val iconStatusRead = R.drawable.ic_status_read
+        val iconVk = R.drawable.ic_vk
+        val iconTelegram = R.drawable.ic_telegram
     }
 
     object ReferFriendScreen {
         val screenTitle = "Подключи друга"
-        
-        val descriptionParagraphs = listOf(
-            "Подключите своего друга к ЛДС и получите бонус в виде пополнения счета для себя и для друга. Суммарно бонус составляет 180 руб. Вы и только Вы решаете, какую часть бонуса взять себе, а какую подарить другу!",
-            "Двигая бегунок по шкале в ту или иную сторону, Вы сможете выставить размеры бонусов для Вас и Вашего друга в пределах 180 руб.",
-            "В акции принимают участие только заявки на подключение, заполненные в электронной форме."
-        )
-
-        val steps = listOf(
-            "Выберите по шкале бонусов, сколько получите Вы и Ваш друг.",
-            "Укажите Ваш логин.",
-            "Заполните контакты Вашего друга."
-        )
-
+        val descriptionParagraphs = listOf("Подключите своего друга к ЛДС и получите бонус в виде пополнения счета для себя и для друга. Суммарно бонус составляет 180 руб. Вы и только Вы решаете, какую часть бонуса взять себе, а какую подарить другу!", "Двигая бегунок по шкале в ту или иную сторону, Вы сможете выставить размеры бонусов для Вас и Вашего друга в пределах 180 руб.", "В акции принимают участие только заявки на подключение, заполненные в электронной форме.")
+        val steps = listOf("Выберите по шкале бонусов, сколько получите Вы и Ваш друг.", "Укажите Ваш логин.", "Заполните контакты Вашего друга.")
         val section1Title = "Баланс бонусов"
         val section1Subtitle = "Передвигайте бегунок, чтоб определить, кому сколько достанется"
-
         val section2Title = "Ваши данные"
         val section2Warning = "Внимание! Вы уже должны быть подключены к сети"
         val section2InputLabel = "Введите Ваш лицевой счёт или логин"
         val section2InputPlaceholder = "Введите Ваш лицевой счёт или логин"
-
         val section3Title = "Данные подключаемого друга"
         val section3Warning = "Внимание! Здесь должны быть указаны данные того человека, которого мы должны подключить!"
-        
         val inputNameLabel = "Имя Вашего друга"
         val inputNamePlaceholder = "Введит имя друга"
-        
         val inputPhoneLabel = "Мобильный телефон"
         val inputPhonePlaceholder = "Введите номер телефона"
         val inputPhoneHint = "В формате: +7 959 123 45 67"
-        
         val inputCityLabel = "Населённый пункт"
         val inputCityPlaceholder = "Выберите населённый нункт"
-        
         val inputStreetLabel = "Квартал / улица"
         val inputStreetPlaceholder = "Квартал / улица"
         val inputStreetHint = "(введите не менее 3-х символов из названия квартала или улицы)"
-        
         val inputHouseLabel = "Дом"
         val inputHousePlaceholder = "Номер дома"
-        
         val inputFlatLabel = "Квартира"
         val inputFlatPlaceholder = "Номер квартиры"
-        
         val inputSourceLabel = "Откуда узнали"
         val inputSourcePlaceholder = "Выберите вариант"
-        
         val inputInfoLabel = "Дополнительная информация"
         val inputInfoPlaceholder = "Дополнительная информация"
-        
         val requiredFieldsHint = "* - поля обязательны для заполнения"
         val submitButtonText = "Оставить заявку"
         
-        val imgEllipse = "https://www.figma.com/api/mcp/asset/31b10f8d-b850-4c74-ae00-178baa7f19b3"
-        val imgShape = "https://www.figma.com/api/mcp/asset/18e1f3fd-b732-46af-8bba-4187ecc6f687"
+        // Local Resources
+        val imgEllipse = R.drawable.ic_ellipse
+        val imgShape = R.drawable.ic_arrow_down
     }
 }
 
-data class LinkedAccount(
-    val name: String,
-    val type: AccountType,
-    val balance: String,
-    val paidUntil: String,
-    val accountNumber: String,
-    val tariff: String,
-    val linkedCount: Int? = null,
-    val actions: List<AccountAction> = emptyList(),
-    val isAlert: Boolean = false,
-    val balanceColorType: BalanceColorType = BalanceColorType.GREEN,
-    val isPaidFromMain: Boolean = false
-)
-
-enum class AccountType(val label: String) {
-    MAIN("Основной"),
-    VIEW_ONLY("Только просмотр"),
-    FULL_CONTROL("Полное управление"),
-    FINANCIAL_LINK("Финансовая привязка")
-}
-
-enum class AccountAction(val label: String) {
-    EDIT("Редактировать"),
-    REFILL("Пополнить"),
-    UNLINK("Отвязать"),
-    GO_TO("Перейти")
-}
-
-enum class BalanceColorType {
-    GREEN, RED, ORANGE, GREY
-}
-
-data class SettingsGroup(
-    val title: String,
-    val items: List<SettingItem>,
-    val actionText: String,
-    val price: String
-)
-
-data class SettingItem(
-    val text: String,
-    val isAvailable: Boolean,
-    val label: String? = null
-)
+data class LinkedAccount(val name: String, val type: AccountType, val balance: String, val paidUntil: String, val accountNumber: String, val tariff: String, val linkedCount: Int? = null, val actions: List<AccountAction> = emptyList(), val isAlert: Boolean = false, val balanceColorType: BalanceColorType = BalanceColorType.GREEN, val isPaidFromMain: Boolean = false)
+enum class AccountType(val label: String) { MAIN("Основной"), VIEW_ONLY("Только просмотр"), FULL_CONTROL("Полное управление"), FINANCIAL_LINK("Финансовая привязка") }
+enum class AccountAction(val label: String) { EDIT("Редактировать"), REFILL("Пополнить"), UNLINK("Отвязать"), GO_TO("Перейти") }
+enum class BalanceColorType { GREEN, RED, ORANGE, GREY }
+data class SettingsGroup(val title: String, val items: List<SettingItem>, val actionText: String, val price: String)
+data class SettingItem(val text: String, val isAvailable: Boolean, val label: String? = null)

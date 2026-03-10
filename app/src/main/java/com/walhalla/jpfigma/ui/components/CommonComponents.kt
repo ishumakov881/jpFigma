@@ -1,5 +1,6 @@
 package com.walhalla.jpfigma.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -11,16 +12,61 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.SubcomposeAsyncImage
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.theme.*
 
 /**
- * Базовый компонент для загрузки изображений с плейсхолдерами.
+ * Универсальный компонент для загрузки изображений. 
+ * Поддерживает как URL (String), так и локальные ресурсы (Int).
+ */
+@Composable
+fun FigmaImage(
+    model: Any?,
+    modifier: Modifier = Modifier,
+    contentScale: ContentScale = ContentScale.Fit,
+    tint: Color? = null
+) {
+    when (model) {
+        is Int -> {
+            Image(
+                painter = painterResource(id = model),
+                contentDescription = null,
+                modifier = modifier,
+                contentScale = contentScale,
+                colorFilter = tint?.let { ColorFilter.tint(it) }
+            )
+        }
+        is String -> {
+            SubcomposeAsyncImage(
+                model = model,
+                contentDescription = null,
+                modifier = modifier,
+                contentScale = contentScale,
+                loading = {
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp, color = FigmaBrandBlue)
+                    }
+                },
+                error = {
+                    Box(modifier = Modifier.fillMaxSize().background(Color.LightGray.copy(alpha = 0.3f)), contentAlignment = Alignment.Center) {
+                        Text("Error", fontSize = 10.sp, color = FigmaTextSecondary)
+                    }
+                }
+            )
+        }
+    }
+}
+
+/**
+ * Старый компонент для обратной совместимости, теперь использует FigmaImage.
  */
 @Composable
 fun AsyncImageWithPlaceholder(
@@ -28,22 +74,7 @@ fun AsyncImageWithPlaceholder(
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Fit
 ) {
-    SubcomposeAsyncImage(
-        model = imageUrl,
-        contentDescription = null,
-        modifier = modifier,
-        contentScale = contentScale,
-        loading = {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp, color = FigmaBrandBlue)
-            }
-        },
-        error = {
-            Box(modifier = Modifier.fillMaxSize().background(Color.LightGray.copy(alpha = 0.3f)), contentAlignment = Alignment.Center) {
-                Text("Error", fontSize = 10.sp, color = FigmaTextSecondary)
-            }
-        }
-    )
+    FigmaImage(model = imageUrl, modifier = modifier, contentScale = contentScale)
 }
 
 /**
@@ -53,7 +84,7 @@ fun AsyncImageWithPlaceholder(
 fun ScreenHeader(
     title: String,
     onBackClick: () -> Unit = {},
-    backIconUrl: String = "https://www.figma.com/api/mcp/asset/de9ce478-b1d8-40f4-ac89-35f4f306b693", // Default back arrow
+    backIconRes: Int = R.drawable.ic_back_arrow,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -63,8 +94,8 @@ fun ScreenHeader(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        AsyncImageWithPlaceholder(
-            imageUrl = backIconUrl,
+        FigmaImage(
+            model = backIconRes,
             modifier = Modifier
                 .size(24.dp)
                 .clickable { onBackClick() }
@@ -100,13 +131,13 @@ fun FigmaCard(
 }
 
 /**
- * Элемент списка с буллитом (точкой или иконкой).
+ * Элемент списка с буллитом.
  */
 @Composable
 fun BulletListItem(
     text: String,
     modifier: Modifier = Modifier,
-    iconUrl: String = "https://www.figma.com/api/mcp/asset/cd9112fc-eaf5-4fa8-a564-de1d8f1725b4", // Default dot
+    iconRes: Int = R.drawable.ic_bullet_dot,
     iconSize: Dp = 20.dp
 ) {
     Row(
@@ -114,8 +145,8 @@ fun BulletListItem(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.Top
     ) {
-        AsyncImageWithPlaceholder(
-            imageUrl = iconUrl,
+        FigmaImage(
+            model = iconRes,
             modifier = Modifier
                 .size(iconSize)
                 .padding(top = 2.dp)
@@ -136,7 +167,7 @@ fun BulletListItem(
 fun WarningBox(
     text: String,
     modifier: Modifier = Modifier,
-    iconUrl: String = "https://www.figma.com/api/mcp/asset/d8c079e7-eb12-4d09-b9de-a123d83b58e9"
+    iconRes: Int = R.drawable.ic_warning
 ) {
     Box(
         modifier = modifier
@@ -145,7 +176,7 @@ fun WarningBox(
             .padding(15.dp)
     ) {
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(24.dp))
+            FigmaImage(model = iconRes, modifier = Modifier.size(24.dp))
             Text(
                 text = text,
                 fontSize = 14.sp,
@@ -158,13 +189,13 @@ fun WarningBox(
 }
 
 /**
- * Маленькая кнопка действий со стрелочкой (Детальнее, Перейти).
+ * Маленькая кнопка действий со стрелочкой.
  */
 @Composable
 fun ActionDetailsButton(
     text: String,
     onClick: () -> Unit = {},
-    iconUrl: String = "https://www.figma.com/api/mcp/asset/33a1936a-8799-4609-87fa-9701fb09c0a0",
+    iconRes: Int = R.drawable.ic_arrow_right_blue,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -178,6 +209,6 @@ fun ActionDetailsButton(
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         Text(text = text, color = FigmaBrandBlue, fontSize = 15.sp)
-        AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(18.dp))
+        FigmaImage(model = iconRes, modifier = Modifier.size(18.dp))
     }
 }
