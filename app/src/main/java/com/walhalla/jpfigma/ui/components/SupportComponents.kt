@@ -13,10 +13,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.model.*
@@ -51,33 +49,29 @@ fun SupportScreenBody(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
+            .background(FigmaBackgroundGray)
             .verticalScroll(scrollState)
             .padding(vertical = 20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        Text(
-            text = title,
-            color = TitleColor,
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Normal,
-            modifier = Modifier.padding(horizontal = 20.dp)
-        )
+        ScreenHeader(title = title)
 
-        SupportPhonesCard(
-            phonesTitle = phonesTitle,
-            phonesDescription = phonesDescription,
-            phones = phones,
-            btnInternetCall = btnInternetCall,
-            btnInternetCallHint = btnInternetCallHint,
-            btnCallback = btnCallback,
-            messengersTitle = messengersTitle,
-            messengersDescription = messengersDescription,
-            messengers = messengers,
-            socialChannelsTitle = socialChannelsTitle,
-            socialChannels = socialChannels,
-            warningText = warningText
-        )
+        FigmaCard(modifier = Modifier.padding(horizontal = 20.dp)) {
+            SupportPhonesSection(
+                phonesTitle = phonesTitle,
+                phonesDescription = phonesDescription,
+                phones = phones,
+                btnInternetCall = btnInternetCall,
+                btnInternetCallHint = btnInternetCallHint,
+                btnCallback = btnCallback,
+                messengersTitle = messengersTitle,
+                messengersDescription = messengersDescription,
+                messengers = messengers,
+                socialChannelsTitle = socialChannelsTitle,
+                socialChannels = socialChannels,
+                warningText = warningText
+            )
+        }
 
         SupportWriteCard(
             title = writeSupportTitle,
@@ -95,7 +89,7 @@ fun SupportScreenBody(
 }
 
 @Composable
-fun SupportPhonesCard(
+fun SupportPhonesSection(
     phonesTitle: String,
     phonesDescription: String,
     phones: List<SupportPhone>,
@@ -109,18 +103,10 @@ fun SupportPhonesCard(
     socialChannels: List<String>,
     warningText: String
 ) {
-    Column(
-        modifier = Modifier
-            .padding(horizontal = 20.dp)
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(20.dp))
-            .background(White)
-            .padding(20.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
-    ) {
+    Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = phonesTitle, fontSize = 18.sp, color = TitleColor)
-            Text(text = phonesDescription, fontSize = 12.sp, color = Text3, lineHeight = 14.4.sp)
+            Text(text = phonesTitle, fontSize = 18.sp, color = FigmaTitleColor)
+            Text(text = phonesDescription, fontSize = 12.sp, color = FigmaTextSecondary, lineHeight = 14.4.sp)
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -132,7 +118,7 @@ fun SupportPhonesCard(
                     phone.operators.forEach { operator ->
                         OperatorIcon(operator)
                     }
-                    Text(text = phone.number, fontSize = 17.sp, color = Text2)
+                    Text(text = phone.number, fontSize = 17.sp, color = FigmaTextPrimary)
                 }
             }
         }
@@ -141,7 +127,7 @@ fun SupportPhonesCard(
             Button(
                 onClick = { },
                 modifier = Modifier.fillMaxWidth().height(40.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF0FB752)),
+                colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandGreen),
                 shape = RoundedCornerShape(20.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
@@ -153,18 +139,18 @@ fun SupportPhonesCard(
             OutlinedButton(
                 onClick = { },
                 modifier = Modifier.fillMaxWidth().height(40.dp),
-                border = BorderStroke(1.dp, BrandColor1),
+                border = BorderStroke(1.dp, FigmaBrandBlue),
                 shape = RoundedCornerShape(20.dp)
             ) {
-                Text(text = btnCallback, color = BrandColor1, fontSize = 14.sp)
+                Text(text = btnCallback, color = FigmaBrandBlue, fontSize = 14.sp)
             }
         }
 
-        HorizontalDivider(color = LineColor, thickness = 1.dp)
+        HorizontalDivider(color = FigmaLineColor, thickness = 1.dp)
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = messengersTitle, fontSize = 18.sp, color = TitleColor)
-            Text(text = messengersDescription, fontSize = 12.sp, color = Text3, lineHeight = 14.4.sp)
+            Text(text = messengersTitle, fontSize = 18.sp, color = FigmaTitleColor)
+            Text(text = messengersDescription, fontSize = 12.sp, color = FigmaTextSecondary, lineHeight = 14.4.sp)
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -175,13 +161,13 @@ fun SupportPhonesCard(
                     horizontalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
                     SocialIcon(link.type, size = 20.dp)
-                    Text(text = link.label, fontSize = 16.sp, color = Text2)
+                    Text(text = link.label, fontSize = 16.sp, color = FigmaTextPrimary)
                 }
             }
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = socialChannelsTitle, fontSize = 18.sp, color = TitleColor)
+            Text(text = socialChannelsTitle, fontSize = 18.sp, color = FigmaTitleColor)
             Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
                 socialChannels.forEach { type ->
                     SocialIcon(type, size = 30.dp)
@@ -189,17 +175,7 @@ fun SupportPhonesCard(
             }
         }
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .border(1.dp, BrandColor2, RoundedCornerShape(20.dp))
-                .padding(15.dp)
-        ) {
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconWarning, modifier = Modifier.size(24.dp))
-                Text(text = warningText, fontSize = 14.sp, color = Text2, lineHeight = 18.2.sp)
-            }
-        }
+        WarningBox(text = warningText, iconUrl = MockData.SupportScreen.iconWarning)
     }
 }
 
@@ -212,7 +188,7 @@ fun SupportWriteCard(title: String, label: String, placeholder: String, btnText:
             .padding(horizontal = 20.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(Brush.linearGradient(colors = listOf(Color(0xFFCCE6FF), Color(0xFF95C5F3))))
+            .background(FigmaBlueGradient)
     ) {
         Text(
             text = title,
@@ -221,42 +197,37 @@ fun SupportWriteCard(title: String, label: String, placeholder: String, btnText:
             color = Color(0xFF041E37),
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 15.dp)
         )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(20.dp))
-                .background(White)
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text(text = label, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Text2)
-                TextField(
-                    value = text,
-                    onValueChange = { text = it },
-                    placeholder = { Text(text = placeholder, color = Color(0xFF8A9CAF), fontSize = 15.sp) },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(120.dp)
-                        .border(1.dp, Color(0xFF839AB1), RoundedCornerShape(8.dp)),
-                    colors = TextFieldDefaults.colors(
-                        focusedContainerColor = Color(0xFFFBFDFF),
-                        unfocusedContainerColor = Color(0xFFFBFDFF),
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent
-                    ),
-                    shape = RoundedCornerShape(8.dp)
-                )
-            }
-            OutlinedButton(
-                onClick = { },
-                modifier = Modifier.fillMaxWidth().height(40.dp),
-                border = BorderStroke(1.dp, BrandColor1),
-                shape = RoundedCornerShape(20.dp)
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconSend, modifier = Modifier.size(24.dp))
-                    Text(text = btnText, color = BrandColor1, fontSize = 15.sp)
+        FigmaCard(cornerRadius = 20.dp) {
+            Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Text(text = label, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = FigmaTextPrimary)
+                    TextField(
+                        value = text,
+                        onValueChange = { text = it },
+                        placeholder = { Text(text = placeholder, color = FigmaTextHint, fontSize = 15.sp) },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(120.dp)
+                            .border(1.dp, FigmaInputBorder, RoundedCornerShape(8.dp)),
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = FigmaInputBg,
+                            unfocusedContainerColor = FigmaInputBg,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
+                        ),
+                        shape = RoundedCornerShape(8.dp)
+                    )
+                }
+                OutlinedButton(
+                    onClick = { },
+                    modifier = Modifier.fillMaxWidth().height(40.dp),
+                    border = BorderStroke(1.dp, FigmaBrandBlue),
+                    shape = RoundedCornerShape(20.dp)
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                        AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconSend, modifier = Modifier.size(24.dp))
+                        Text(text = btnText, color = FigmaBrandBlue, fontSize = 15.sp)
+                    }
                 }
             }
         }
@@ -270,7 +241,7 @@ fun SupportArchiveCard(title: String, messages: List<SupportChatMessage>, btnTex
             .padding(horizontal = 20.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(Brush.linearGradient(colors = listOf(Color(0xFFCCE6FF), Color(0xFF95C5F3))))
+            .background(FigmaBlueGradient)
     ) {
         Text(
             text = title,
@@ -279,25 +250,20 @@ fun SupportArchiveCard(title: String, messages: List<SupportChatMessage>, btnTex
             color = Color(0xFF041E37),
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 15.dp)
         )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(20.dp))
-                .background(White)
-                .padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(15.dp)
-        ) {
-            messages.forEach { msg ->
-                SupportChatBubble(msg)
-            }
-            
-            OutlinedButton(
-                onClick = { },
-                modifier = Modifier.fillMaxWidth().height(40.dp),
-                border = BorderStroke(1.dp, BrandColor1),
-                shape = RoundedCornerShape(20.dp)
-            ) {
-                Text(text = btnText, color = BrandColor1, fontSize = 15.sp)
+        FigmaCard(cornerRadius = 20.dp) {
+            Column(verticalArrangement = Arrangement.spacedBy(15.dp)) {
+                messages.forEach { msg ->
+                    SupportChatBubble(msg)
+                }
+                
+                OutlinedButton(
+                    onClick = { },
+                    modifier = Modifier.fillMaxWidth().height(40.dp),
+                    border = BorderStroke(1.dp, FigmaBrandBlue),
+                    shape = RoundedCornerShape(20.dp)
+                ) {
+                    Text(text = btnText, color = FigmaBrandBlue, fontSize = 15.sp)
+                }
             }
         }
     }
@@ -306,10 +272,8 @@ fun SupportArchiveCard(title: String, messages: List<SupportChatMessage>, btnTex
 @Composable
 fun SupportChatBubble(msg: SupportChatMessage) {
     val alignment = if (msg.isOperator) Alignment.Start else Alignment.End
-    val bubbleColor = if (msg.isOperator) Color(0xFFE8F3FB) else Color(0xFFFBF0E8)
+    val bubbleColor = if (msg.isOperator) FigmaChatBubbleOperator else FigmaChatBubbleUser
     val shape = if (msg.isOperator) {
-        RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp, bottomStart = 20.dp, bottomEnd = 20.dp)
-        // Adjusting for actual Figma look (no top left corner for operator usually, or vice versa)
         RoundedCornerShape(topStart = 0.dp, topEnd = 20.dp, bottomStart = 20.dp, bottomEnd = 20.dp)
     } else {
         RoundedCornerShape(topStart = 20.dp, topEnd = 0.dp, bottomStart = 20.dp, bottomEnd = 20.dp)
@@ -324,8 +288,8 @@ fun SupportChatBubble(msg: SupportChatMessage) {
             if (msg.isOperator) {
                 AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconOperator, modifier = Modifier.size(18.dp))
             }
-            Text(text = msg.author, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Text2)
-            Text(text = msg.timestamp, fontSize = 13.sp, color = Text3)
+            Text(text = msg.author, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = FigmaTextPrimary)
+            Text(text = msg.timestamp, fontSize = 13.sp, color = FigmaTextSecondary)
             if (msg.status == "read") {
                 AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconStatusRead, modifier = Modifier.size(20.dp))
             }
@@ -336,14 +300,13 @@ fun SupportChatBubble(msg: SupportChatMessage) {
                 .background(bubbleColor)
                 .padding(15.dp)
         ) {
-            Text(text = msg.content, fontSize = 16.sp, color = Text2, lineHeight = 20.8.sp)
+            Text(text = msg.content, fontSize = 16.sp, color = FigmaTextPrimary, lineHeight = 20.8.sp)
         }
     }
 }
 
 @Composable
 fun OperatorIcon(type: String) {
-    // Placeholder for operator icons (MKS, +7, etc)
     val iconUrl = when (type) {
         "mks" -> "https://www.figma.com/api/mcp/asset/7c7500bb-0b6f-400f-9634-cc72330d69b8"
         "plus7" -> "https://www.figma.com/api/mcp/asset/f1c5c331-fc49-4310-9f39-a0dd9317b419"

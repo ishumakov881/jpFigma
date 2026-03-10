@@ -36,14 +36,14 @@ fun PaymentScreenBody(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
+            .background(FigmaBackgroundGray)
             .verticalScroll(scrollState)
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Text(
             text = title,
-            color = TitleColor,
+            color = FigmaTitleColor,
             fontSize = 26.sp,
             lineHeight = 28.6.sp,
             fontWeight = FontWeight.Normal
@@ -51,7 +51,7 @@ fun PaymentScreenBody(
 
         Text(
             text = description,
-            color = Text2,
+            color = FigmaTextPrimary,
             fontSize = 16.sp,
             lineHeight = 20.8.sp
         )
@@ -91,12 +91,12 @@ fun OnlinePaymentCard(data: MockData.PaymentMethodsScreen) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(Color(0xFFD5E6F5))
+            .background(FigmaLightBlueBg)
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        Text(text = data.onlinePaymentTitle, fontSize = 20.sp, color = TitleColor)
-        Text(text = data.onlinePaymentSubtitle, fontSize = 14.sp, color = TitleColor, lineHeight = 17.5.sp)
+        Text(text = data.onlinePaymentTitle, fontSize = 20.sp, color = FigmaTitleColor)
+        Text(text = data.onlinePaymentSubtitle, fontSize = 14.sp, color = FigmaTitleColor, lineHeight = 17.5.sp)
 
         Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
             PaymentInput(label = data.labelAccountNumber, value = "12345678", modifier = Modifier.weight(1.2f))
@@ -104,7 +104,7 @@ fun OnlinePaymentCard(data: MockData.PaymentMethodsScreen) {
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = data.labelEmail, fontSize = 16.sp, color = Text2)
+            Text(text = data.labelEmail, fontSize = 16.sp, color = FigmaTextPrimary)
             PaymentInput(label = "E-mail", value = "")
         }
 
@@ -112,28 +112,28 @@ fun OnlinePaymentCard(data: MockData.PaymentMethodsScreen) {
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(20.dp))
-                .background(White)
+                .background(FigmaCardWhite)
                 .padding(horizontal = 30.dp, vertical = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Text(text = "Сумма платежа", fontSize = 18.sp, color = TitleColor)
+            Text(text = "Сумма платежа", fontSize = 18.sp, color = FigmaTitleColor)
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                Text(text = "200", fontSize = 26.sp, fontWeight = FontWeight.Bold, color = TitleColor)
-                Text(text = "₽", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = TitleColor)
+                Text(text = "200", fontSize = 26.sp, fontWeight = FontWeight.Bold, color = FigmaTitleColor)
+                Text(text = "₽", fontSize = 18.sp, fontWeight = FontWeight.Bold, color = FigmaTitleColor)
             }
             Button(
                 onClick = { },
                 modifier = Modifier.fillMaxWidth().height(60.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = BrandColor1),
+                colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandBlue),
                 shape = RoundedCornerShape(30.dp)
             ) {
-                Text(text = data.btnPay, color = White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(text = data.btnPay, color = FigmaCardWhite, fontSize = 18.sp, fontWeight = FontWeight.Bold)
             }
             Text(
                 text = data.consentText,
                 fontSize = 13.sp,
-                color = SecondaryText,
+                color = FigmaTextLight,
                 textAlign = TextAlign.Center,
                 lineHeight = 15.6.sp
             )
@@ -148,15 +148,15 @@ fun PaymentInput(label: String, value: String, suffix: String? = null, modifier:
             .fillMaxWidth()
             .height(56.dp)
             .clip(RoundedCornerShape(5.dp))
-            .background(White)
+            .background(FigmaCardWhite)
             .padding(horizontal = 15.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Text(text = label, color = Color(0xFF60778E), fontSize = 14.sp)
-        Text(text = value, color = Text2, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+        Text(text = label, color = FigmaInputLabel, fontSize = 14.sp)
+        Text(text = value, color = FigmaTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
         if (suffix != null) {
-            Text(text = suffix, color = Text2, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            Text(text = suffix, color = FigmaTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -167,16 +167,16 @@ fun SberPaymentCard(logoUrl: String, titlePrefix: String, description: String, b
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(White)
+            .background(FigmaCardWhite)
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = titlePrefix, fontSize = 20.sp, color = TitleColor)
+            Text(text = titlePrefix, fontSize = 20.sp, color = FigmaTitleColor)
             AsyncImageWithPlaceholder(imageUrl = logoUrl, modifier = Modifier.width(149.dp).height(23.dp))
         }
         Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.Top) {
-            Text(text = description, modifier = Modifier.weight(1f), color = Text2, fontSize = 14.sp, lineHeight = 18.2.sp)
+            Text(text = description, modifier = Modifier.weight(1f), color = FigmaTextPrimary, fontSize = 14.sp, lineHeight = 18.2.sp)
             DetailsButton(btnText, iconArrowUrl)
         }
     }
@@ -188,13 +188,13 @@ fun SimplePaymentCard(title: String, description: String, btnText: String, iconA
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(White)
+            .background(FigmaCardWhite)
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        Text(text = title, fontSize = 20.sp, color = TitleColor)
+        Text(text = title, fontSize = 20.sp, color = FigmaTitleColor)
         Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.Top) {
-            Text(text = description, modifier = Modifier.weight(1f), color = Text2, fontSize = 14.sp, lineHeight = 18.2.sp)
+            Text(text = description, modifier = Modifier.weight(1f), color = FigmaTextPrimary, fontSize = 14.sp, lineHeight = 18.2.sp)
             DetailsButton(btnText, iconArrowUrl)
         }
     }
@@ -206,12 +206,12 @@ fun TerminalPaymentCard(title: String, description: String, imageUrl: String) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(White)
+            .background(FigmaCardWhite)
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        Text(text = title, fontSize = 20.sp, color = TitleColor)
-        Text(text = description, color = Text2, fontSize = 14.sp, lineHeight = 18.2.sp)
+        Text(text = title, fontSize = 20.sp, color = FigmaTitleColor)
+        Text(text = description, color = FigmaTextPrimary, fontSize = 14.sp, lineHeight = 18.2.sp)
         AsyncImageWithPlaceholder(
             imageUrl = imageUrl,
             modifier = Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(10.dp))
@@ -225,19 +225,19 @@ fun PaymentPointCard(point: PaymentPoint) {
         modifier = Modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(White)
+            .background(FigmaCardWhite)
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        Text(text = point.title, fontSize = 20.sp, color = TitleColor)
+        Text(text = point.title, fontSize = 20.sp, color = FigmaTitleColor)
         
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = "Адрес:", fontSize = 15.sp, fontWeight = FontWeight.Medium, color = Text2)
-            Text(text = point.address, fontSize = 14.sp, color = Text2, lineHeight = 18.2.sp)
+            Text(text = "Адрес:", fontSize = 15.sp, fontWeight = FontWeight.Medium, color = FigmaTextPrimary)
+            Text(text = point.address, fontSize = 14.sp, color = FigmaTextPrimary, lineHeight = 18.2.sp)
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = "График работы:", fontSize = 15.sp, fontWeight = FontWeight.Medium, color = Text2)
+            Text(text = "График работы:", fontSize = 15.sp, fontWeight = FontWeight.Medium, color = FigmaTextPrimary)
             point.schedule.forEach { schedule ->
                 ScheduleItemRow(
                     days = schedule.days,
@@ -271,32 +271,32 @@ fun ScheduleItemRow(
                     modifier = Modifier
                         .size(width = 36.dp, height = 20.dp)
                         .clip(RoundedCornerShape(5.dp))
-                        .background(if (isHoliday) BrandColor2 else Color(0xFFF1F1F1)),
+                        .background(if (isHoliday) FigmaBrandOrange else FigmaStatusGrayBg),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
                         text = day,
-                        color = if (isHoliday) White else BrandColor1,
+                        color = if (isHoliday) White else FigmaBrandBlue,
                         fontSize = 13.sp
                     )
                 }
             }
         }
         if (!isHoliday) {
-            HorizontalDivider(color = BrandColor1, thickness = 2.dp, modifier = Modifier.width(226.dp))
+            HorizontalDivider(color = FigmaBrandBlue, thickness = 2.dp, modifier = Modifier.width(226.dp))
             Column {
                 Text(
                     text = time,
-                    color = BrandColor1,
+                    color = FigmaBrandBlue,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )
                 if (breakTime != null) {
-                    Text(text = breakTime, color = Text2, fontSize = 14.sp)
+                    Text(text = breakTime, color = FigmaTextPrimary, fontSize = 14.sp)
                 }
             }
         } else {
-            Text(text = "выходной", color = BrandColor2, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+            Text(text = "выходной", color = FigmaBrandOrange, fontSize = 16.sp, fontWeight = FontWeight.Bold)
         }
     }
 }
@@ -307,33 +307,13 @@ fun DetailsButton(text: String, iconUrl: String) {
         modifier = Modifier
             .height(40.dp)
             .clip(RoundedCornerShape(20.dp))
-            .background(SecondaryBtn)
+            .background(FigmaSecondaryBtnBg)
             .padding(horizontal = 20.dp)
             .clickable { },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Text(text = text, color = BrandColor1, fontSize = 15.sp)
+        Text(text = text, color = FigmaBrandBlue, fontSize = 15.sp)
         AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(18.dp))
     }
-}
-
-@Composable
-fun AsyncImageWithPlaceholder(imageUrl: String, modifier: Modifier = Modifier) {
-    SubcomposeAsyncImage(
-        model = imageUrl,
-        contentDescription = null,
-        modifier = modifier,
-        contentScale = ContentScale.Fit,
-        loading = {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(modifier = Modifier.size(24.dp))
-            }
-        },
-        error = {
-            Box(modifier = Modifier.fillMaxSize().background(Color.LightGray), contentAlignment = Alignment.Center) {
-                Text("Error", fontSize = 10.sp)
-            }
-        }
-    )
 }

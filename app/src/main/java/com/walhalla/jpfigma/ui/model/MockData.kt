@@ -362,6 +362,111 @@ object MockData {
         val iconArrowRight = "https://www.figma.com/api/mcp/asset/33a1936a-8799-4609-87fa-9701fb09c0a0"
     }
 
+    object HyperScreen {
+        val title = "Услуга “Гипер”"
+        val serviceInfo = HyperServiceInfo(
+            currentSpeed = 250,
+            targetSpeed = 250,
+            currentPrice = 834,
+            targetPrice = 834
+        )
+        
+        val maxTariffParams = listOf(
+            HyperParameter("Скорость", "до 1 Гбит/с"),
+            HyperParameter("Шаг", "+50 Мбит/с"),
+            HyperParameter("Повышение", "в любое время"),
+            HyperParameter("Понижение", "через 30 дней")
+        )
+        
+        val aboutItems = listOf(
+            "Получите доступ к сети интернет со скоростью до 1 Гбит/с!",
+            "Закажите столько скорости, сколько нужно именно Вам.",
+            "Добавьте самостоятельно к Вашему тарифу 50 Мбит/с и более.",
+            "Увеличить скорость доступа можно в любой момент.",
+            "Услуга доступна для абонентов с тарифами: \"Безлим 300\", \"Jump 200\", \"ЛДС-250\".",
+            "Активировать услугу можно из личного кабинета.",
+            "Снижение скорости доступно через 30 дней с момента последнего заказа."
+        )
+        
+        val warningText = "Максимальная скорость может быть ограничена техническими параметрами и возможностями используемого клиентского оборудования"
+        
+        val btnChangeSpeed = "Изменить скорость"
+        
+        // Asset URLs
+        val imgSpeedometer = "https://www.figma.com/api/mcp/asset/speedometer-group" // Using placeholder for complex SVG/Image
+        val iconMinus = "https://www.figma.com/api/mcp/asset/9c19bc47-545c-4e28-9ea6-4f359096c240"
+        val iconPlus = "https://www.figma.com/api/mcp/asset/fcaa1cae-6278-4e06-9a52-b002fc6f358f"
+        val iconDot = "https://www.figma.com/api/mcp/asset/8c579039-7bf4-4067-ad5c-f38cfe9fe86f"
+        val iconWarning = "https://www.figma.com/api/mcp/asset/d8c079e7-eb12-4d09-b9de-a123d83b58e9"
+        val imgDashedLine = "https://www.figma.com/api/mcp/asset/76dc05dc-caff-412d-aab4-5f5c61d17360"
+    }
+
+    object AccountInfoDialog {
+        val title = "Лицевой счёт"
+        val description = "Лицевой счет, он же номер договора, нужен для оплаты услуг Интернет и кабельного телевидения от ЛДС в терминалах самообслуживания."
+    }
+
+    object ChangeTariffScreen {
+        val title = "Сменить тариф"
+        val filterOptions = listOf("Интернет", "Интернет и ТВ", "ТВ")
+        
+        val tariffs = listOf(
+            TariffInfo(1, "Безлим 300 и ТВ", "130", "Мбит/с", "210", "каналов", true, "933", "₽/30 дней"),
+            TariffInfo(2, "Безлим 100+ и ТВ", "130", "Мбит/с", "210", "каналов", true, "834", "₽/30 дней", isCurrent = true, speedIconType = "internet--8"),
+            TariffInfo(3, "Безлим 90 и ТВ", "130", "Мбит/с", "210", "каналов", false, "753", "₽/30 дней", speedIconType = "internet--7"),
+            TariffInfo(4, "Безлим 50 и ТВ", "130", "Мбит/с", "210", "каналов", false, "753", "₽/30 дней", speedIconType = "internet--5"),
+            TariffInfo(5, "Безлим 25 и ТВ", "130", "Мбит/с", "210", "каналов", false, "732", "₽/30 дней", speedIconType = "internet--3")
+        )
+        
+        val importantInfo = listOf(
+            "Минимальный авансовый платеж 250 руб",
+            "Смена акционного тарифа без потери акционного предложения возможна в течение первых 10 дней",
+            "Смена тарифного плана в меньшую сторону возможна через 90 дней с момента подключения для тарифов: Безлим 15, Безлим 50, Безлим 90, Безлим 100+, Безлим 300",
+            "По истечении указанных акционных дней скорость устанавливается равной скорости одноименного тарифа",
+            "Предоставление услуги \"Блокировка аккаунта\" возможно через 6 месяцев с момента подключения",
+            "Срок подключения: до 3-х рабочих дней в зависимости от погодных условий и прочих форс-мажорных обстоятельств",
+            "При подключении выделяется 1 (один) динамический локальный IP адрес",
+            "В стоимость подключения не входит обучение Клиента работе с программным обеспечением",
+            "Бонус зачисляется на лицевой счет абонента единоразово после новой активации"
+        )
+        
+        val warningSpeedLimit = "Максимальная скорость может быть ограничена техническими параметрами и возможностями используемого клиентского оборудования"
+        
+        val localNetworkTitle = "Локальная сеть"
+        val localNetworkItems = listOf(
+            NetworkInfoItem("Внутрисетевой трафик", "постоянно для активного пользователя", "БЕСПЛАТНО"),
+            NetworkInfoItem("Доступ к локальным ресурсам", "постоянно для активного пользователя", "БЕСПЛАТНО")
+        )
+        val localNetworkRules = listOf(
+            "Активный пользователь - пользователь с неотрицательным балансом",
+            "При отрицательном балансе доступ к локальным ресурсам, почте и т.п. блокируется",
+            "При отрицательном балансе доступ открыт только на основной сайт (http://lds.ua), сайт статистики (https://stat.lds.net.ua)"
+        )
+        
+        val additionalTitle = "Дополнительно"
+        val additionalChanges = listOf(
+            NetworkInfoItem("Смена тарифного плана на более высокий", "постоянно для активного пользователя", "БЕСПЛАТНО"),
+            NetworkInfoItem("Смена тарифного плана на более низкий или равнозначный", "(при уменьшении или сохранении абонентской платы)", "110 ₽ + абонплата нового тарифного плана", isFree = false)
+        )
+        
+        val extraServices = listOf(
+            "Восстановление пароля доступа к личному счету и Интернет (требуется предоставление паспорта) - 15 ₽",
+            "Смена параметров основной учетной записи (логин, паспортные данные - требуется предоставление паспорта с пропиской) - 150 ₽",
+            "Блокировка аккаунта при неотрицательном балансе на срок до 6 месяцев (физическое отключение) - 60 ₽",
+            "Включение заблокированного аккаунта (физическое включение) - бесплатно"
+        )
+        
+        // Asset URLs
+        val iconBack = "https://www.figma.com/api/mcp/asset/de9ce478-b1d8-40f4-ac89-35f4f306b693"
+        val iconDetails = "https://www.figma.com/api/mcp/asset/ff74af80-f053-4ce4-990d-58480e2ad366"
+        val iconDot = "https://www.figma.com/api/mcp/asset/cd9112fc-eaf5-4fa8-a564-de1d8f1725b4"
+        val iconWarning = "https://www.figma.com/api/mcp/asset/44720ab1-e2de-4154-b8e5-f76082ab4019"
+        val imgPriceUp = "https://www.figma.com/api/mcp/asset/efdd3140-5593-4edd-a0ea-311877389aa6"
+        val imgPriceDown = "https://www.figma.com/api/mcp/asset/afa612a3-1c30-4e1e-bb78-a932bbb34767"
+        val iconTv = "https://www.figma.com/api/mcp/asset/b8d67fe8-a15f-4a2a-b158-07ffa3510e35"
+        val iconHyper = "https://www.figma.com/api/mcp/asset/88d75f5d-f008-4f6e-bb10-ee5dbddcef77"
+    }
+
     object SupportScreen {
         val title = "Техподдержка"
         val phonesTitle = "Наши телефоны 24/7"

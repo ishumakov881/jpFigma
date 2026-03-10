@@ -30,21 +30,18 @@ fun ServicesScreenBody(
     onInfoClick: (Int) -> Unit = {},
     onActionClick: (Int) -> Unit = {}
 ) {
-    val backgroundColor = Color(0xFFF4F7FB)
-    val cardPadding = 20.dp
-
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(backgroundColor),
-        contentPadding = PaddingValues(cardPadding),
+            .background(FigmaBackgroundGray),
+        contentPadding = PaddingValues(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
             Text(
                 text = title,
-                color = TitleColor,
+                color = FigmaTitleColor,
                 fontSize = 22.sp,
                 modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp)
             )
@@ -53,7 +50,7 @@ fun ServicesScreenBody(
         item {
             AccountCard(
                 title = "Платные услуги",
-                gradient = Brush.linearGradient(listOf(Color(0xFFCCE6FF), Color(0xFF95C5F3))),
+                gradient = FigmaBlueGradient,
                 horizontalPadding = 0.dp
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -70,7 +67,7 @@ fun ServicesScreenBody(
                             onActionClick = { onActionClick(service.id) }
                         )
                         if (index < paidServices.size - 1) {
-                            HorizontalDivider(color = LineColor)
+                            HorizontalDivider(color = FigmaLineColor)
                         }
                     }
                 }
@@ -80,7 +77,7 @@ fun ServicesScreenBody(
         item {
             AccountCard(
                 title = "Бесплатные услуги",
-                gradient = Brush.linearGradient(listOf(Color(0xFFCCE6FF), Color(0xFF95C5F3))),
+                gradient = FigmaBlueGradient,
                 horizontalPadding = 0.dp
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
@@ -97,7 +94,7 @@ fun ServicesScreenBody(
                             onActionClick = { onActionClick(service.id) }
                         )
                         if (index < freeServices.size - 1) {
-                            HorizontalDivider(color = LineColor)
+                            HorizontalDivider(color = FigmaLineColor)
                         }
                     }
                 }
@@ -127,17 +124,17 @@ fun ServiceListItem(
         horizontalArrangement = Arrangement.spacedBy(15.dp)
     ) {
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(5.dp)) {
-            Text(text = name, color = Text1, fontSize = 16.sp)
+            Text(text = name, color = FigmaTextPrimary, fontSize = 16.sp)
             if (statusText != null) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
                     if (isActive) {
-                        Icon(Icons.Default.Check, contentDescription = null, tint = Green, modifier = Modifier.size(18.dp))
-                        Text(text = statusText, color = Green, fontSize = 14.sp)
+                        Icon(Icons.Default.Check, contentDescription = null, tint = FigmaSuccessGreen, modifier = Modifier.size(18.dp))
+                        Text(text = statusText, color = FigmaSuccessGreen, fontSize = 14.sp)
                     } else if (isNotAvailable) {
-                        Icon(Icons.Default.Close, contentDescription = null, tint = Color.Red, modifier = Modifier.size(18.dp))
-                        Text(text = statusText, color = SecondaryText, fontSize = 14.sp)
+                        Icon(Icons.Default.Close, contentDescription = null, tint = FigmaErrorRed, modifier = Modifier.size(18.dp))
+                        Text(text = statusText, color = FigmaTextLight, fontSize = 14.sp)
                     } else if (isNotConnected) {
-                        Text(text = statusText, color = SecondaryText, fontSize = 14.sp)
+                        Text(text = statusText, color = FigmaTextLight, fontSize = 14.sp)
                     }
                 }
             }
@@ -147,21 +144,21 @@ fun ServiceListItem(
             IconButton(
                 onClick = onInfoClick,
                 modifier = Modifier.size(40.dp),
-                colors = IconButtonDefaults.iconButtonColors(containerColor = Color(0xFFE8F0F8))
+                colors = IconButtonDefaults.iconButtonColors(containerColor = FigmaFilterUnselectedBg)
             ) {
-                Icon(Icons.AutoMirrored.Outlined.HelpOutline, contentDescription = null, tint = Color(0xFF8A9CAF))
+                Icon(Icons.AutoMirrored.Outlined.HelpOutline, contentDescription = null, tint = FigmaTextHint)
             }
 
             OutlinedIconButton(
                 onClick = onActionClick,
                 modifier = Modifier.size(40.dp),
                 shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(1.dp, if (canOpen) BrandColor1 else BrandColor1.copy(alpha = 0.3f))
+                border = BorderStroke(1.dp, if (canOpen) FigmaBrandBlue else FigmaBrandBlue.copy(alpha = 0.3f))
             ) {
                 Icon(
                     imageVector = if (isFree) Icons.Outlined.Settings else Icons.AutoMirrored.Outlined.ArrowForward,
                     contentDescription = null,
-                    tint = if (canOpen) BrandColor1 else BrandColor1.copy(alpha = 0.3f)
+                    tint = if (canOpen) FigmaBrandBlue else FigmaBrandBlue.copy(alpha = 0.3f)
                 )
             }
         }

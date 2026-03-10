@@ -167,6 +167,37 @@ object MockScreens {
     }
 
     @Composable
+    fun HyperScreen() {
+        val data = MockData.HyperScreen
+        HyperScreenBody(
+            title = data.title,
+            serviceInfo = data.serviceInfo,
+            maxTariffParams = data.maxTariffParams,
+            aboutItems = data.aboutItems,
+            warningText = data.warningText,
+            btnChangeSpeed = data.btnChangeSpeed
+        )
+    }
+
+    @Composable
+    fun ChangeTariffScreen() {
+        val data = MockData.ChangeTariffScreen
+        ChangeTariffScreenBody(
+            title = data.title,
+            filterOptions = data.filterOptions,
+            tariffs = data.tariffs,
+            importantInfo = data.importantInfo,
+            warningSpeedLimit = data.warningSpeedLimit,
+            localNetworkTitle = data.localNetworkTitle,
+            localNetworkItems = data.localNetworkItems,
+            localNetworkRules = data.localNetworkRules,
+            additionalTitle = data.additionalTitle,
+            additionalChanges = data.additionalChanges,
+            extraServices = data.extraServices
+        )
+    }
+
+    @Composable
     fun PaymentsScreen() {
         val data = MockData.PaymentsScreen
 

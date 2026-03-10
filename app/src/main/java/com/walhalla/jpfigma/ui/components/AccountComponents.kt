@@ -46,30 +46,27 @@ fun AccountScreenBody(
     onChangeMacClick: () -> Unit = {},
     onAllServicesClick: () -> Unit = {}
 ) {
-    val backgroundColor = Color(0xFFF4F7FB)
-    val screenPadding = 20.dp
-
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
-            .background(backgroundColor),
-        contentPadding = PaddingValues(screenPadding),
+            .background(FigmaBackgroundGray),
+        contentPadding = PaddingValues(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(text = "Ваш аккаунт", color = TitleColor, fontSize = 22.sp)
+                Text(text = "Ваш аккаунт", color = FigmaTitleColor, fontSize = 22.sp)
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(10.dp),
                     modifier = Modifier.padding(top = 5.dp)
                 ) {
-                    Text(text = status, color = Green, fontSize = 22.sp, fontWeight = FontWeight.Bold)
+                    Text(text = status, color = FigmaSuccessGreen, fontSize = 22.sp, fontWeight = FontWeight.Bold)
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.HelpOutline,
                         contentDescription = null,
-                        tint = Color.LightGray,
+                        tint = FigmaTextHint,
                         modifier = Modifier.size(25.dp)
                     )
                 }
@@ -79,7 +76,7 @@ fun AccountScreenBody(
         item {
             AccountCard(
                 title = "Баланс",
-                gradient = Brush.linearGradient(listOf(Color(0xFFCCE6FF), Color(0xFF95C5F3)))
+                gradient = FigmaBlueGradient
             ) {
                 Column(
                     modifier = Modifier.fillMaxWidth(),
@@ -90,16 +87,16 @@ fun AccountScreenBody(
                         verticalAlignment = Alignment.Bottom,
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
-                        Text(text = balance, color = Green, fontSize = 32.sp, fontWeight = FontWeight.Bold)
-                        Text(text = "₽", color = Green, fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                        Text(text = balance, color = FigmaSuccessGreen, fontSize = 32.sp, fontWeight = FontWeight.Bold)
+                        Text(text = "₽", color = FigmaSuccessGreen, fontSize = 24.sp, fontWeight = FontWeight.Bold)
                     }
-                    Text(text = balanceUntil, color = SecondaryText, fontSize = 13.sp)
+                    Text(text = balanceUntil, color = FigmaTextLight, fontSize = 13.sp)
                 }
 
                 Button(
                     onClick = onTopUpClick,
                     modifier = Modifier.fillMaxWidth().height(40.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = BrandColor1),
+                    colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandBlue),
                     shape = RoundedCornerShape(20.dp)
                 ) {
                     Icon(Icons.Default.Payment, contentDescription = null, modifier = Modifier.size(24.dp))
@@ -108,79 +105,79 @@ fun AccountScreenBody(
                 }
 
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Text(text = "Отложенный платёж:", color = Text2, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "Отложенный платёж:", color = FigmaTextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        OutlinedButton(onClick = { }, modifier = Modifier.weight(1f).height(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, BrandColor1.copy(alpha = 0.5f))) { Text(text = "на 24 часа", color = BrandColor1, fontSize = 15.sp) }
-                        OutlinedButton(onClick = { }, modifier = Modifier.weight(1f).height(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, BrandColor1.copy(alpha = 0.5f))) { Text(text = "на 72 часа", color = BrandColor1, fontSize = 15.sp) }
+                        OutlinedButton(onClick = { }, modifier = Modifier.weight(1f).height(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue.copy(alpha = 0.5f))) { Text(text = "на 24 часа", color = FigmaBrandBlue, fontSize = 15.sp) }
+                        OutlinedButton(onClick = { }, modifier = Modifier.weight(1f).height(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue.copy(alpha = 0.5f))) { Text(text = "на 72 часа", color = FigmaBrandBlue, fontSize = 15.sp) }
                     }
                 }
 
-                HorizontalDivider(color = LineColor)
+                HorizontalDivider(color = FigmaLineColor)
 
                 Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Column(modifier = Modifier.weight(1f)) {
-                        Text(text = "Тарифный план:", color = SecondaryText, fontSize = 14.sp)
-                        Text(text = tariffName, color = Text2, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Text(text = "Тарифный план:", color = FigmaTextLight, fontSize = 14.sp)
+                        Text(text = tariffName, color = FigmaTextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
-                    OutlinedButton(onClick = onChangeTariffClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, BrandColor1)) { Text(text = "Сменить", color = BrandColor1, fontSize = 15.sp) }
+                    OutlinedButton(onClick = onChangeTariffClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue)) { Text(text = "Сменить", color = FigmaBrandBlue, fontSize = 15.sp) }
                 }
 
-                HorizontalDivider(color = LineColor)
+                HorizontalDivider(color = FigmaLineColor)
 
                 Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
-                    Icon(Icons.Default.NotificationsActive, contentDescription = null, tint = BrandColor1, modifier = Modifier.size(24.dp))
+                    Icon(Icons.Default.NotificationsActive, contentDescription = null, tint = FigmaBrandBlue, modifier = Modifier.size(24.dp))
                     Spacer(Modifier.width(5.dp))
-                    Text(text = "Уведомления о состоянии баланса", color = Color(0xFF0880C5), fontSize = 14.sp)
+                    Text(text = "Уведомления о состоянии баланса", color = FigmaInfoBlue, fontSize = 14.sp)
                 }
             }
         }
 
         item {
-            AccountCard(title = "Информация", gradient = Brush.linearGradient(listOf(Color(0xFFFFE4CC), Color(0xFFF3BD95)))) {
+            AccountCard(title = "Информация", gradient = FigmaOrangeGradient) {
                 InfoRow(label = "Лицевой счёт:", value = accountNumber)
-                HorizontalDivider(color = LineColor)
+                HorizontalDivider(color = FigmaLineColor)
                 InfoRow(label = "Ф.И.О.:", value = fullName)
-                HorizontalDivider(color = LineColor)
+                HorizontalDivider(color = FigmaLineColor)
                 InfoRow(label = "Адрес подключения:", value = address)
-                HorizontalDivider(color = LineColor)
+                HorizontalDivider(color = FigmaLineColor)
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     InfoRow(label = "Актуальный номер телефона:", value = phone)
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        OutlinedButton(onClick = { }, modifier = Modifier.size(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, BrandColor1), contentPadding = PaddingValues(0.dp)) { Text("+", color = BrandColor1, fontSize = 20.sp) }
-                        OutlinedButton(onClick = onActualizeClick, modifier = Modifier.height(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, BrandColor1)) { Text(text = "Актуализировать", color = BrandColor1, fontSize = 15.sp) }
+                        OutlinedButton(onClick = { }, modifier = Modifier.size(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue), contentPadding = PaddingValues(0.dp)) { Text("+", color = FigmaBrandBlue, fontSize = 20.sp) }
+                        OutlinedButton(onClick = onActualizeClick, modifier = Modifier.height(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue)) { Text(text = "Актуализировать", color = FigmaBrandBlue, fontSize = 15.sp) }
                     }
                 }
             }
         }
 
         item {
-            AccountCard(title = "Состояние услуг", gradient = Brush.linearGradient(listOf(Color(0xFFCCD1FF), Color(0xFF95AAF3)))) {
+            AccountCard(title = "Состояние услуг", gradient = FigmaPurpleGradient) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Text(text = "Состояние подключения к сети Интернет", color = SecondaryText, fontSize = 14.sp)
+                    Text(text = "Состояние подключения к сети Интернет", color = FigmaTextLight, fontSize = 14.sp)
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Text(text = internetStatus, color = Text2, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                        Icon(Icons.AutoMirrored.Filled.HelpOutline, contentDescription = null, tint = Color.LightGray, modifier = Modifier.size(25.dp))
+                        Text(text = internetStatus, color = FigmaTextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                        Icon(Icons.AutoMirrored.Filled.HelpOutline, contentDescription = null, tint = FigmaTextHint, modifier = Modifier.size(25.dp))
                     }
-                    OutlinedButton(onClick = onDisconnectInternetClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, BrandColor1)) { Text(text = "Разъединить", color = BrandColor1, fontSize = 15.sp) }
+                    OutlinedButton(onClick = onDisconnectInternetClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue)) { Text(text = "Разъединить", color = FigmaBrandBlue, fontSize = 15.sp) }
                 }
-                HorizontalDivider(color = LineColor)
+                HorizontalDivider(color = FigmaLineColor)
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Text(text = "МАС адрес:", color = SecondaryText, fontSize = 14.sp)
-                    Text(text = macAddress, color = Text2, fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                    OutlinedButton(onClick = onChangeMacClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, BrandColor1)) { Text(text = "Сменить", color = BrandColor1, fontSize = 15.sp) }
+                    Text(text = "МАС адрес:", color = FigmaTextLight, fontSize = 14.sp)
+                    Text(text = macAddress, color = FigmaTextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    OutlinedButton(onClick = onChangeMacClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue)) { Text(text = "Сменить", color = FigmaBrandBlue, fontSize = 15.sp) }
                 }
-                HorizontalDivider(color = LineColor)
+                HorizontalDivider(color = FigmaLineColor)
                 Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-                    Text(text = "Состояние подключения к кабельному телевидению", color = SecondaryText, fontSize = 14.sp)
-                    Text(text = tvStatus, color = Text2, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "Состояние подключения к кабельному телевидению", color = FigmaTextLight, fontSize = 14.sp)
+                    Text(text = tvStatus, color = FigmaTextPrimary, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
 
         item {
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "Ваш пакет услуг", color = Color(0xFF041E37), fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                OutlinedButton(onClick = onAllServicesClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, BrandColor1)) { Text(text = "Все услуги", color = BrandColor1, fontSize = 15.sp) }
+                Text(text = "Ваш пакет услуг", color = FigmaDarkTitle, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                OutlinedButton(onClick = onAllServicesClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue)) { Text(text = "Все услуги", color = FigmaBrandBlue, fontSize = 15.sp) }
             }
             Spacer(Modifier.height(10.dp))
             ServicePackageCard(
@@ -194,7 +191,7 @@ fun AccountScreenBody(
                         oldPrice = service.oldPrice,
                         hasOffer = service.hasOffer
                     )
-                    HorizontalDivider(color = LineColor, modifier = Modifier.padding(vertical = 5.dp))
+                    HorizontalDivider(color = FigmaLineColor, modifier = Modifier.padding(vertical = 5.dp))
                 }
             }
         }
@@ -203,9 +200,9 @@ fun AccountScreenBody(
 
 @Composable
 fun AccountCard(modifier: Modifier = Modifier, title: String, gradient: Brush, horizontalPadding: androidx.compose.ui.unit.Dp = 30.dp, content: @Composable ColumnScope.() -> Unit) {
-    Card(modifier = modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = Color.White), elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)) {
+    Card(modifier = modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = FigmaCardWhite), elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)) {
         Column {
-            Box(modifier = Modifier.fillMaxWidth().height(50.dp).background(gradient), contentAlignment = Alignment.Center) { Text(text = title, color = Color(0xFF041E37), fontSize = 18.sp, fontWeight = FontWeight.Bold) }
+            Box(modifier = Modifier.fillMaxWidth().height(50.dp).background(gradient), contentAlignment = Alignment.Center) { Text(text = title, color = FigmaDarkTitle, fontSize = 18.sp, fontWeight = FontWeight.Bold) }
             Column(modifier = Modifier.padding(horizontal = horizontalPadding, vertical = 20.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(15.dp)) { content() }
         }
     }
@@ -214,25 +211,25 @@ fun AccountCard(modifier: Modifier = Modifier, title: String, gradient: Brush, h
 @Composable
 fun InfoRow(modifier: Modifier = Modifier, label: String, value: String, isBold: Boolean = true) {
     Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(5.dp)) {
-        Text(text = label, color = SecondaryText, fontSize = 14.sp)
-        Text(text = value, color = Text2, fontSize = 16.sp, fontWeight = if (isBold) FontWeight.Bold else FontWeight.Normal)
+        Text(text = label, color = FigmaTextLight, fontSize = 14.sp)
+        Text(text = value, color = FigmaTextPrimary, fontSize = 16.sp, fontWeight = if (isBold) FontWeight.Bold else FontWeight.Normal)
     }
 }
 
 @Composable
 fun ServicePackageCard(modifier: Modifier = Modifier, totalPrice: String, oldTotalPrice: String? = null, servicesContent: @Composable ColumnScope.() -> Unit) {
-    Card(modifier = modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = Color.White)) {
+    Card(modifier = modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = FigmaCardWhite)) {
         Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(15.dp)) {
             Row(modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Оказываемая услуга", color = SecondaryText, fontSize = 14.sp, modifier = Modifier.weight(1f))
-                Text(text = "Стоимость\nза 30 дней", color = SecondaryText, fontSize = 14.sp, textAlign = TextAlign.End)
+                Text(text = "Оказываемая услуга", color = FigmaTextLight, fontSize = 14.sp, modifier = Modifier.weight(1f))
+                Text(text = "Стоимость\nза 30 дней", color = FigmaTextLight, fontSize = 14.sp, textAlign = TextAlign.End)
             }
-            HorizontalDivider(color = LineColor)
+            HorizontalDivider(color = FigmaLineColor)
             servicesContent()
             Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "Итого за 30 дней", color = Text2, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                if (oldTotalPrice != null) { Text(text = "$oldTotalPrice ₽", color = BrandColor2, fontSize = 15.sp, textDecoration = TextDecoration.LineThrough, modifier = Modifier.padding(end = 10.dp)) }
-                Text(text = "$totalPrice ₽", color = Text2, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(text = "Итого за 30 дней", color = FigmaTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                if (oldTotalPrice != null) { Text(text = "$oldTotalPrice ₽", color = FigmaBrandOrange, fontSize = 15.sp, textDecoration = TextDecoration.LineThrough, modifier = Modifier.padding(end = 10.dp)) }
+                Text(text = "$totalPrice ₽", color = FigmaTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
             }
         }
     }
@@ -242,16 +239,16 @@ fun ServicePackageCard(modifier: Modifier = Modifier, totalPrice: String, oldTot
 fun ServicePriceItem(modifier: Modifier = Modifier, name: String, price: String, oldPrice: String? = null, hasOffer: Boolean = false) {
     Row(modifier = modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Column(modifier = Modifier.weight(1f)) {
-            Text(text = name, color = Text2, fontSize = 14.sp)
+            Text(text = name, color = FigmaTextPrimary, fontSize = 14.sp)
             if (hasOffer) {
-                Surface(color = BrandColor2, shape = RoundedCornerShape(5.dp), modifier = Modifier.padding(top = 5.dp)) {
-                    Text(text = "АКЦИЯ", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp))
+                Surface(color = FigmaBrandOrange, shape = RoundedCornerShape(5.dp), modifier = Modifier.padding(top = 5.dp)) {
+                    Text(text = "АКЦИЯ", color = White, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp))
                 }
             }
         }
         Column(horizontalAlignment = Alignment.End) {
-            Text(text = "$price ₽", color = Text2, fontSize = 14.sp)
-            if (oldPrice != null) { Text(text = "$oldPrice ₽", color = BrandColor2, fontSize = 12.sp, textDecoration = TextDecoration.LineThrough) }
+            Text(text = "$price ₽", color = FigmaTextPrimary, fontSize = 14.sp)
+            if (oldPrice != null) { Text(text = "$oldPrice ₽", color = FigmaBrandOrange, fontSize = 12.sp, textDecoration = TextDecoration.LineThrough) }
         }
     }
 }

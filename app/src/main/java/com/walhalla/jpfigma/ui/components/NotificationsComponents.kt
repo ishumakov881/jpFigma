@@ -28,7 +28,7 @@ import com.walhalla.jpfigma.ui.model.SettingsGroup
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
-fun AsyncImageWithPlaceholder(
+fun AsyncImageWithPlaceholder0(
     imageUrl: String,
     modifier: Modifier = Modifier,
     contentDescription: String? = null

@@ -128,7 +128,12 @@ class MainActivity : ComponentActivity() {
                                 AppScreen.PAYMENTS -> {
                                     PaymentsScreen()
                                 }
-AppScreen.REFER_FRIEND -> {
+
+                                AppScreen.SUPPORT -> {
+                                    SupportScreen()
+                                }
+
+                                AppScreen.REFER_FRIEND -> {
                                     ReferFriendScreen()
                                 }
 
