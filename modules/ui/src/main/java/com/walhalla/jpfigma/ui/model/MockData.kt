@@ -287,15 +287,6 @@ object MockData {
 
         val btnLinkAccount = "Привязать аккаунт"
 
-        // Local Resources
-        val iconEdit = R.drawable.ic_edit
-        val iconRefill = R.drawable.ic_refill
-        val iconUnlink = R.drawable.ic_unlink
-        val iconGoTo = R.drawable.ic_goto
-        val iconLinked = R.drawable.ic_linked
-        val iconPlus = R.drawable.ic_plus
-        val iconList = R.drawable.ic_list
-        val iconGrid = R.drawable.ic_grid
     }
 
     object PaymentMethodsScreen {

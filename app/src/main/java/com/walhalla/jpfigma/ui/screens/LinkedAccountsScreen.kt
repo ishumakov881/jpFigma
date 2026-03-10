@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.components.*
 import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.theme.*
+import com.walhalla.ui0.R
 
 @Composable
 fun LinkedAccountsScreen() {
@@ -101,7 +102,7 @@ fun LinkedAccountsScreen() {
                     contentAlignment = Alignment.Center
                 ) {
                     AsyncImageWithPlaceholder(
-                        imageUrl = data.iconList,
+                        imageUrl = R.drawable.ic_list,
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -113,7 +114,7 @@ fun LinkedAccountsScreen() {
                     contentAlignment = Alignment.Center
                 ) {
                     AsyncImageWithPlaceholder(
-                        imageUrl = data.iconGrid,
+                        imageUrl = R.drawable.ic_grid,
                         modifier = Modifier.size(24.dp)
                     )
                 }
@@ -157,7 +158,7 @@ fun LinkedAccountsScreen() {
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 AsyncImageWithPlaceholder(
-                    imageUrl = data.iconPlus,
+                    imageUrl = R.drawable.ic_plus,
                     modifier = Modifier.size(24.dp)
                 )
                 Text(

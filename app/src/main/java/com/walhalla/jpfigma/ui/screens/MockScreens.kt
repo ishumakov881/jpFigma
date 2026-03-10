@@ -170,15 +170,7 @@ object MockScreens {
             freeServiceStatus = data.freeServiceStatus,
             mainAccount = data.mainAccount,
             linkedAccounts = data.linkedAccounts,
-            btnLinkAccount = data.btnLinkAccount,
-            iconList = data.iconList,
-            iconGrid = data.iconGrid,
-            iconPlus = data.iconPlus,
-            iconLinked = data.iconLinked,
-            iconEdit = data.iconEdit,
-            iconRefill = data.iconRefill,
-            iconUnlink = data.iconUnlink,
-            iconGoTo = data.iconGoTo
+            btnLinkAccount = data.btnLinkAccount
         )
     }
 
