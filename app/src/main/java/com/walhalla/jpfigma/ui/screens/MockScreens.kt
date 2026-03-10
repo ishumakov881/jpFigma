@@ -159,6 +159,30 @@ object MockScreens {
     }
 
     @Composable
+    fun LinkedAccountsScreen() {
+        val data = MockData.LinkedAccountsScreen
+        LinkedAccountsScreenBody(
+            screenTitle = data.screenTitle,
+            descriptionPart1 = data.descriptionPart1,
+            descriptionLink = data.descriptionLink,
+            descriptionPart2 = data.descriptionPart2,
+            freeServiceTitle = data.freeServiceTitle,
+            freeServiceStatus = data.freeServiceStatus,
+            mainAccount = data.mainAccount,
+            linkedAccounts = data.linkedAccounts,
+            btnLinkAccount = data.btnLinkAccount,
+            iconList = data.iconList,
+            iconGrid = data.iconGrid,
+            iconPlus = data.iconPlus,
+            iconLinked = data.iconLinked,
+            iconEdit = data.iconEdit,
+            iconRefill = data.iconRefill,
+            iconUnlink = data.iconUnlink,
+            iconGoTo = data.iconGoTo
+        )
+    }
+
+    @Composable
     fun MessagesScreen() {
         val title = MockData.MessagesScreen.title
         val messages = MockData.MessagesScreen.items.map {
