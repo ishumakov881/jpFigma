@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Green
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -26,7 +27,7 @@ fun AccountTypeBadge(
     modifier: Modifier = Modifier
 ) {
     val backgroundColor = when (type) {
-        AccountType.MAIN -> Green
+        AccountType.MAIN -> Color.Green
         AccountType.VIEW_ONLY -> Color(0xFFFAEDE9)
         AccountType.FULL_CONTROL -> Color(0xFFFBDDD5)
         AccountType.FINANCIAL_LINK -> Color(0xFFF3FFEE)
@@ -35,7 +36,7 @@ fun AccountTypeBadge(
         AccountType.MAIN -> White
         AccountType.VIEW_ONLY -> Color(0xFF815E52)
         AccountType.FULL_CONTROL -> BrandColor2
-        AccountType.FINANCIAL_LINK -> Green
+        AccountType.FINANCIAL_LINK -> Color.Green
     }
 
     Box(
@@ -132,6 +133,7 @@ fun AccountDetailRow(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun AccountCard(
     account: LinkedAccount,

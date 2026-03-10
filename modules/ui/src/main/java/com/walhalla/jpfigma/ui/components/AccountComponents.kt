@@ -38,7 +38,7 @@ fun AccountScreenBody(
     tvStatus: String,
     totalPrice: String,
     oldTotalPrice: String? = null,
-    services: List<ServicePriceData>,
+    services: List<com.walhalla.jpfigma.ui.components.ServicePriceData>,
     onTopUpClick: () -> Unit = {},
     onChangeTariffClick: () -> Unit = {},
     onActualizeClick: () -> Unit = {},
@@ -242,7 +242,7 @@ fun ServicePriceItem(modifier: Modifier = Modifier, name: String, price: String,
             Text(text = name, color = FigmaTextPrimary, fontSize = 14.sp)
             if (hasOffer) {
                 Surface(color = FigmaBrandOrange, shape = RoundedCornerShape(5.dp), modifier = Modifier.padding(top = 5.dp)) {
-                    Text(text = "АКЦИЯ", color = White, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp))
+                    Text(text = "АКЦИЯ", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp))
                 }
             }
         }

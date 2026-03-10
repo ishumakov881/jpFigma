@@ -75,7 +75,7 @@ fun LinkedAccountsScreen() {
         )
 
         // Main Account Card
-        AccountCard(account = data.mainAccount)
+        _root_ide_package_.com.walhalla.jpfigma.ui.components.AccountCard(account = data.mainAccount)
 
         // Linked Accounts Section Header
         Row(
@@ -100,7 +100,10 @@ fun LinkedAccountsScreen() {
                         .background(White),
                     contentAlignment = Alignment.Center
                 ) {
-                    AsyncImageWithPlaceholder(imageUrl = data.iconList, modifier = Modifier.size(24.dp))
+                    _root_ide_package_.com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder(
+                        imageUrl = data.iconList,
+                        modifier = Modifier.size(24.dp)
+                    )
                 }
                 Box(
                     modifier = Modifier
@@ -109,7 +112,10 @@ fun LinkedAccountsScreen() {
                         .background(Color(0xFFCFDAE4)),
                     contentAlignment = Alignment.Center
                 ) {
-                    AsyncImageWithPlaceholder(imageUrl = data.iconGrid, modifier = Modifier.size(24.dp))
+                    _root_ide_package_.com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder(
+                        imageUrl = data.iconGrid,
+                        modifier = Modifier.size(24.dp)
+                    )
                 }
             }
         }
@@ -122,7 +128,7 @@ fun LinkedAccountsScreen() {
                 .background(White)
         ) {
             data.linkedAccounts.forEachIndexed { index, account ->
-                AccountCard(
+                _root_ide_package_.com.walhalla.jpfigma.ui.components.AccountCard(
                     account = account,
                     modifier = Modifier.background(White)
                 )
@@ -150,7 +156,10 @@ fun LinkedAccountsScreen() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                AsyncImageWithPlaceholder(imageUrl = data.iconPlus, modifier = Modifier.size(24.dp))
+                _root_ide_package_.com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder(
+                    imageUrl = data.iconPlus,
+                    modifier = Modifier.size(24.dp)
+                )
                 Text(
                     text = data.btnLinkAccount,
                     color = White,

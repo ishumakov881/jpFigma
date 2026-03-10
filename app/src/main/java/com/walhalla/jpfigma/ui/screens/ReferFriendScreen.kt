@@ -20,7 +20,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder
 import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.theme.*
 
@@ -116,7 +115,7 @@ fun InfoSection() {
         ) {
             screenData.steps.forEach { step ->
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    AsyncImageWithPlaceholder(
+                    _root_ide_package_.com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder(
                         imageUrl = screenData.imgEllipse,
                         modifier = Modifier.size(20.dp).padding(top = 2.dp)
                     )

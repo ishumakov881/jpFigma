@@ -1,6 +1,6 @@
 package com.walhalla.jpfigma.ui.model
 
-import com.walhalla.jpfigma.R
+import com.walhalla.ui0.R
 import com.walhalla.jpfigma.ui.offers.Offer
 
 object MockData {

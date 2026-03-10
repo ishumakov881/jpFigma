@@ -17,8 +17,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.model.AppScreen
+import com.walhalla.ui0.R
+
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
@@ -60,7 +61,7 @@ fun AppDrawer(
 }
 
 @Composable
-private fun NavigationItem(
+fun NavigationItem(
     modifier: Modifier = Modifier,
     title: String,
     isSelected: Boolean,

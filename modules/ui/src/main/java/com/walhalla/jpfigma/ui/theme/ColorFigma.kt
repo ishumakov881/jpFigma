@@ -65,3 +65,23 @@ val FigmaDarkTitle = Color(0xFF041E37)
 val FigmaInfoBlue = Color(0xFF0880C5)
 val FigmaErrorRed = Color(0xFFF04E23)
 val FigmaSuccessGreen = Color(0xFF2EA201)
+
+val BrandColor1 = Color(0xFF1880D0)
+val White = Color(0xFFFFFFFF)
+
+val Text3 = Color(0xFF60778E)
+val Text1 = Color(0xFF060606)
+val Text2 = Color(0xFF313E49)
+
+val TitleColor = Color(0xFF060606)
+
+val LineColor = Color(0xFFDCEAF8)
+
+val OrangeIconColor = Color(0xFFF15A24)
+val MenuText = Color(0xFF2F4863)
+val BrandColor2 = Color(0xFFF04E23)
+val LightBlueBg = Color(0xFFD5E6F5)
+val SecondaryBtn = Color(0xFFE4F2FF)
+val Green = Color(0xFF2EA201)
+val SecondaryText = Color(0xFF687F8F)
+val GreenBg2 = Color(0xFFEDF9E9)

@@ -275,7 +275,7 @@ fun ScheduleItemRow(
                 ) {
                     Text(
                         text = day,
-                        color = if (isHoliday) White else FigmaBrandBlue,
+                        color = if (isHoliday) Color.White else FigmaBrandBlue,
                         fontSize = 13.sp
                     )
                 }

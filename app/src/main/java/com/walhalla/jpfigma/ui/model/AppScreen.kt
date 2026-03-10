@@ -1,7 +1,7 @@
 package com.walhalla.jpfigma.ui.model
 
 import androidx.annotation.DrawableRes
-import com.walhalla.jpfigma.R
+import com.walhalla.ui0.R
 
 enum class AppScreen(val title: String, @DrawableRes val iconRes: Int) {
     MY_ACCOUNT("Мой аккаунт", R.drawable.ic_00),

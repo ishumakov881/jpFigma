@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.SubcomposeAsyncImage
-import com.walhalla.jpfigma.R
+import com.walhalla.ui0.R
 import com.walhalla.jpfigma.ui.theme.*
 
 /**
