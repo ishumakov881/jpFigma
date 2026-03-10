@@ -3,54 +3,104 @@ package com.walhalla.jpfigma.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.SubcomposeAsyncImage
+import com.walhalla.ui0.R as uiR
 import com.walhalla.jpfigma.ui.model.SettingItem
 import com.walhalla.jpfigma.ui.model.SettingsGroup
 import com.walhalla.jpfigma.ui.theme.*
-import com.walhalla.ui0.R
 
 @Composable
-fun AsyncImageWithPlaceholder0(
-    imageUrl: String,
-    modifier: Modifier = Modifier,
-    contentDescription: String? = null
+fun NotificationsScreenBody(
+    screenTitle: String,
+    description: String,
+    advantagesTitle: String,
+    advantages: List<String>,
+    warningTextPrefix: String,
+    warningTextSuffix: String,
+    settingsTitle: String,
+    settingsGroups: List<SettingsGroup>,
+    imgCheck: Int,
+    imgWarning: Int,
+    imgQuestion: Int,
+    modifier: Modifier = Modifier
 ) {
-    SubcomposeAsyncImage(
-        model = imageUrl,
-        loading = {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                CircularProgressIndicator(modifier = Modifier.size(12.dp), strokeWidth = 1.dp)
-            }
-        },
-        error = {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                // Placeholder for error
-                Box(Modifier.size(8.dp).background(Color.LightGray))
-            }
-        },
-        contentDescription = contentDescription,
-        contentScale = ContentScale.Fit,
+    val scrollState = rememberScrollState()
+
+    Column(
         modifier = modifier
-    )
+            .fillMaxSize()
+            .background(FigmaBackgroundGray)
+            .verticalScroll(scrollState)
+            .padding(vertical = 20.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        // Screen Title
+        Text(
+            text = screenTitle,
+            color = FigmaTitleColor,
+            fontSize = 22.sp,
+            lineHeight = 24.2.sp,
+            modifier = Modifier.padding(horizontal = 20.dp)
+        )
+
+        // Info Card Section
+        InfoCard(
+            description = description,
+            advantagesTitle = advantagesTitle,
+            advantages = advantages,
+            warningTextPrefix = warningTextPrefix,
+            warningTextSuffix = warningTextSuffix,
+            imgCheck = imgCheck,
+            imgWarning = imgWarning,
+            modifier = Modifier.padding(horizontal = 20.dp)
+        )
+
+        // Settings Section
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 20.dp)
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(20.dp))
+                .background(FigmaCardWhite)
+        ) {
+            SettingsHeader(title = settingsTitle)
+            
+            Column(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                settingsGroups.forEachIndexed { index, group ->
+                    SettingsGroupBlock(
+                        group = group,
+                        imgCheck = imgCheck,
+                        imgQuestion = imgQuestion,
+                        imgNotAvailable = uiR.drawable.ic_not_available
+                    )
+                    if (index < settingsGroups.size - 1) {
+                        HorizontalDivider(
+                            modifier = Modifier.fillMaxWidth(),
+                            thickness = 1.dp,
+                            color = FigmaLineColor
+                        )
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable
@@ -64,66 +114,40 @@ fun InfoCard(
     imgWarning: Int,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(RoundedCornerShape(30.dp))
-            .background(White)
-            .padding(20.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp)
+    FigmaCard(
+        modifier = modifier,
+        cornerRadius = 30.dp,
+        padding = 20.dp
     ) {
-        Text(
-            text = description,
-            color = Text2,
-            fontSize = 14.sp,
-            lineHeight = 18.2.sp
-        )
-
-        Column(
-            verticalArrangement = Arrangement.spacedBy(10.dp)
-        ) {
+        Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
             Text(
-                text = advantagesTitle,
-                color = Color(0xFF041E37),
-                fontSize = 16.sp,
-                fontWeight = FontWeight.SemiBold,
-                lineHeight = 20.sp
+                text = description,
+                color = FigmaTextPrimary,
+                fontSize = 14.sp,
+                lineHeight = 18.2.sp
             )
-            advantages.forEach { advantage ->
-                AdvantageItem(text = advantage, imgCheck = imgCheck)
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Text(
+                    text = advantagesTitle,
+                    color = FigmaDarkTitle,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    lineHeight = 20.sp
+                )
+                advantages.forEach { advantage ->
+                    BulletListItem(text = advantage, iconRes = imgCheck, iconSize = 24.dp)
+                }
             }
+
+            WarningCard(
+                prefix = warningTextPrefix,
+                suffix = warningTextSuffix,
+                imgWarning = imgWarning
+            )
         }
-
-        WarningCard(
-            prefix = warningTextPrefix,
-            suffix = warningTextSuffix,
-            imgWarning = imgWarning
-        )
-    }
-}
-
-@Composable
-fun AdvantageItem(
-    text: String,
-    imgCheck: Int,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        AsyncImageWithPlaceholder(
-            imageUrl = imgCheck,
-            modifier = Modifier.size(24.dp)
-        )
-        Text(
-            text = text,
-            color = Text2,
-            fontSize = 14.sp,
-            lineHeight = 18.2.sp,
-            modifier = Modifier.weight(1f)
-        )
     }
 }
 
@@ -139,25 +163,23 @@ fun WarningCard(
             .fillMaxWidth()
             .border(
                 width = 1.dp,
-                color = BrandColor2,
+                color = FigmaBrandOrange,
                 shape = RoundedCornerShape(20.dp)
-                // Note: Compose doesn't support dashed borders natively easily without custom DrawScope
-                // For simplicity and adhering to rules, using standard border.
             )
             .padding(15.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        AsyncImageWithPlaceholder(
-            imageUrl = imgWarning,
+        FigmaImage(
+            model = imgWarning,
             modifier = Modifier.size(48.dp)
         )
         Text(
             text = buildAnnotatedString {
-                withStyle(SpanStyle(color = BrandColor2, fontWeight = FontWeight.SemiBold)) {
+                withStyle(SpanStyle(color = FigmaBrandOrange, fontWeight = FontWeight.SemiBold)) {
                     append(prefix)
                 }
-                withStyle(SpanStyle(color = Text2)) {
+                withStyle(SpanStyle(color = FigmaTextPrimary)) {
                     append(suffix)
                 }
             },
@@ -176,16 +198,12 @@ fun SettingsHeader(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .background(
-                brush = Brush.horizontalGradient(
-                    colors = listOf(Color(0xFFCCE6FF), Color(0xFF95C5F3))
-                )
-            )
+            .background(FigmaBlueGradient)
             .padding(horizontal = 20.dp, vertical = 15.dp)
     ) {
         Text(
             text = title,
-            color = Color(0xFF041E37),
+            color = FigmaDarkTitle,
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             lineHeight = 22.5.sp
@@ -197,8 +215,8 @@ fun SettingsHeader(
 fun SettingsGroupBlock(
     group: SettingsGroup,
     imgCheck: Int,
-
     imgQuestion: Int,
+    imgNotAvailable: Int,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -209,7 +227,7 @@ fun SettingsGroupBlock(
     ) {
         Text(
             text = group.title,
-            color = TitleColor,
+            color = FigmaTitleColor,
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold
         )
@@ -221,7 +239,7 @@ fun SettingsGroupBlock(
                 SettingRow(
                     item = item,
                     imgCheck = imgCheck,
-                    imgNotAvailable = R.drawable.ic_not_available,
+                    imgNotAvailable = imgNotAvailable,
                     imgQuestion = imgQuestion
                 )
             }
@@ -237,20 +255,20 @@ fun SettingsGroupBlock(
                 modifier = Modifier
                     .width(200.dp)
                     .height(40.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = BrandColor1),
+                colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandBlue),
                 shape = RoundedCornerShape(20.dp),
                 contentPadding = PaddingValues(0.dp)
             ) {
                 Text(
                     text = group.actionText,
-                    color = White,
+                    color = FigmaCardWhite,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
             Text(
                 text = group.price,
-                color = TitleColor,
+                color = FigmaTitleColor,
                 fontSize = 16.sp
             )
         }
@@ -270,25 +288,25 @@ fun SettingRow(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        AsyncImageWithPlaceholder(
-            imageUrl = if (item.isAvailable) imgCheck else imgNotAvailable,
+        FigmaImage(
+            model = if (item.isAvailable) imgCheck else imgNotAvailable,
             modifier = Modifier.size(24.dp)
         )
         Text(
             text = item.text,
-            color = TitleColor,
+            color = FigmaTitleColor,
             fontSize = 14.sp,
             modifier = Modifier.weight(1f)
         )
         if (item.label != null) {
             Text(
                 text = item.label,
-                color = Green,
+                color = FigmaSuccessGreen,
                 fontSize = 14.sp
             )
         }
-        AsyncImageWithPlaceholder(
-            imageUrl = imgQuestion,
+        FigmaImage(
+            model = imgQuestion,
             modifier = Modifier.size(20.dp)
         )
     }

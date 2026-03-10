@@ -142,7 +142,20 @@ object MockScreens {
 
     @Composable
     fun NotificationsScreen() {
-
+        val data = MockData.NotificationsScreen
+        NotificationsScreenBody(
+            screenTitle = data.screenTitle,
+            description = data.description,
+            advantagesTitle = data.advantagesTitle,
+            advantages = data.advantages,
+            warningTextPrefix = data.warningTextPrefix,
+            warningTextSuffix = data.warningTextSuffix,
+            settingsTitle = data.settingsTitle,
+            settingsGroups = data.settingsGroups,
+            imgCheck = data.imgCheck,
+            imgWarning = data.imgWarning,
+            imgQuestion = data.imgQuestion
+        )
     }
 
     @Composable
