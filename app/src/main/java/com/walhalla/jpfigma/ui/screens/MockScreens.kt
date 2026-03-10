@@ -105,6 +105,33 @@ object MockScreens {
     }
 
     @Composable
+    fun SupportScreen() {
+        val data = MockData.SupportScreen
+        SupportScreenBody(
+            title = data.title,
+            phonesTitle = data.phonesTitle,
+            phonesDescription = data.phonesDescription,
+            phones = data.phones,
+            btnInternetCall = data.btnInternetCall,
+            btnInternetCallHint = data.btnInternetCallHint,
+            btnCallback = data.btnCallback,
+            messengersTitle = data.messengersTitle,
+            messengersDescription = data.messengersDescription,
+            messengers = data.messengers,
+            socialChannelsTitle = data.socialChannelsTitle,
+            socialChannels = data.socialChannels,
+            warningText = data.warningText,
+            writeSupportTitle = data.writeSupportTitle,
+            messageLabel = data.messageLabel,
+            messagePlaceholder = data.messagePlaceholder,
+            btnSend = data.btnSend,
+            archiveTitle = data.archiveTitle,
+            chatMessages = data.chatMessages,
+            btnShowMore = data.btnShowMore
+        )
+    }
+
+    @Composable
     fun NotificationsScreen() {
 
     }

@@ -1,5 +1,6 @@
 package com.walhalla.jpfigma.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -239,7 +240,8 @@ fun SupportWriteCard(title: String, label: String, placeholder: String, btnText:
                         .height(120.dp)
                         .border(1.dp, Color(0xFF839AB1), RoundedCornerShape(8.dp)),
                     colors = TextFieldDefaults.colors(
-                        containerColor = Color(0xFFFBFDFF),
+                        focusedContainerColor = Color(0xFFFBFDFF),
+                        unfocusedContainerColor = Color(0xFFFBFDFF),
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent
                     ),

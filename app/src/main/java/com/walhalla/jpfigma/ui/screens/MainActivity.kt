@@ -31,6 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.walhalla.jpfigma.ui.components.AppDrawer
 import com.walhalla.jpfigma.ui.model.AppScreen
+import com.walhalla.jpfigma.ui.model.MockData
+import com.walhalla.jpfigma.ui.offers.OffersScreen
 import com.walhalla.jpfigma.ui.screens.MockScreens.PaymentsScreen
 import com.walhalla.jpfigma.ui.theme.JpFigmaTheme
 import kotlinx.coroutines.launch
@@ -44,7 +46,7 @@ class MainActivity : ComponentActivity() {
             JpFigmaTheme {
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
                 val scope = rememberCoroutineScope()
-                var currentScreen by remember { mutableStateOf(AppScreen.MESSAGES) }
+                var currentScreen by remember { mutableStateOf(AppScreen.PROMOTIONS) }
                 val screens = remember { AppScreen.entries.map { it.title } }
 
                 ModalNavigationDrawer(
@@ -85,6 +87,12 @@ class MainActivity : ComponentActivity() {
                     ) { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
                             when (currentScreen) {
+                                AppScreen.PROMOTIONS -> {
+                                    OffersScreen(
+                                        offers = MockData.OffersScreen.offers,
+                                        onOfferClick = {}
+                                    )
+                                }
                                 AppScreen.MY_ACCOUNT -> {
                                     AccountScreen()
                                 }
