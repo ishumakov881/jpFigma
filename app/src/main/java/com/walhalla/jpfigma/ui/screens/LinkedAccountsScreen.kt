@@ -75,7 +75,7 @@ fun LinkedAccountsScreen() {
         )
 
         // Main Account Card
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.AccountCard(account = data.mainAccount)
+        AccountCard(account = data.mainAccount)
 
         // Linked Accounts Section Header
         Row(
@@ -100,7 +100,7 @@ fun LinkedAccountsScreen() {
                         .background(White),
                     contentAlignment = Alignment.Center
                 ) {
-                    _root_ide_package_.com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder(
+                    AsyncImageWithPlaceholder(
                         imageUrl = data.iconList,
                         modifier = Modifier.size(24.dp)
                     )
@@ -112,7 +112,7 @@ fun LinkedAccountsScreen() {
                         .background(Color(0xFFCFDAE4)),
                     contentAlignment = Alignment.Center
                 ) {
-                    _root_ide_package_.com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder(
+                    AsyncImageWithPlaceholder(
                         imageUrl = data.iconGrid,
                         modifier = Modifier.size(24.dp)
                     )
@@ -128,7 +128,7 @@ fun LinkedAccountsScreen() {
                 .background(White)
         ) {
             data.linkedAccounts.forEachIndexed { index, account ->
-                _root_ide_package_.com.walhalla.jpfigma.ui.components.AccountCard(
+                AccountCard(
                     account = account,
                     modifier = Modifier.background(White)
                 )
@@ -156,7 +156,7 @@ fun LinkedAccountsScreen() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                _root_ide_package_.com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder(
+                AsyncImageWithPlaceholder(
                     imageUrl = data.iconPlus,
                     modifier = Modifier.size(24.dp)
                 )

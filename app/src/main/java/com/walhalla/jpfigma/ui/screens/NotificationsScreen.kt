@@ -39,7 +39,7 @@ fun NotificationsScreen() {
         )
 
         // Info Card Section
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.InfoCard(
+        InfoCard(
             description = MockData.NotificationsScreen.description,
             advantagesTitle = MockData.NotificationsScreen.advantagesTitle,
             advantages = MockData.NotificationsScreen.advantages,
@@ -58,7 +58,7 @@ fun NotificationsScreen() {
                 .clip(RoundedCornerShape(20.dp))
                 .background(Color.White)
         ) {
-            _root_ide_package_.com.walhalla.jpfigma.ui.components.SettingsHeader(title = MockData.NotificationsScreen.settingsTitle)
+            SettingsHeader(title = MockData.NotificationsScreen.settingsTitle)
             
             Column(
                 modifier = Modifier.fillMaxWidth()

@@ -12,7 +12,7 @@ object MockScreens {
         val account = MockData.AccountScreen.account
         val pkg = MockData.AccountScreen.packages
         val services = pkg.services.map {
-            _root_ide_package_.com.walhalla.jpfigma.ui.components.ServicePriceData(
+            ServicePriceData(
                 it.name,
                 it.price,
                 it.oldPrice,
@@ -20,7 +20,7 @@ object MockScreens {
             )
         }
 
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.AccountScreenBody(
+        AccountScreenBody(
             status = account.status,
             balance = account.balance,
             balanceUntil = account.balanceUntil,
@@ -42,7 +42,7 @@ object MockScreens {
     fun ProfileScreen() {
         val profile = MockData.ProfileScreen.profile
         val phones = profile.phones.map {
-            _root_ide_package_.com.walhalla.jpfigma.ui.components.PhoneData(
+            PhoneData(
                 it.number,
                 it.isPrimary,
                 it.isActualized
@@ -53,7 +53,7 @@ object MockScreens {
         var newPassword by remember { mutableStateOf("") }
         var confirmPassword by remember { mutableStateOf("") }
 
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.ProfileScreenBody(
+        ProfileScreenBody(
             accountNumber = profile.accountNumber,
             fullName = profile.fullName,
             address = profile.address,
@@ -105,7 +105,7 @@ object MockScreens {
     @Composable
     fun PaymentScreen() {
         val data = MockData.PaymentMethodsScreen
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.PaymentScreenBody(
+        PaymentScreenBody(
             title = data.title,
             description = data.description,
             onlinePaymentData = data,
@@ -116,7 +116,7 @@ object MockScreens {
     @Composable
     fun SupportScreen() {
         val data = MockData.SupportScreen
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.SupportScreenBody(
+        SupportScreenBody(
             title = data.title,
             phonesTitle = data.phonesTitle,
             phonesDescription = data.phonesDescription,
@@ -158,7 +158,7 @@ object MockScreens {
             )
         }
 
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.MessagesScreenBody(
+        MessagesScreenBody(
             title = title,
             messages = messages
         )
@@ -183,7 +183,7 @@ object MockScreens {
             )
         }
 
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.NewsScreenBody(
+        NewsScreenBody(
             title = title,
             featuredNews = featured,
             otherNews = other
@@ -193,7 +193,7 @@ object MockScreens {
     @Composable
     fun HyperScreen() {
         val data = MockData.HyperScreen
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.HyperScreenBody(
+        HyperScreenBody(
             title = data.title,
             serviceInfo = data.serviceInfo,
             maxTariffParams = data.maxTariffParams,
@@ -206,7 +206,7 @@ object MockScreens {
     @Composable
     fun ChangeTariffScreen() {
         val data = MockData.ChangeTariffScreen
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.ChangeTariffScreenBody(
+        ChangeTariffScreenBody(
             title = data.title,
             filterOptions = data.filterOptions,
             tariffs = data.tariffs,
@@ -225,7 +225,7 @@ object MockScreens {
     fun PaymentsScreen() {
         val data = MockData.PaymentsScreen
 
-        _root_ide_package_.com.walhalla.jpfigma.ui.components.PaymentsScreenBody(
+        PaymentsScreenBody(
             title = data.title,
             dateFrom = data.dateFrom,
             dateTo = data.dateTo,

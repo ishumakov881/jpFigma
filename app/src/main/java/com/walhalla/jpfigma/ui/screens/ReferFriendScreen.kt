@@ -115,7 +115,7 @@ fun InfoSection() {
         ) {
             screenData.steps.forEach { step ->
                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    _root_ide_package_.com.walhalla.jpfigma.ui.components.AsyncImageWithPlaceholder(
+                    AsyncImageWithPlaceholder(
                         imageUrl = screenData.imgEllipse,
                         modifier = Modifier.size(20.dp).padding(top = 2.dp)
                     )
