@@ -26,6 +26,7 @@ import coil3.compose.SubcomposeAsyncImage
 import com.walhalla.jpfigma.ui.model.SettingItem
 import com.walhalla.jpfigma.ui.model.SettingsGroup
 import com.walhalla.jpfigma.ui.theme.*
+import com.walhalla.ui0.R
 
 @Composable
 fun AsyncImageWithPlaceholder0(
@@ -196,7 +197,7 @@ fun SettingsHeader(
 fun SettingsGroupBlock(
     group: SettingsGroup,
     imgCheck: Int,
-    imgNotAvailable: Int,
+
     imgQuestion: Int,
     modifier: Modifier = Modifier
 ) {
@@ -220,7 +221,7 @@ fun SettingsGroupBlock(
                 SettingRow(
                     item = item,
                     imgCheck = imgCheck,
-                    imgNotAvailable = imgNotAvailable,
+                    imgNotAvailable = R.drawable.ic_not_available,
                     imgQuestion = imgQuestion
                 )
             }

@@ -67,7 +67,7 @@ fun NotificationsScreen() {
                     SettingsGroupBlock(
                         group = group,
                         imgCheck = MockData.NotificationsScreen.imgCheck,
-                        imgNotAvailable = MockData.NotificationsScreen.imgNotAvailable,
+                        
                         imgQuestion = MockData.NotificationsScreen.imgQuestion
                     )
                     if (index < MockData.NotificationsScreen.settingsGroups.size - 1) {

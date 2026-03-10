@@ -201,7 +201,6 @@ object MockData {
         )
         // Local Resources
         val imgCheck = R.drawable.ic_check
-        val imgNotAvailable = R.drawable.ic_not_available
         val imgQuestion = R.drawable.ic_question
         val imgWarning = R.drawable.ic_warning
     }
