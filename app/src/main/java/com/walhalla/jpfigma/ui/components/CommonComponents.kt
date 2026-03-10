@@ -1,5 +1,6 @@
 package com.walhalla.jpfigma.ui.components
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,8 +12,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -66,15 +69,29 @@ fun FigmaImage(
 }
 
 /**
- * Старый компонент для обратной совместимости, теперь использует FigmaImage.
+ * Нативный пунктирный разделитель в стиле Figma.
  */
 @Composable
-fun AsyncImageWithPlaceholder(
-    imageUrl: Int,
+fun DashedDivider(
     modifier: Modifier = Modifier,
-    contentScale: ContentScale = ContentScale.Fit
+    color: Color = FigmaLineColor,
+    thickness: Dp = 1.dp,
+    dashLength: Dp = 2.dp,
+    gapLength: Dp = 2.dp
 ) {
-    FigmaImage(model = imageUrl, modifier = modifier, contentScale = contentScale)
+    Canvas(modifier = modifier.fillMaxWidth().height(thickness)) {
+        val strokeWidth = thickness.toPx()
+        val dash = dashLength.toPx()
+        val gap = gapLength.toPx()
+        
+        drawLine(
+            color = color,
+            start = Offset(0f, size.height / 2),
+            end = Offset(size.width, size.height / 2),
+            strokeWidth = strokeWidth,
+            pathEffect = PathEffect.dashPathEffect(floatArrayOf(dash, gap), 0f)
+        )
+    }
 }
 
 /**
@@ -211,4 +228,13 @@ fun ActionDetailsButton(
         Text(text = text, color = FigmaBrandBlue, fontSize = 15.sp)
         FigmaImage(model = iconRes, modifier = Modifier.size(18.dp))
     }
+}
+
+@Composable
+fun AsyncImageWithPlaceholder(
+    imageUrl: Int,
+    modifier: Modifier = Modifier,
+    contentScale: ContentScale = ContentScale.Fit
+) {
+    FigmaImage(model = imageUrl, modifier = modifier, contentScale = contentScale)
 }

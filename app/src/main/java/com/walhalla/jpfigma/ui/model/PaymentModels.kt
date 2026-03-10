@@ -20,7 +20,7 @@ data class PaymentPoint(
     val title: String,
     val address: String,
     val schedule: List<ScheduleItem>,
-    val imageUrl: String? = null
+
 )
 
 data class PaymentTransaction(

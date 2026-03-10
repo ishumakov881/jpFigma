@@ -37,8 +37,8 @@ fun PaymentsScreenBody(
     balanceValue: String,
     balanceUntil: String,
     btnTopUp: String,
-    iconCalendar: String,
-    iconWallet: String
+    iconCalendar: Int,
+    iconWallet: Int
 ) {
     val scrollState = rememberScrollState()
 
@@ -205,7 +205,7 @@ fun PaymentsScreenBody(
 }
 
 @Composable
-fun DateInput(date: String, iconUrl: String, modifier: Modifier = Modifier) {
+fun DateInput(date: String, iconUrl: Int, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .height(40.dp)

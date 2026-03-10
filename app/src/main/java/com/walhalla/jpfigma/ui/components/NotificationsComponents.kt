@@ -59,8 +59,8 @@ fun InfoCard(
     advantages: List<String>,
     warningTextPrefix: String,
     warningTextSuffix: String,
-    imgCheck: String,
-    imgWarning: String,
+    imgCheck: Int,
+    imgWarning: Int,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -104,7 +104,7 @@ fun InfoCard(
 @Composable
 fun AdvantageItem(
     text: String,
-    imgCheck: String,
+    imgCheck: Int,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -130,7 +130,7 @@ fun AdvantageItem(
 fun WarningCard(
     prefix: String,
     suffix: String,
-    imgWarning: String,
+    imgWarning: Int,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -195,9 +195,9 @@ fun SettingsHeader(
 @Composable
 fun SettingsGroupBlock(
     group: SettingsGroup,
-    imgCheck: String,
-    imgNotAvailable: String,
-    imgQuestion: String,
+    imgCheck: Int,
+    imgNotAvailable: Int,
+    imgQuestion: Int,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -259,9 +259,9 @@ fun SettingsGroupBlock(
 @Composable
 fun SettingRow(
     item: SettingItem,
-    imgCheck: String,
-    imgNotAvailable: String,
-    imgQuestion: String,
+    imgCheck: Int,
+    imgNotAvailable: Int,
+    imgQuestion: Int,
     modifier: Modifier = Modifier
 ) {
     Row(

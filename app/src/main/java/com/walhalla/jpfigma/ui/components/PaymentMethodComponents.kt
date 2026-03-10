@@ -76,7 +76,6 @@ fun PaymentScreenBody(
         TerminalPaymentCard(
             title = onlinePaymentData.terminalTitle,
             description = onlinePaymentData.terminalDescription,
-            imageUrl = onlinePaymentData.terminalImage
         )
 
         paymentPoints.forEach { point ->
@@ -162,7 +161,7 @@ fun PaymentInput(label: String, value: String, suffix: String? = null, modifier:
 }
 
 @Composable
-fun SberPaymentCard(logoUrl: String, titlePrefix: String, description: String, btnText: String, iconArrowUrl: String) {
+fun SberPaymentCard(logoUrl: Int, titlePrefix: String, description: String, btnText: String, iconArrowUrl: Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -183,7 +182,7 @@ fun SberPaymentCard(logoUrl: String, titlePrefix: String, description: String, b
 }
 
 @Composable
-fun SimplePaymentCard(title: String, description: String, btnText: String, iconArrowUrl: String) {
+fun SimplePaymentCard(title: String, description: String, btnText: String, iconArrowUrl: Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -201,7 +200,7 @@ fun SimplePaymentCard(title: String, description: String, btnText: String, iconA
 }
 
 @Composable
-fun TerminalPaymentCard(title: String, description: String, imageUrl: String) {
+fun TerminalPaymentCard(title: String, description: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -212,11 +211,15 @@ fun TerminalPaymentCard(title: String, description: String, imageUrl: String) {
     ) {
         Text(text = title, fontSize = 20.sp, color = FigmaTitleColor)
         Text(text = description, color = FigmaTextPrimary, fontSize = 14.sp, lineHeight = 18.2.sp)
-        AsyncImageWithPlaceholder(
-            imageUrl = imageUrl,
-            modifier = Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(10.dp))
-        )
+        MapHolder()
     }
+}
+
+@Composable
+fun MapHolder() {
+    Box(
+        modifier = Modifier.fillMaxWidth().background(Color.Yellow).height(300.dp).clip(RoundedCornerShape(10.dp))
+    )
 }
 
 @Composable
@@ -248,12 +251,8 @@ fun PaymentPointCard(point: PaymentPoint) {
             }
         }
 
-        if (point.imageUrl != null) {
-            AsyncImageWithPlaceholder(
-                imageUrl = point.imageUrl,
-                modifier = Modifier.fillMaxWidth().height(300.dp).clip(RoundedCornerShape(10.dp))
-            )
-        }
+        MapHolder()
+
     }
 }
 
@@ -302,7 +301,7 @@ fun ScheduleItemRow(
 }
 
 @Composable
-fun DetailsButton(text: String, iconUrl: String) {
+fun DetailsButton(text: String, iconUrl: Int) {
     Row(
         modifier = Modifier
             .height(40.dp)

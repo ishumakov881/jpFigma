@@ -22,13 +22,13 @@ import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun HyperScreenBody(
-    modifier: Modifier = Modifier,
-    title: String = MockData.HyperScreen.title,
-    serviceInfo: HyperServiceInfo = MockData.HyperScreen.serviceInfo,
-    maxTariffParams: List<HyperParameter> = MockData.HyperScreen.maxTariffParams,
-    aboutItems: List<String> = MockData.HyperScreen.aboutItems,
-    warningText: String = MockData.HyperScreen.warningText,
-    btnChangeSpeed: String = MockData.HyperScreen.btnChangeSpeed
+    title: String,
+    serviceInfo: HyperServiceInfo,
+    maxTariffParams: List<HyperParameter>,
+    aboutItems: List<String>,
+    warningText: String,
+    btnChangeSpeed: String,
+    modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()
     var targetSpeed by remember { mutableStateOf(serviceInfo.targetSpeed) }
@@ -51,8 +51,8 @@ fun HyperScreenBody(
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 Box(modifier = Modifier.size(260.dp, 200.dp)) {
-                    AsyncImageWithPlaceholder(
-                        imageUrl = "https://www.figma.com/api/mcp/asset/speedometer-full",
+                    FigmaImage(
+                        model = "https://www.figma.com/api/mcp/asset/speedometer-full",
                         modifier = Modifier.fillMaxSize()
                     )
                 }
@@ -66,14 +66,14 @@ fun HyperScreenBody(
                     SpeedControlAction(
                         label = "- 50",
                         unit = serviceInfo.speedUnit,
-                        iconUrl = MockData.HyperScreen.iconMinus,
+                        iconRes = MockData.HyperScreen.iconMinus,
                         onClick = { targetSpeed = (targetSpeed - serviceInfo.stepValue).coerceAtLeast(0) }
                     )
                     Spacer(modifier = Modifier.width(20.dp))
                     SpeedControlAction(
                         label = "+ 50",
                         unit = serviceInfo.speedUnit,
-                        iconUrl = MockData.HyperScreen.iconPlus,
+                        iconRes = MockData.HyperScreen.iconPlus,
                         onClick = { targetSpeed += serviceInfo.stepValue },
                         isPositive = true
                     )
@@ -118,9 +118,9 @@ fun HyperScreenBody(
                     maxTariffParams.forEach { param ->
                         Row(verticalAlignment = Alignment.CenterVertically) {
                             Text(text = param.label, color = FigmaTextPrimary, fontSize = 14.sp)
-                            AsyncImageWithPlaceholder(
-                                imageUrl = MockData.HyperScreen.imgDashedLine,
-                                modifier = Modifier.weight(1f).height(1.dp).padding(horizontal = 5.dp)
+                            DashedDivider(
+                                modifier = Modifier.weight(1f).padding(horizontal = 5.dp),
+                                color = FigmaLineColor
                             )
                             Text(text = param.value, color = FigmaBrandBlue, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                         }
@@ -134,9 +134,9 @@ fun HyperScreenBody(
                     Row(modifier = Modifier.padding(top = 10.dp), verticalAlignment = Alignment.CenterVertically) {
                         Text(text = "Ваш тариф ", color = FigmaTextPrimary, fontSize = 14.sp)
                         Text(text = serviceInfo.userTariff, color = FigmaTextPrimary, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                        AsyncImageWithPlaceholder(
-                            imageUrl = MockData.HyperScreen.imgDashedLine,
-                            modifier = Modifier.weight(1f).height(1.dp).padding(horizontal = 5.dp)
+                        DashedDivider(
+                            modifier = Modifier.weight(1f).padding(horizontal = 5.dp),
+                            color = FigmaLineColor
                         )
                         Text(text = serviceInfo.stepPrice, color = FigmaBrandBlue, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                     }
@@ -151,10 +151,10 @@ fun HyperScreenBody(
                 
                 Column(verticalArrangement = Arrangement.spacedBy(15.dp)) {
                     aboutItems.forEach { item ->
-                        BulletListItem(text = item)
+                        BulletListItem(text = item, iconRes = MockData.HyperScreen.iconDot)
                     }
                     
-                    WarningBox(text = warningText, iconUrl = MockData.HyperScreen.iconWarning)
+                    WarningBox(text = warningText, iconRes = MockData.HyperScreen.iconWarning)
                 }
             }
         }
@@ -162,7 +162,7 @@ fun HyperScreenBody(
 }
 
 @Composable
-fun SpeedControlAction(label: String, unit: String, iconUrl: Int, onClick: () -> Unit, isPositive: Boolean = false) {
+fun SpeedControlAction(label: String, unit: String, iconRes: Int, onClick: () -> Unit, isPositive: Boolean = false) {
     Row(
         modifier = Modifier.clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically,
@@ -173,9 +173,9 @@ fun SpeedControlAction(label: String, unit: String, iconUrl: Int, onClick: () ->
                 Text(text = label, fontSize = 20.sp, fontWeight = FontWeight.Bold, color = FigmaTextPrimary)
                 Text(text = unit, fontSize = 14.sp, color = FigmaTextPrimary)
             }
-            AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(40.dp))
+            FigmaImage(model = iconRes, modifier = Modifier.size(40.dp))
         } else {
-            AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(40.dp))
+            FigmaImage(model = iconRes, modifier = Modifier.size(40.dp))
             Column(horizontalAlignment = Alignment.Start) {
                 Text(text = label, fontSize = 20.sp, fontWeight = FontWeight.Bold, color = FigmaTextPrimary)
                 Text(text = unit, fontSize = 14.sp, color = FigmaTextPrimary)

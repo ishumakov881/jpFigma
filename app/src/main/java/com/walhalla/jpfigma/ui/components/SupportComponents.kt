@@ -17,32 +17,33 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun SupportScreenBody(
-    modifier: Modifier = Modifier,
-    title: String = MockData.SupportScreen.title,
-    phonesTitle: String = MockData.SupportScreen.phonesTitle,
-    phonesDescription: String = MockData.SupportScreen.phonesDescription,
-    phones: List<SupportPhone> = MockData.SupportScreen.phones,
-    btnInternetCall: String = MockData.SupportScreen.btnInternetCall,
-    btnInternetCallHint: String = MockData.SupportScreen.btnInternetCallHint,
-    btnCallback: String = MockData.SupportScreen.btnCallback,
-    messengersTitle: String = MockData.SupportScreen.messengersTitle,
-    messengersDescription: String = MockData.SupportScreen.messengersDescription,
-    messengers: List<MessengerLink> = MockData.SupportScreen.messengers,
-    socialChannelsTitle: String = MockData.SupportScreen.socialChannelsTitle,
-    socialChannels: List<String> = MockData.SupportScreen.socialChannels,
-    warningText: String = MockData.SupportScreen.warningText,
-    writeSupportTitle: String = MockData.SupportScreen.writeSupportTitle,
-    messageLabel: String = MockData.SupportScreen.messageLabel,
-    messagePlaceholder: String = MockData.SupportScreen.messagePlaceholder,
-    btnSend: String = MockData.SupportScreen.btnSend,
-    archiveTitle: String = MockData.SupportScreen.archiveTitle,
-    chatMessages: List<SupportChatMessage> = MockData.SupportScreen.chatMessages,
-    btnShowMore: String = MockData.SupportScreen.btnShowMore
+    title: String,
+    phonesTitle: String,
+    phonesDescription: String,
+    phones: List<SupportPhone>,
+    btnInternetCall: String,
+    btnInternetCallHint: String,
+    btnCallback: String,
+    messengersTitle: String,
+    messengersDescription: String,
+    messengers: List<MessengerLink>,
+    socialChannelsTitle: String,
+    socialChannels: List<String>,
+    warningText: String,
+    writeSupportTitle: String,
+    messageLabel: String,
+    messagePlaceholder: String,
+    btnSend: String,
+    archiveTitle: String,
+    chatMessages: List<SupportChatMessage>,
+    btnShowMore: String,
+    modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()
 
@@ -131,7 +132,7 @@ fun SupportPhonesSection(
                 shape = RoundedCornerShape(20.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                    AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconPhone, modifier = Modifier.size(24.dp))
+                    FigmaImage(model = MockData.SupportScreen.iconPhone, modifier = Modifier.size(24.dp))
                     Text(text = btnInternetCall, color = White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                     Text(text = btnInternetCallHint, color = White, fontSize = 13.sp)
                 }
@@ -175,7 +176,7 @@ fun SupportPhonesSection(
             }
         }
 
-        WarningBox(text = warningText, iconUrl = MockData.SupportScreen.iconWarning)
+        WarningBox(text = warningText, iconRes = MockData.SupportScreen.iconWarning)
     }
 }
 
@@ -225,7 +226,7 @@ fun SupportWriteCard(title: String, label: String, placeholder: String, btnText:
                     shape = RoundedCornerShape(20.dp)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconSend, modifier = Modifier.size(24.dp))
+                        FigmaImage(model = MockData.SupportScreen.iconSend, modifier = Modifier.size(24.dp))
                         Text(text = btnText, color = FigmaBrandBlue, fontSize = 15.sp)
                     }
                 }
@@ -286,12 +287,12 @@ fun SupportChatBubble(msg: SupportChatMessage) {
             modifier = Modifier.padding(bottom = 5.dp)
         ) {
             if (msg.isOperator) {
-                AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconOperator, modifier = Modifier.size(18.dp))
+                FigmaImage(model = MockData.SupportScreen.iconOperator, modifier = Modifier.size(18.dp))
             }
             Text(text = msg.author, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = FigmaTextPrimary)
             Text(text = msg.timestamp, fontSize = 13.sp, color = FigmaTextSecondary)
             if (msg.status == "read") {
-                AsyncImageWithPlaceholder(imageUrl = MockData.SupportScreen.iconStatusRead, modifier = Modifier.size(20.dp))
+                FigmaImage(model = MockData.SupportScreen.iconStatusRead, modifier = Modifier.size(20.dp))
             }
         }
         Box(
@@ -307,22 +308,26 @@ fun SupportChatBubble(msg: SupportChatMessage) {
 
 @Composable
 fun OperatorIcon(type: String) {
-    val iconUrl = when (type) {
-        "mks" -> "https://www.figma.com/api/mcp/asset/7c7500bb-0b6f-400f-9634-cc72330d69b8"
-        "plus7" -> "https://www.figma.com/api/mcp/asset/f1c5c331-fc49-4310-9f39-a0dd9317b419"
-        "cityphone" -> "https://www.figma.com/api/mcp/asset/d1b30fc9-ecb0-4c97-83a3-e0fe544f4941"
-        "nadofon" -> "https://www.figma.com/api/mcp/asset/3c83ed0e-c95f-4a1d-9888-08fb07acffb9"
-        else -> ""
+    val iconRes = when (type) {
+        "mks" -> R.drawable.ic_op_mks
+        "plus7" -> R.drawable.ic_op_plus7
+        "cityphone" -> R.drawable.ic_op_cityphone
+        "nadofon" -> R.drawable.ic_op_nadofon
+        else -> 0
     }
-    AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(20.dp))
+    if (iconRes != 0) {
+        FigmaImage(model = iconRes, modifier = Modifier.size(20.dp))
+    }
 }
 
 @Composable
 fun SocialIcon(type: String, size: androidx.compose.ui.unit.Dp) {
-    val iconUrl = when (type) {
-        "vk" -> "https://www.figma.com/api/mcp/asset/102e1ddf-32d7-42ad-a9f1-3221c55d841d"
-        "telegramm" -> "https://www.figma.com/api/mcp/asset/79b8ab17-729e-4042-aa2b-30492d9d6c48"
-        else -> ""
+    val iconRes = when (type) {
+        "vk" -> R.drawable.ic_vk
+        "telegramm" -> R.drawable.ic_telegram
+        else -> 0
     }
-    AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(size))
+    if (iconRes != 0) {
+        FigmaImage(model = iconRes, modifier = Modifier.size(size))
+    }
 }

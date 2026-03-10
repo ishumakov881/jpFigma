@@ -24,18 +24,18 @@ import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun ChangeTariffScreenBody(
-    modifier: Modifier = Modifier,
-    title: String = MockData.ChangeTariffScreen.title,
-    filterOptions: List<String> = MockData.ChangeTariffScreen.filterOptions,
-    tariffs: List<TariffInfo> = MockData.ChangeTariffScreen.tariffs,
-    importantInfo: List<String> = MockData.ChangeTariffScreen.importantInfo,
-    warningSpeedLimit: String = MockData.ChangeTariffScreen.warningSpeedLimit,
-    localNetworkTitle: String = MockData.ChangeTariffScreen.localNetworkTitle,
-    localNetworkItems: List<NetworkInfoItem> = MockData.ChangeTariffScreen.localNetworkItems,
-    localNetworkRules: List<String> = MockData.ChangeTariffScreen.localNetworkRules,
-    additionalTitle: String = MockData.ChangeTariffScreen.additionalTitle,
-    additionalChanges: List<NetworkInfoItem> = MockData.ChangeTariffScreen.additionalChanges,
-    extraServices: List<String> = MockData.ChangeTariffScreen.extraServices
+    title: String,
+    filterOptions: List<String>,
+    tariffs: List<TariffInfo>,
+    importantInfo: List<String>,
+    warningSpeedLimit: String,
+    localNetworkTitle: String,
+    localNetworkItems: List<NetworkInfoItem>,
+    localNetworkRules: List<String>,
+    additionalTitle: String,
+    additionalChanges: List<NetworkInfoItem>,
+    extraServices: List<String>,
+    modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()
     var selectedFilter by remember { mutableStateOf(filterOptions[1]) }
@@ -203,7 +203,7 @@ fun TariffCard(tariff: TariffInfo) {
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 TariffMetricItem(
-                    iconUrl = "", 
+                    iconUrl = null,
                     label = "Скорость Интернет",
                     value = tariff.internetSpeed,
                     unit = tariff.internetSpeedLabel,
@@ -299,7 +299,7 @@ fun TariffCard(tariff: TariffInfo) {
 
 @Composable
 fun TariffMetricItem(
-    iconUrl: String,
+    iconUrl:Int?,
     label: String,
     value: String,
     unit: String,
