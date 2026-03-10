@@ -331,6 +331,60 @@ object MockData {
         val iconArrowRight = "https://www.figma.com/api/mcp/asset/33a1936a-8799-4609-87fa-9701fb09c0a0"
     }
 
+    object SupportScreen {
+        val title = "Техподдержка"
+        val phonesTitle = "Наши телефоны 24/7"
+        val phonesDescription = "Для улучшения качества обслуживания клиентов и повышения эффективности работы call-центра ваш разговор с оператором может быть записан"
+        
+        val phones = listOf(
+            SupportPhone(listOf("mks", "plus7"), "410"),
+            SupportPhone(listOf("mks"), "(072) 410-0-410"),
+            SupportPhone(listOf("cityphone"), "(0642) 503-503"),
+            SupportPhone(listOf("nadofon"), "(Надофон) 503-503")
+        )
+        
+        val btnInternetCall = "Интернет звонок"
+        val btnInternetCallHint = "(бесплатно)"
+        val btnCallback = "Заказать обратный звонок"
+        
+        val messengersTitle = "Мессенджеры"
+        val messengersDescription = "Для быстрого и удобного доступа к техподдержке online Вы можете воспользоваться виджетом, размещённым в нижнем правом углу сайта."
+        val messengers = listOf(
+            MessengerLink("vk", "Написать ВКонтакте"),
+            MessengerLink("telegramm", "Написать в Telegram")
+        )
+        
+        val socialChannelsTitle = "Официальные каналы"
+        val socialChannels = listOf("vk", "telegramm")
+        
+        val warningText = "Для улучшения качества обслуживания клиентов и повышения эффективности работы call-центра Ваш разговор с оператором может быть записан."
+        
+        val writeSupportTitle = "Написать в техподдержку"
+        val messageLabel = "Сообщение"
+        val messagePlaceholder = "Введите сообщение..."
+        val btnSend = "Отправить"
+        
+        val archiveTitle = "Архив сообщений"
+        val chatMessages = listOf(
+            SupportChatMessage("Оператор", "29 янв 2025 12:15:09", "Не понятно", isOperator = true, status = "read"),
+            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false),
+            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false),
+            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false),
+            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Тест", isOperator = false),
+            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Он то был то пропадал", isOperator = false),
+            SupportChatMessage("Оператор", "29 янв 2025 12:15:09", "Здравствуйте, опишите пожалуйста подробнее Вашу проблему.", isOperator = true),
+            SupportChatMessage("Вы", "29 янв 2025 12:15:09", "Здравствуйте, хочу сообщить о проблеме, возникшей у меня вчера с интернетом.", isOperator = false)
+        )
+        val btnShowMore = "Показать ещё"
+        
+        // Asset URLs
+        val iconPhone = "https://www.figma.com/api/mcp/asset/6b0f9bf6-fd56-4be4-aaf1-2dfce2e0bc85"
+        val iconWarning = "https://www.figma.com/api/mcp/asset/6d89e7e9-6b55-4bc1-9fcd-ce80e7b790be"
+        val iconSend = "https://www.figma.com/api/mcp/asset/bfd8c0db-125b-4e7b-a8b4-6ce2a6c80084"
+        val iconOperator = "https://www.figma.com/api/mcp/asset/51919148-fbd8-49e6-af25-133aed845e96"
+        val iconStatusRead = "https://www.figma.com/api/mcp/asset/8b88defd-c0df-4be3-a667-55cf3025c378"
+    }
+
     object ReferFriendScreen {
         val screenTitle = "Подключи друга"
         

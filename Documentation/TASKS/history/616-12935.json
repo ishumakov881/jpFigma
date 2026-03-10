@@ -1,0 +1,33 @@
+{
+  "node_id": "616:12935",
+  "file_key": "GATf25uJdQSdmuDnVpwfSv",
+  "timestamp": "2026-03-09T12:05:00Z",
+  "design_context": {
+    "framework": "jetpack_compose",
+    "language": "kotlin",
+    "raw_output": "const imgVector = \"https://www.figma.com/api/mcp/asset/8b88defd-c0df-4be3-a667-55cf3025c378\";\nconst imgNetFacebookVariantV1 = \"https://www.figma.com/api/mcp/asset/40ad61ce-8223-401a-970f-d89e859937fc\";\nconst imgVector1 = \"https://www.figma.com/api/mcp/asset/8727f234-0823-4083-82de-690d3bde6653\";\nconst imgNetTelegrammVariantV1 = \"https://www.figma.com/api/mcp/asset/79b8ab17-729e-4042-aa2b-30492d9d6c48\";\nconst imgVector2 = \"https://www.figma.com/api/mcp/asset/bd22178b-c631-4f18-948f-5d805a5ec398\";\nconst imgNetVkVariantV1 = \"https://www.figma.com/api/mcp/asset/102e1ddf-32d7-42ad-a9f1-3221c55d841d\";\nconst imgVector3 = \"https://www.figma.com/api/mcp/asset/8987bf6d-60f0-4690-899b-f9f8bd4d5ec4\";\nconst imgPhoneButton = \"https://www.figma.com/api/mcp/asset/6b0f9bf6-fd56-4be4-aaf1-2dfce2e0bc85\";\nconst imgIconNotificationPhone24Px = \"https://www.figma.com/api/mcp/asset/77eced79-c1ff-4dd2-9271-23b141fc5b92\";\nconst imgShape1 = \"https://www.figma.com/api/mcp/asset/3c83ed0e-c95f-4a1d-9888-08fb07acffb9\";\nconst imgShape2 = \"https://www.figma.com/api/mcp/asset/075110fb-2940-412a-8ff6-5903c8f788d0\";\nconst imgVector4 = \"https://www.figma.com/api/mcp/asset/d1b30fc9-ecb0-4c97-83a3-e0fe544f4941\";\nconst imgGroup38 = \"https://www.figma.com/api/mcp/asset/7c7500bb-0b6f-400f-9634-cc72330d69b8\";\nconst imgVector5 = \"https://www.figma.com/api/mcp/asset/f1c5c331-fc49-4310-9f39-a0dd9317b419\";\nconst imgSocialNetsIcons = \"https://www.figma.com/api/mcp/asset/5e1d2a21-4f23-4a9b-b129-f504c4bd07b3\";\nconst imgVector6 = \"https://www.figma.com/api/mcp/asset/cb2a4a50-ef84-4f68-afd3-6204328186f3\";\nconst imgSocialNetsIcons1 = \"https://www.figma.com/api/mcp/asset/682a4a82-f677-475e-9f2c-a83f4a438199\";\nconst imgVector7 = \"https://www.figma.com/api/mcp/asset/14c76552-ebb6-40a1-b623-5e1e6c2e6b99\";\nconst imgWarning = \"https://www.figma.com/api/mcp/asset/6d89e7e9-6b55-4bc1-9fcd-ce80e7b790be\";\nconst imgVector8 = \"https://www.figma.com/api/mcp/asset/bfd8c0db-125b-4e7b-a8b4-6ce2a6c80084\";\nconst imgInternet1 = \"https://www.figma.com/api/mcp/asset/51919148-fbd8-49e6-af25-133aed845e96\";\n",
+    "assets": {
+      "imgVector": "https://www.figma.com/api/mcp/asset/8b88defd-c0df-4be3-a667-55cf3025c378",
+      "imgNetFacebookVariantV1": "https://www.figma.com/api/mcp/asset/40ad61ce-8223-401a-970f-d89e859937fc",
+      "imgVector1": "https://www.figma.com/api/mcp/asset/8727f234-0823-4083-82de-690d3bde6653",
+      "imgNetTelegrammVariantV1": "https://www.figma.com/api/mcp/asset/79b8ab17-729e-4042-aa2b-30492d9d6c48",
+      "imgVector2": "https://www.figma.com/api/mcp/asset/bd22178b-c631-4f18-948f-5d805a5ec398",
+      "imgNetVkVariantV1": "https://www.figma.com/api/mcp/asset/102e1ddf-32d7-42ad-a9f1-3221c55d841d",
+      "imgVector3": "https://www.figma.com/api/mcp/asset/8987bf6d-60f0-4690-899b-f9f8bd4d5ec4",
+      "imgPhoneButton": "https://www.figma.com/api/mcp/asset/6b0f9bf6-fd56-4be4-aaf1-2dfce2e0bc85",
+      "imgIconNotificationPhone24Px": "https://www.figma.com/api/mcp/asset/77eced79-c1ff-4dd2-9271-23b141fc5b92",
+      "imgShape1": "https://www.figma.com/api/mcp/asset/3c83ed0e-c95f-4a1d-9888-08fb07acffb9",
+      "imgShape2": "https://www.figma.com/api/mcp/asset/075110fb-2940-412a-8ff6-5903c8f788d0",
+      "imgVector4": "https://www.figma.com/api/mcp/asset/d1b30fc9-ecb0-4c97-83a3-e0fe544f4941",
+      "imgGroup38": "https://www.figma.com/api/mcp/asset/7c7500bb-0b6f-400f-9634-cc72330d69b8",
+      "imgVector5": "https://www.figma.com/api/mcp/asset/f1c5c331-fc49-4310-9f39-a0dd9317b419",
+      "imgSocialNetsIcons": "https://www.figma.com/api/mcp/asset/5e1d2a21-4f23-4a9b-b129-f504c4bd07b3",
+      "imgVector6": "https://www.figma.com/api/mcp/asset/cb2a4a50-ef84-4f68-afd3-6204328186f3",
+      "imgSocialNetsIcons1": "https://www.figma.com/api/mcp/asset/682a4a82-f677-475e-9f2c-a83f4a438199",
+      "imgVector7": "https://www.figma.com/api/mcp/asset/14c76552-ebb6-40a1-b623-5e1e6c2e6b99",
+      "imgWarning": "https://www.figma.com/api/mcp/asset/6d89e7e9-6b55-4bc1-9fcd-ce80e7b790be",
+      "imgVector8": "https://www.figma.com/api/mcp/asset/bfd8c0db-125b-4e7b-a8b4-6ce2a6c80084",
+      "imgInternet1": "https://www.figma.com/api/mcp/asset/51919148-fbd8-49e6-af25-133aed845e96"
+    }
+  }
+}
