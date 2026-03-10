@@ -70,7 +70,7 @@ fun FigmaImage(
  */
 @Composable
 fun AsyncImageWithPlaceholder(
-    imageUrl: String,
+    imageUrl: Int,
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Fit
 ) {

@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
@@ -22,15 +23,21 @@ fun InfoDialog(
     title: String,
     description: String,
     onDismiss: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    closeIconRes: Int = R.drawable.ic_dialog_close
 ) {
     Dialog(onDismissRequest = onDismiss) {
         Box(
             modifier = modifier
                 .fillMaxWidth()
-                .shadow(elevation = 30.dp, shape = RoundedCornerShape(30.dp), ambientColor = Color.Black.copy(alpha = 0.25f))
+                .shadow(
+                    elevation = 30.dp, 
+                    shape = RoundedCornerShape(30.dp), 
+                    ambientColor = FigmaShadowColor,
+                    spotColor = FigmaShadowColor
+                )
                 .clip(RoundedCornerShape(30.dp))
-                .background(White)
+                .background(FigmaCardWhite)
                 .padding(20.dp)
         ) {
             Column(
@@ -41,7 +48,7 @@ fun InfoDialog(
                     text = title,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
-                    color = TitleColor,
+                    color = FigmaTitleColor,
                     lineHeight = 19.8.sp
                 )
                 
@@ -49,7 +56,7 @@ fun InfoDialog(
                     text = description,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Normal,
-                    color = Text2,
+                    color = FigmaTextPrimary,
                     lineHeight = 15.4.sp
                 )
             }
@@ -62,9 +69,9 @@ fun InfoDialog(
                     .clickable { onDismiss() },
                 contentAlignment = Alignment.Center
             ) {
-                AsyncImageWithPlaceholder(
-                    imageUrl = "https://www.figma.com/api/mcp/asset/46784929-ce6d-4ad8-9a25-eb7756423cc9",
-                    modifier = Modifier.size(14.dp) // Actual SVG vector size inside the 24dp box
+                FigmaImage(
+                    model = closeIconRes,
+                    modifier = Modifier.size(14.dp)
                 )
             }
         }

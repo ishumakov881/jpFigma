@@ -162,7 +162,7 @@ fun HyperScreenBody(
 }
 
 @Composable
-fun SpeedControlAction(label: String, unit: String, iconUrl: String, onClick: () -> Unit, isPositive: Boolean = false) {
+fun SpeedControlAction(label: String, unit: String, iconUrl: Int, onClick: () -> Unit, isPositive: Boolean = false) {
     Row(
         modifier = Modifier.clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically,
