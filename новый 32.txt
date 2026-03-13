@@ -1,0 +1,21 @@
+https://www.figma.com/design/GATf25uJdQSdmuDnVpwfSv/ISHUMAKOV?node-id=783-22259&t=3KBqpliyKYk3m4CZ-4
+
+
+
+
+
+диалог
+https://www.figma.com/design/GATf25uJdQSdmuDnVpwfSv/ISHUMAKOV?node-id=872-33216&t=3KBqpliyKYk3m4CZ-4
+
+
+
+
+Предлагаю, все цвета, которые используются из Figma, хранить в ColorFigma.kt
+Также туда поместить повторяющиеся в компонентах градиенты которые получены из фигма
+
+
+Для всех нод с которыми работаем, в файл FIGMA_LINKS.md конспектируются заголовки node и node-id
+
+В файл download_svg.bat добавить все используемые в проекте ссылки на иконки figma, их выходное расширение svg
+
+Тулбар https://www.figma.com/design/GATf25uJdQSdmuDnVpwfSv/ISHUMAKOV?node-id=617-17363&t=3KBqpliyKYk3m4CZ-4

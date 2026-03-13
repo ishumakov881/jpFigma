@@ -1,0 +1,1 @@
+java -jar "%~dp0Svg2VectorAndroid-1.1.1.jar" %1%

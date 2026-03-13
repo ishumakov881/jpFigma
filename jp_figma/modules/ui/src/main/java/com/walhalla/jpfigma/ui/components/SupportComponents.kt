@@ -332,7 +332,6 @@ fun OperatorIcon(type: String) {
     }
 }
 
-@Composable
 fun SocialIcon(type: String, size: androidx.compose.ui.unit.Dp) {
     val iconRes = when (type) {
         "vk" -> R.drawable.ic_vk
