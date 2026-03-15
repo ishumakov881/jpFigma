@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -144,7 +145,7 @@ fun SupportPhonesSection(
                 shape = RoundedCornerShape(20.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                    FigmaImage(model = MockData.SupportScreen.iconPhone, modifier = Modifier.size(24.dp))
+                    FigmaImage(model = R.drawable.ic_support_phone, modifier = Modifier.size(24.dp))
                     Text(text = btnInternetCall, color = White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
                     Text(text = btnInternetCallHint, color = White, fontSize = 13.sp)
                 }
@@ -188,7 +189,7 @@ fun SupportPhonesSection(
             }
         }
 
-        WarningBox(text = warningText, iconRes = MockData.SupportScreen.iconWarning)
+        WarningBox(text = warningText, iconRes = R.drawable.ic_support_warning)
     }
 }
 
@@ -238,7 +239,7 @@ fun SupportWriteCard(title: String, label: String, placeholder: String, btnText:
                     shape = RoundedCornerShape(20.dp)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                        FigmaImage(model = MockData.SupportScreen.iconSend, modifier = Modifier.size(24.dp))
+                        FigmaImage(model = R.drawable.ic_support_send, modifier = Modifier.size(24.dp))
                         Text(text = btnText, color = FigmaBrandBlue, fontSize = 15.sp)
                     }
                 }
@@ -299,12 +300,12 @@ fun SupportChatBubble(msg: SupportChatMessage) {
             modifier = Modifier.padding(bottom = 5.dp)
         ) {
             if (msg.isOperator) {
-                FigmaImage(model = MockData.SupportScreen.iconOperator, modifier = Modifier.size(18.dp))
+                FigmaImage(model = R.drawable.ic_support_operator, modifier = Modifier.size(18.dp))
             }
             Text(text = msg.author, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = FigmaTextPrimary)
             Text(text = msg.timestamp, fontSize = 13.sp, color = FigmaTextSecondary)
             if (msg.status == "read") {
-                FigmaImage(model = MockData.SupportScreen.iconStatusRead, modifier = Modifier.size(20.dp))
+                FigmaImage(model = R.drawable.ic_status_read, modifier = Modifier.size(20.dp))
             }
         }
         Box(
@@ -332,7 +333,8 @@ fun OperatorIcon(type: String) {
     }
 }
 
-fun SocialIcon(type: String, size: androidx.compose.ui.unit.Dp) {
+@Composable
+fun SocialIcon(type: String, size: Dp) {
     val iconRes = when (type) {
         "vk" -> R.drawable.ic_vk
         "telegramm" -> R.drawable.ic_telegram

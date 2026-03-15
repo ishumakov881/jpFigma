@@ -108,7 +108,22 @@ object MockScreens {
         PaymentScreenBody(
             title = data.title,
             description = data.description,
-            onlinePaymentData = data,
+            onlinePaymentTitle = data.onlinePaymentTitle,
+            onlinePaymentSubtitle = data.onlinePaymentSubtitle,
+            labelAccountNumber = data.labelAccountNumber,
+            labelAmount = data.labelAmount,
+            labelEmail = data.labelEmail,
+            btnPay = data.btnPay,
+            consentText = data.consentText,
+            sberTitle = data.sberTitle,
+            sberDescription = data.sberDescription,
+            sberLogo = data.sberLogo,
+            btnDetails = data.btnDetails,
+            iconArrowRight = data.iconArrowRight,
+            postTitle = data.postTitle,
+            postDescription = data.postDescription,
+            terminalTitle = data.terminalTitle,
+            terminalDescription = data.terminalDescription,
             paymentPoints = data.paymentPoints
         )
     }

@@ -1,7 +1,6 @@
 package com.walhalla.jpfigma.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -11,14 +10,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
+import com.walhalla.ui0.R
 
 @Composable
 fun HyperScreenBody(
@@ -66,14 +64,14 @@ fun HyperScreenBody(
                     SpeedControlAction(
                         label = "- 50",
                         unit = serviceInfo.speedUnit,
-                        iconRes = MockData.HyperScreen.iconMinus,
+                        iconRes = R.drawable.ic_minus_circle,
                         onClick = { targetSpeed = (targetSpeed - serviceInfo.stepValue).coerceAtLeast(0) }
                     )
                     Spacer(modifier = Modifier.width(20.dp))
                     SpeedControlAction(
                         label = "+ 50",
                         unit = serviceInfo.speedUnit,
-                        iconRes = MockData.HyperScreen.iconPlus,
+                        iconRes = R.drawable.ic_plus_circle,
                         onClick = { targetSpeed += serviceInfo.stepValue },
                         isPositive = true
                     )
@@ -151,10 +149,10 @@ fun HyperScreenBody(
                 
                 Column(verticalArrangement = Arrangement.spacedBy(15.dp)) {
                     aboutItems.forEach { item ->
-                        BulletListItem(text = item, iconRes = MockData.HyperScreen.iconDot)
+                        BulletListItem(text = item, iconRes = R.drawable.ic_bullet_dot)
                     }
                     
-                    WarningBox(text = warningText, iconRes = MockData.HyperScreen.iconWarning)
+                    WarningBox(text = warningText, iconRes = R.drawable.ic_warning)
                 }
             }
         }

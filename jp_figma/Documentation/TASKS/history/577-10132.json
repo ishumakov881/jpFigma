@@ -1,0 +1,316 @@
+const imgProperty1Variant3 = "https://www.figma.com/api/mcp/asset/0a54930b-a5fc-4a4d-8804-00d26bd31c92";
+const imgVector = "https://www.figma.com/api/mcp/asset/b2102a2a-3edc-4741-a5ea-f8943ec0eddc";
+const imgVector1 = "https://www.figma.com/api/mcp/asset/fd8412bb-1ed4-4f5a-9dad-bf87746b5db8";
+const imgVector2 = "https://www.figma.com/api/mcp/asset/a4e6eda4-ebbd-4539-b76d-c97d4f95f968";
+const imgVector3 = "https://www.figma.com/api/mcp/asset/3f134570-384f-42af-986f-2cfb1ad3b1cd";
+const imgWarning = "https://www.figma.com/api/mcp/asset/afab0e14-698e-47f9-983d-63ee4f1cba59";
+
+function Question({ className }: { className?: string }) {
+  return (
+    <div className={className || ""} data-name="question" data-node-id="513:4081">
+      <div className="relative size-[20px]" data-name="Property 1=Variant3" data-node-id="590:7776">
+        <img alt="" className="absolute block max-w-none size-full" src={imgProperty1Variant3} />
+        <div className="absolute inset-[22%_34%]" data-name="Vector" data-node-id="590:7778">
+          <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+        </div>
+      </div>
+    </div>
+  );
+}
+type IconsProps = {
+  className?: string;
+  property1?: "check" | "notavaliable";
+};
+
+function Icons({ className, property1 = "check" }: IconsProps) {
+  const isCheck = property1 === "check";
+  return (
+    <div className={className || "relative size-[24px]"} id={isCheck ? "node-525_3931" : "node-525_8753"}>
+      <div className={`absolute ${isCheck ? "bottom-[23.87%] left-[12.5%] right-[12.63%] top-1/4" : "inset-[16.88%]"}`} data-name="Vector" id={isCheck ? "node-525_3939" : "node-525_8754"}>
+        <img alt="" className="absolute block max-w-none size-full" src={isCheck ? imgVector2 : imgVector1} />
+      </div>
+    </div>
+  );
+}
+
+export default function Body() {
+  return (
+    <div className="content-stretch flex items-center justify-center py-[20px] relative size-full" data-name="BODY - 100%" data-node-id="577:10132">
+      <div className="flex flex-[1_0_0] flex-row items-center self-stretch">
+        <div className="content-stretch flex flex-[1_0_0] flex-col gap-[20px] h-full items-center justify-center min-h-px min-w-px relative" data-name="Content" data-node-id="577:10133">
+          <div className="content-stretch flex flex-col items-start px-[20px] relative shrink-0 w-full" data-node-id="577:10134">
+            <div className="content-stretch flex flex-col items-start justify-center relative shrink-0 w-full" data-node-id="577:10135">
+              <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[22px] w-full" data-node-id="577:10136" style={{ fontVariationSettings: "'wdth' 100" }}>
+                <p className="leading-[1.1]">Услуга “Уведомления”</p>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="590:8176">
+            <div className="content-stretch flex flex-col items-start justify-center relative shrink-0 w-full" data-node-id="590:8177">
+              <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="590:8178">
+                <div className="bg-white content-stretch flex flex-col gap-[20px] items-start p-[20px] relative rounded-[30px] shrink-0 w-full" data-node-id="590:8179">
+                  <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#313e49] text-[14px] w-full" data-node-id="590:8180" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <p className="leading-[1.3]">Если Вы не хотите остаться без интернета в самый неподходящий момент, Вам необходима услуга «Уведомления». Эта услуга поможет вовремя пополнять счет, чтобы баланс не оказался отрицательным неожиданно для Вас. Данная информация будет высылаться выбранным вами способом.</p>
+                  </div>
+                  <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="590:8181">
+                    <div className="flex flex-col font-['Roboto:SemiBold',sans-serif] font-semibold h-[25px] justify-center leading-[0] relative shrink-0 text-[#041e37] text-[16px] w-full" data-node-id="590:8182" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[1.25]">Преимущества уведомлений</p>
+                    </div>
+                    <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0 w-full" data-node-id="590:8183">
+                      <div className="relative shrink-0 size-[24px]" data-name="icons" data-node-id="590:8184">
+                        <div className="absolute bottom-[23.87%] left-[12.5%] right-[12.63%] top-1/4" data-name="Vector" data-node-id="I590:8184;525:3939">
+                          <img alt="" className="absolute block max-w-none size-full" src={imgVector3} />
+                        </div>
+                      </div>
+                      <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#313e49] text-[14px]" data-node-id="590:8185" style={{ fontVariationSettings: "'wdth' 100" }}>
+                        <p className="leading-[1.3]">подписка на услугу доступна в Вашем личном кабинете;</p>
+                      </div>
+                    </div>
+                    <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0 w-full" data-node-id="590:8186">
+                      <div className="relative shrink-0 size-[24px]" data-name="icons" data-node-id="590:8187">
+                        <div className="absolute bottom-[23.87%] left-[12.5%] right-[12.63%] top-1/4" data-name="Vector" data-node-id="I590:8187;525:3939">
+                          <img alt="" className="absolute block max-w-none size-full" src={imgVector3} />
+                        </div>
+                      </div>
+                      <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#313e49] text-[14px]" data-node-id="590:8188" style={{ fontVariationSettings: "'wdth' 100" }}>
+                        <p className="leading-[1.3]">возможность выбора платного/бесплатного варианта услуги;</p>
+                      </div>
+                    </div>
+                    <div className="content-stretch flex gap-[10px] items-center justify-center relative shrink-0 w-full" data-node-id="590:8189">
+                      <div className="relative shrink-0 size-[24px]" data-name="icons" data-node-id="590:8190">
+                        <div className="absolute bottom-[23.87%] left-[12.5%] right-[12.63%] top-1/4" data-name="Vector" data-node-id="I590:8190;525:3939">
+                          <img alt="" className="absolute block max-w-none size-full" src={imgVector3} />
+                        </div>
+                      </div>
+                      <div className="flex flex-[1_0_0] flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] min-h-px min-w-px relative text-[#313e49] text-[14px]" data-node-id="590:8191" style={{ fontVariationSettings: "'wdth' 100" }}>
+                        <p className="leading-[1.3]">Вы можете настроить параметры уведомлений так, как Вам удобно.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="border border-[#f04e23] border-dashed content-stretch flex gap-[10px] items-center justify-center p-[15px] relative rounded-[20px] shrink-0 w-full" data-node-id="590:8192">
+                    <div className="overflow-clip relative shrink-0 size-[48px]" data-name="icons-warning" data-node-id="590:8193">
+                      <div className="absolute inset-[15.87%_12.5%]" data-name="warning" data-node-id="I590:8193;446:2025">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgWarning} />
+                      </div>
+                    </div>
+                    <div className="flex flex-[1_0_0] flex-col font-['Roboto:SemiBold',sans-serif] font-semibold justify-center leading-[0] min-h-px min-w-px relative text-[#313e49] text-[0px]" data-node-id="590:8194" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="text-[14px]">
+                        <span className="leading-[1.3] text-[#f04e23]">Услуга не подключена.</span>
+                        <span className="leading-[1.3]">{` Если хотите воспользоваться услугой - выберите вариант уведомлений и нажмите кнопку “Активировать” в приведенной ниже таблице. Для подтверждения необходимо будет ввести пароль.`}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="content-stretch flex flex-col items-start overflow-clip relative rounded-[20px] shrink-0 w-full" data-node-id="590:8195" style={{ backgroundImage: "linear-gradient(-89.99999981158626deg, rgb(149, 197, 243) 0%, rgb(204, 230, 255) 100%)" }}>
+            <div className="content-stretch flex items-start px-[20px] py-[15px] relative shrink-0 w-full" data-node-id="590:8196">
+              <div className="flex flex-[1_0_0] flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] min-h-px min-w-px relative text-[#041e37] text-[18px]" data-node-id="590:8197" style={{ fontVariationSettings: "'wdth' 100" }}>
+                <p className="leading-[1.25]">Настройка услуги “Уведомления”</p>
+              </div>
+            </div>
+            <div className="bg-white content-stretch flex flex-col gap-[20px] items-start p-[20px] relative rounded-[20px] shrink-0 w-full" data-node-id="590:8198">
+              <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 w-full" data-node-id="590:8199">
+                <div className="flex flex-col font-['Roboto:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#060606] text-[18px] whitespace-nowrap" data-node-id="590:8200" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[normal]">SMS</p>
+                </div>
+                <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full" data-node-id="590:8201">
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8202">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8204" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Наступление отрицательного баланса</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8206">
+                    <Icons className="relative shrink-0 size-[24px]" property1="notavaliable" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8208" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Достижение определённой суммы на Вашем балансе</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8210">
+                    <Icons className="relative shrink-0 size-[24px]" property1="notavaliable" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8212" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Предупреждение за 1 день до отключения</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8214">
+                    <Icons className="relative shrink-0 size-[24px]" property1="notavaliable" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8216" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Пополнение счёта</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8218">
+                    <Icons className="relative shrink-0 size-[24px]" property1="notavaliable" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8220" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Рекомендуемый платёж</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8222">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8224" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Восстановление пароля</p>
+                    </div>
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#2ea201] text-[14px] whitespace-nowrap" data-node-id="590:8225" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">3 раза/30 дней</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                </div>
+                <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8227">
+                  <div className="bg-[#1880d0] content-stretch flex h-[40px] items-center justify-center px-[30px] relative rounded-[20px] shrink-0 w-[200px]" data-name="buttons" data-node-id="590:8228">
+                    <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[16px] text-center text-white whitespace-nowrap" data-node-id="I590:8228;513:3952" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Активировать</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[16px] whitespace-nowrap" data-node-id="590:8229" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <p className="leading-[normal]">бесплатно</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[#dceaf8] h-px shrink-0 w-full" data-node-id="590:8230" />
+              <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 w-full" data-node-id="590:8231">
+                <div className="flex flex-col font-['Roboto:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#060606] text-[18px] whitespace-nowrap" data-node-id="590:8232" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[normal]">SMS Премиум</p>
+                </div>
+                <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full" data-node-id="590:8233">
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8234">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8236" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Наступление отрицательного баланса</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8238">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8240" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Достижение определённой суммы на Вашем балансе</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8242">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8244" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Предупреждение за 1 день до отключения</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8246">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8248" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Пополнение счёта</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8250">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8252" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Рекомендуемый платёж</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8254">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8256" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Восстановление пароля</p>
+                    </div>
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#2ea201] text-[14px] whitespace-nowrap" data-node-id="590:8257" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">3 раза/30 дней</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                </div>
+                <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8259">
+                  <div className="bg-[#1880d0] content-stretch flex h-[40px] items-center justify-center px-[30px] relative rounded-[20px] shrink-0 w-[200px]" data-name="buttons" data-node-id="590:8260">
+                    <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[16px] text-center text-white whitespace-nowrap" data-node-id="I590:8260;513:3952" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Активировать</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[16px] whitespace-nowrap" data-node-id="590:8261" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <p className="leading-[normal]">4,50 руб/30 дней</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[#dceaf8] h-px shrink-0 w-full" data-node-id="590:8262" />
+              <div className="content-stretch flex flex-col gap-[20px] items-start relative shrink-0 w-full" data-node-id="590:8263">
+                <div className="flex flex-col font-['Roboto:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#060606] text-[18px] whitespace-nowrap" data-node-id="590:8264" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[normal]">Приложение ЛДС онлайн</p>
+                </div>
+                <div className="content-stretch flex flex-col gap-[5px] items-start relative shrink-0 w-full" data-node-id="590:8265">
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8266">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8268" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Наступление отрицательного баланса</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8270">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8272" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Достижение определённой суммы на Вашем балансе</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8274">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8276" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Предупреждение за 1 день до отключения</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8278">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8280" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Пополнение счёта</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8282">
+                    <Icons className="relative shrink-0 size-[24px]" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8284" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Рекомендуемый платёж</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                  <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8286">
+                    <Icons className="relative shrink-0 size-[24px]" property1="notavaliable" />
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[14px] whitespace-nowrap" data-node-id="590:8288" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Восстановление пароля</p>
+                    </div>
+                    <Question className="relative shrink-0 size-[20px]" />
+                  </div>
+                </div>
+                <div className="content-stretch flex gap-[10px] items-center relative shrink-0 w-full" data-node-id="590:8290">
+                  <div className="bg-[#1880d0] content-stretch flex h-[40px] items-center justify-center px-[30px] relative rounded-[20px] shrink-0 w-[200px]" data-name="buttons" data-node-id="590:8291">
+                    <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[16px] text-center text-white whitespace-nowrap" data-node-id="I590:8291;513:3952" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Активировать</p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[16px] whitespace-nowrap" data-node-id="590:8292" style={{ fontVariationSettings: "'wdth' 100" }}>
+                    <p className="leading-[normal]">бесплатно</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: TitleColor: #060606, H1 - mob: Font(family: "Roboto", style: Regular, size: 22, weight: 400, lineHeight: 1.100000023841858, letterSpacing: 0), Text - 2: #313E49, Brand Color - 1: #1880D0, Brand Color - 2: #F04E23, White: #FFFFFF, Text - 1: #060606, Green: #2EA201, Red: #DB2525, line: #DCEAF8.
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.
+[Tool 'get_design_context' provided the following image data with mime-type: image/png]

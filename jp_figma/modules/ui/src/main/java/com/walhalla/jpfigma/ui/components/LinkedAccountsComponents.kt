@@ -396,3 +396,9 @@ fun AccountActionLink(
         )
     }
 }
+data class LinkedAccount(val name: String, val type: AccountType, val balance: String, val paidUntil: String, val accountNumber: String, val tariff: String, val linkedCount: Int? = null, val actions: List<AccountAction> = emptyList(), val isAlert: Boolean = false, val balanceColorType: BalanceColorType = BalanceColorType.GREEN, val isPaidFromMain: Boolean = false)
+enum class AccountType(val label: String) { MAIN("Основной"), VIEW_ONLY("Только просмотр"), FULL_CONTROL("Полное управление"), FINANCIAL_LINK("Финансовая привязка") }
+enum class AccountAction(val label: String) { EDIT("Редактировать"), REFILL("Пополнить"), UNLINK("Отвязать"), GO_TO("Перейти") }
+enum class BalanceColorType { GREEN, RED, ORANGE, GREY }
+
+

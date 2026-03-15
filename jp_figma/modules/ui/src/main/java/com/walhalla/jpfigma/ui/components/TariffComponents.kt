@@ -21,6 +21,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
+import com.walhalla.ui0.R
+val imgPriceUp = R.drawable.icons_1
+val imgPriceDown = R.drawable.icons_2
+val iconTv = R.drawable.ic_tariff_tv
+val iconHyper = R.drawable.ic_tariff_hyper
 
 @Composable
 fun ChangeTariffScreenBody(
@@ -98,7 +103,7 @@ fun ChangeTariffScreenBody(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.Top
             ) {
-                AsyncImageWithPlaceholder(imageUrl = MockData.ChangeTariffScreen.iconWarning, modifier = Modifier.size(24.dp))
+                AsyncImageWithPlaceholder(imageUrl = R.drawable.ic_warning, modifier = Modifier.size(24.dp))
                 Text(
                     text = warningSpeedLimit,
                     fontSize = 14.sp,
@@ -156,7 +161,7 @@ fun ChangeTariffScreenBody(
                         additionalChanges.forEachIndexed { index, item ->
                             Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
                                 AsyncImageWithPlaceholder(
-                                    imageUrl = if (index == 0) MockData.ChangeTariffScreen.imgPriceUp else MockData.ChangeTariffScreen.imgPriceDown,
+                                    imageUrl = if (index == 0) imgPriceUp else imgPriceDown,
                                     modifier = Modifier.size(60.dp)
                                 )
                                 NetworkItemRow(item, modifier = Modifier.weight(1f))
@@ -210,14 +215,14 @@ fun TariffCard(tariff: TariffInfo) {
                     modifier = Modifier.weight(1f)
                 )
                 TariffMetricItem(
-                    iconUrl = MockData.ChangeTariffScreen.iconTv,
+                    iconUrl = iconTv,
                     label = "Кабельное ТВ",
                     value = tariff.tvChannels,
                     unit = tariff.tvChannelsLabel,
                     modifier = Modifier.weight(1f)
                 )
                 TariffMetricItem(
-                    iconUrl = MockData.ChangeTariffScreen.iconHyper,
+                    iconUrl = iconHyper,
                     label = "Услуга “Гипер”",
                     value = if (tariff.isHyperAvailable) "Доступна" else "Не доступна",
                     unit = "",
@@ -260,7 +265,7 @@ fun TariffCard(tariff: TariffInfo) {
                         fontSize = 14.sp,
                         textDecoration = TextDecoration.Underline
                     )
-                    AsyncImageWithPlaceholder(imageUrl = MockData.ChangeTariffScreen.iconDetails, modifier = Modifier.size(24.dp))
+                    AsyncImageWithPlaceholder(imageUrl = R.drawable.ic_details_blue, modifier = Modifier.size(24.dp))
                 }
             }
         }

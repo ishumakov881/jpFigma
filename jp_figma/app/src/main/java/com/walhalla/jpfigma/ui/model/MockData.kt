@@ -1,5 +1,11 @@
 package com.walhalla.jpfigma.ui.model
 
+import com.walhalla.jpfigma.ui.components.AccountAction
+import com.walhalla.jpfigma.ui.components.AccountType
+import com.walhalla.jpfigma.ui.components.BalanceColorType
+import com.walhalla.jpfigma.ui.components.LinkedAccount
+import com.walhalla.jpfigma.ui.components.SettingItem
+import com.walhalla.jpfigma.ui.components.SettingsGroup
 import com.walhalla.ui0.R
 import com.walhalla.jpfigma.ui.offers.Offer
 
@@ -279,7 +285,12 @@ object MockData {
                 paidUntil = "Оплачивается с основного",
                 accountNumber = "44345678",
                 tariff = "Безлим 100+",
-                actions = listOf(AccountAction.EDIT, AccountAction.REFILL, AccountAction.GO_TO, AccountAction.UNLINK),
+                actions = listOf(
+                    AccountAction.EDIT,
+                    AccountAction.REFILL,
+                    AccountAction.GO_TO,
+                    AccountAction.UNLINK
+                ),
                 balanceColorType = BalanceColorType.GREY,
                 isPaidFromMain = true
             )
@@ -327,9 +338,6 @@ object MockData {
         
         // Local Resources
         val iconMinus = R.drawable.ic_minus_circle
-        val iconPlus = R.drawable.ic_plus_circle
-        val iconDot = R.drawable.ic_bullet_dot
-        val iconWarning = R.drawable.ic_warning
     }
 
     object AccountInfoDialog {
@@ -359,13 +367,9 @@ object MockData {
         
         // Local Resources
         val iconBack = R.drawable.ic_back_arrow
-        val iconDetails = R.drawable.ic_details_blue
-        val iconDot = R.drawable.ic_bullet_dot
-        val iconWarning = R.drawable.ic_warning
-        val imgPriceUp = R.drawable.icons_1
-        val imgPriceDown = R.drawable.icons_2
-        val iconTv = R.drawable.ic_tariff_tv
-        val iconHyper = R.drawable.ic_tariff_hyper
+
+
+
     }
 
     object SupportScreen {
@@ -391,11 +395,6 @@ object MockData {
         val btnShowMore = "Показать ещё"
         
         // Local Resources
-        val iconPhone = R.drawable.ic_support_phone
-        val iconWarning = R.drawable.ic_support_warning
-        val iconSend = R.drawable.ic_support_send
-        val iconOperator = R.drawable.ic_support_operator
-        val iconStatusRead = R.drawable.ic_status_read
         val iconVk = R.drawable.ic_vk
         val iconTelegram = R.drawable.ic_telegram
     }
@@ -439,9 +438,3 @@ object MockData {
     }
 }
 
-data class LinkedAccount(val name: String, val type: AccountType, val balance: String, val paidUntil: String, val accountNumber: String, val tariff: String, val linkedCount: Int? = null, val actions: List<AccountAction> = emptyList(), val isAlert: Boolean = false, val balanceColorType: BalanceColorType = BalanceColorType.GREEN, val isPaidFromMain: Boolean = false)
-enum class AccountType(val label: String) { MAIN("Основной"), VIEW_ONLY("Только просмотр"), FULL_CONTROL("Полное управление"), FINANCIAL_LINK("Финансовая привязка") }
-enum class AccountAction(val label: String) { EDIT("Редактировать"), REFILL("Пополнить"), UNLINK("Отвязать"), GO_TO("Перейти") }
-enum class BalanceColorType { GREEN, RED, ORANGE, GREY }
-data class SettingsGroup(val title: String, val items: List<SettingItem>, val actionText: String, val price: String)
-data class SettingItem(val text: String, val isAvailable: Boolean, val label: String? = null)

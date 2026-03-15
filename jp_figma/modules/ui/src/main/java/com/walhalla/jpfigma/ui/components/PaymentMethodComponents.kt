@@ -12,24 +12,39 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil3.compose.SubcomposeAsyncImage
-import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.model.PaymentPoint
-import com.walhalla.jpfigma.ui.model.ScheduleItem
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun PaymentScreenBody(
-    modifier: Modifier = Modifier,
-    title: String = MockData.PaymentMethodsScreen.title,
-    description: String = MockData.PaymentMethodsScreen.description,
-    onlinePaymentData: MockData.PaymentMethodsScreen = MockData.PaymentMethodsScreen,
-    paymentPoints: List<PaymentPoint> = MockData.PaymentMethodsScreen.paymentPoints
+    title: String,
+    description: String,
+
+
+    onlinePaymentTitle: String,
+    onlinePaymentSubtitle: String,
+    labelAccountNumber: String,
+
+    labelAmount: String,
+
+    labelEmail: String,
+    btnPay: String,
+    consentText: String,
+    sberTitle: String,
+    sberDescription: String,
+    sberLogo: Int,
+    btnDetails: String,
+    iconArrowRight: Int,
+    postTitle: String,
+    postDescription: String,
+    terminalTitle: String,
+    terminalDescription: String,
+    paymentPoints: List<PaymentPoint>,
+    modifier: Modifier = Modifier
 ) {
     val scrollState = rememberScrollState()
 
@@ -56,26 +71,34 @@ fun PaymentScreenBody(
             lineHeight = 20.8.sp
         )
 
-        OnlinePaymentCard(onlinePaymentData)
+        OnlinePaymentCard(
+            title = onlinePaymentTitle,
+            subtitle = onlinePaymentSubtitle,
+            labelAccountNumber = labelAccountNumber,
+            labelAmount = labelAmount,
+            labelEmail = labelEmail,
+            btnPay = btnPay,
+            consentText = consentText
+        )
 
         SberPaymentCard(
-            logoUrl = onlinePaymentData.sberLogo,
-            titlePrefix = onlinePaymentData.sberTitle,
-            description = onlinePaymentData.sberDescription,
-            btnText = onlinePaymentData.btnDetails,
-            iconArrowUrl = onlinePaymentData.iconArrowRight
+            logoRes = sberLogo,
+            titlePrefix = sberTitle,
+            description = sberDescription,
+            btnText = btnDetails,
+            iconArrowRes = iconArrowRight
         )
 
         SimplePaymentCard(
-            title = onlinePaymentData.postTitle,
-            description = onlinePaymentData.postDescription,
-            btnText = onlinePaymentData.btnDetails,
-            iconArrowUrl = onlinePaymentData.iconArrowRight
+            title = postTitle,
+            description = postDescription,
+            btnText = btnDetails,
+            iconArrowRes = iconArrowRight
         )
 
         TerminalPaymentCard(
-            title = onlinePaymentData.terminalTitle,
-            description = onlinePaymentData.terminalDescription,
+            title = terminalTitle,
+            description = terminalDescription,
         )
 
         paymentPoints.forEach { point ->
@@ -85,25 +108,34 @@ fun PaymentScreenBody(
 }
 
 @Composable
-fun OnlinePaymentCard(data: MockData.PaymentMethodsScreen) {
+fun OnlinePaymentCard(
+    title: String,
+    subtitle: String,
+    labelAccountNumber: String,
+    labelAmount: String,
+    labelEmail: String,
+    btnPay: String,
+    consentText: String,
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
             .background(FigmaLightBlueBg)
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(15.dp)
     ) {
-        Text(text = data.onlinePaymentTitle, fontSize = 20.sp, color = FigmaTitleColor)
-        Text(text = data.onlinePaymentSubtitle, fontSize = 14.sp, color = FigmaTitleColor, lineHeight = 17.5.sp)
+        Text(text = title, fontSize = 20.sp, color = FigmaTitleColor)
+        Text(text = subtitle, fontSize = 14.sp, color = FigmaTitleColor, lineHeight = 17.5.sp)
 
         Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
-            PaymentInput(label = data.labelAccountNumber, value = "12345678", modifier = Modifier.weight(1.2f))
-            PaymentInput(label = data.labelAmount, value = "200", suffix = "₽", modifier = Modifier.weight(0.8f))
+            PaymentInput(label = labelAccountNumber, value = "12345678", modifier = Modifier.weight(1.2f))
+            PaymentInput(label = labelAmount, value = "200", suffix = "₽", modifier = Modifier.weight(0.8f))
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = data.labelEmail, fontSize = 16.sp, color = FigmaTextPrimary)
+            Text(text = labelEmail, fontSize = 16.sp, color = FigmaTextPrimary)
             PaymentInput(label = "E-mail", value = "")
         }
 
@@ -127,10 +159,10 @@ fun OnlinePaymentCard(data: MockData.PaymentMethodsScreen) {
                 colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandBlue),
                 shape = RoundedCornerShape(30.dp)
             ) {
-                Text(text = data.btnPay, color = FigmaCardWhite, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text(text = btnPay, color = FigmaCardWhite, fontSize = 18.sp, fontWeight = FontWeight.Bold)
             }
             Text(
-                text = data.consentText,
+                text = consentText,
                 fontSize = 13.sp,
                 color = FigmaTextLight,
                 textAlign = TextAlign.Center,
@@ -161,7 +193,7 @@ fun PaymentInput(label: String, value: String, suffix: String? = null, modifier:
 }
 
 @Composable
-fun SberPaymentCard(logoUrl: Int, titlePrefix: String, description: String, btnText: String, iconArrowUrl: Int) {
+fun SberPaymentCard(logoRes: Int, titlePrefix: String, description: String, btnText: String, iconArrowRes: Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -172,17 +204,17 @@ fun SberPaymentCard(logoUrl: Int, titlePrefix: String, description: String, btnT
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(text = titlePrefix, fontSize = 20.sp, color = FigmaTitleColor)
-            AsyncImageWithPlaceholder(imageUrl = logoUrl, modifier = Modifier.width(149.dp).height(23.dp))
+            FigmaImage(model = logoRes, modifier = Modifier.width(149.dp).height(23.dp))
         }
         Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.Top) {
             Text(text = description, modifier = Modifier.weight(1f), color = FigmaTextPrimary, fontSize = 14.sp, lineHeight = 18.2.sp)
-            DetailsButton(btnText, iconArrowUrl)
+            DetailsButton(btnText, iconArrowRes)
         }
     }
 }
 
 @Composable
-fun SimplePaymentCard(title: String, description: String, btnText: String, iconArrowUrl: Int) {
+fun SimplePaymentCard(title: String, description: String, btnText: String, iconArrowRes: Int) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -194,7 +226,7 @@ fun SimplePaymentCard(title: String, description: String, btnText: String, iconA
         Text(text = title, fontSize = 20.sp, color = FigmaTitleColor)
         Row(horizontalArrangement = Arrangement.spacedBy(20.dp), verticalAlignment = Alignment.Top) {
             Text(text = description, modifier = Modifier.weight(1f), color = FigmaTextPrimary, fontSize = 14.sp, lineHeight = 18.2.sp)
-            DetailsButton(btnText, iconArrowUrl)
+            DetailsButton(btnText, iconArrowRes)
         }
     }
 }
@@ -223,7 +255,7 @@ fun MapHolder() {
 }
 
 @Composable
-fun PaymentPointCard(point: PaymentPoint) {
+fun PaymentPointCard(point: com.walhalla.jpfigma.ui.model.PaymentPoint) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -301,7 +333,7 @@ fun ScheduleItemRow(
 }
 
 @Composable
-fun DetailsButton(text: String, iconUrl: Int) {
+fun DetailsButton(text: String, iconRes: Int) {
     Row(
         modifier = Modifier
             .height(40.dp)
@@ -313,6 +345,6 @@ fun DetailsButton(text: String, iconUrl: Int) {
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         Text(text = text, color = FigmaBrandBlue, fontSize = 15.sp)
-        AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(18.dp))
+        FigmaImage(model = iconRes, modifier = Modifier.size(18.dp))
     }
 }
