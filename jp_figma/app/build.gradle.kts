@@ -5,9 +5,7 @@ plugins {
 }
 android {
     namespace = "com.walhalla.jpfigma"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.walhalla.jpfigma"
@@ -66,6 +64,7 @@ dependencies {
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.ktor3)
+    implementation(project(":modules:ui"))
     implementation("com.github.alexvarboffin:JCTheme:1.0.0")
 
 }

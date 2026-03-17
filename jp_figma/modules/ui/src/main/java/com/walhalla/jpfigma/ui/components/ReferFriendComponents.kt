@@ -12,9 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.R
+import com.walhalla.jpfigma.ui.R
+import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
@@ -83,7 +85,7 @@ fun ReferFriendScreenBody(
             ) {
                 Text(
                     text = "Передвигайте бегунок, чтоб определить, кому сколько достанется",
-                    fontSize = 13.sp, color = FigmaTextSecondary, textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    fontSize = 13.sp, color = FigmaTextSecondary, textAlign = TextAlign.Center
                 )
                 
                 // Bonus Display

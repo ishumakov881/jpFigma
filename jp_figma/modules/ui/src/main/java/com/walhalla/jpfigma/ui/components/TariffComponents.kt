@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.R
+import com.walhalla.jpfigma.ui.R
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
 
@@ -286,11 +286,11 @@ fun TariffCard(
                 verticalArrangement = Arrangement.Center
             ) {
                 if (tariff.isCurrent) {
-                    Text(text = "Текущий тариф", color = White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "Текущий тариф", color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold)
                 }
                 Text(
                     text = tariff.name,
-                    color = if (tariff.isCurrent) White else FigmaBrandBlue,
+                    color = if (tariff.isCurrent) Color.White else FigmaBrandBlue,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
                 )

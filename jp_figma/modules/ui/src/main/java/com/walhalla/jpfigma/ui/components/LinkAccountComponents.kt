@@ -1,4 +1,8 @@
 package com.walhalla.jpfigma.ui.components
+import androidx.compose.ui.text.style.TextAlign
+import com.walhalla.jpfigma.ui.theme.*
+
+import com.walhalla.jpfigma.ui.components.*
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,8 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.R
-import com.walhalla.jpfigma.ui.theme.*
+import com.walhalla.jpfigma.ui.R
 
 @Composable
 fun LinkAccountScreenBody(

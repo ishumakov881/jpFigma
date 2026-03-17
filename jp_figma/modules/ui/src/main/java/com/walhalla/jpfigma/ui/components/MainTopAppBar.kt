@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.R
+import com.walhalla.jpfigma.ui.R
 import com.walhalla.jpfigma.ui.theme.*
 
 @OptIn(ExperimentalMaterial3Api::class)

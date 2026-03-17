@@ -5,10 +5,8 @@ plugins {
 }
 
 android {
-    namespace = "com.walhalla.jpfigma"
-    compileSdk {
-        version = release(36)
-    }
+    namespace = "com.walhalla.jpfigma.ui"
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24

@@ -13,9 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.jpfigma.R
+import com.walhalla.jpfigma.ui.R
 import com.walhalla.jpfigma.ui.model.PaymentPoint
 import com.walhalla.jpfigma.ui.theme.*
 
@@ -120,7 +121,7 @@ fun OnlinePaymentCard(
                     colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandBlue),
                     shape = RoundedCornerShape(30.dp)
                 ) {
-                    Text(text = "Оплатить", color = FigmaCardWhite, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "Оплатить", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
                 Text(
                     text = "Нажимая на кнопку \"Оплатить\", Вы соглашаетесь с условиями на обработку персональных данных",
@@ -141,7 +142,7 @@ fun PaymentInput(label: String, value: String, suffix: String? = null, modifier:
             .fillMaxWidth()
             .height(56.dp)
             .clip(RoundedCornerShape(5.dp))
-            .background(FigmaCardWhite)
+            .background(Color.White)
             .padding(horizontal = 15.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp)
@@ -239,7 +240,7 @@ fun ScheduleItemRow(
                 ) {
                     Text(
                         text = day,
-                        color = if (isHoliday) White else FigmaBrandBlue,
+                        color = if (isHoliday) Color.White else FigmaBrandBlue,
                         fontSize = 13.sp
                     )
                 }

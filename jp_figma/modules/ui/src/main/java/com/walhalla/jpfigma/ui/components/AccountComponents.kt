@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
@@ -252,7 +253,7 @@ fun ServicePriceRow(service: ServicePriceData) {
             Text(text = service.name, color = FigmaTextPrimary, fontSize = 14.sp)
             if (service.hasOffer) {
                 Surface(color = FigmaBrandOrange, shape = RoundedCornerShape(5.dp), modifier = Modifier.padding(top = 5.dp)) {
-                    Text(text = "АКЦИЯ", color = White, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp))
+                    Text(text = "АКЦИЯ", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp))
                 }
             }
         }

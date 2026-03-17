@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.SubcomposeAsyncImage
-import com.walhalla.jpfigma.R
+import com.walhalla.jpfigma.ui.R
 import com.walhalla.jpfigma.ui.theme.*
 
 /**
@@ -39,13 +39,15 @@ fun FigmaImage(
 ) {
     when (model) {
         is Int -> {
-            Image(
-                painter = painterResource(id = model),
-                contentDescription = null,
-                modifier = modifier,
-                contentScale = contentScale,
-                colorFilter = tint?.let { ColorFilter.tint(it) }
-            )
+            if (model != 0) {
+                Image(
+                    painter = painterResource(id = model),
+                    contentDescription = null,
+                    modifier = modifier,
+                    contentScale = contentScale,
+                    colorFilter = tint?.let { ColorFilter.tint(it) }
+                )
+            }
         }
         is String -> {
             SubcomposeAsyncImage(
@@ -142,5 +144,90 @@ fun BulletListItem(
             color = FigmaTextPrimary,
             lineHeight = 18.2.sp
         )
+    }
+}
+
+/**
+ * Стандартный заголовок экрана с кнопкой назад.
+ */
+@Composable
+fun ScreenHeader(
+    title: String,
+    onBackClick: () -> Unit = {},
+    backIconRes: Int = R.drawable.ic_back_arrow,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(15.dp)
+    ) {
+        FigmaImage(
+            model = backIconRes,
+            modifier = Modifier
+                .size(24.dp)
+                .clickable { onBackClick() }
+        )
+        Text(
+            text = title,
+            fontSize = 22.sp,
+            color = FigmaTitleColor,
+            fontWeight = FontWeight.Normal
+        )
+    }
+}
+
+/**
+ * Информационный блок с предупреждением.
+ */
+@Composable
+fun WarningBox(
+    text: String,
+    modifier: Modifier = Modifier,
+    iconRes: Int = R.drawable.ic_warning
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .border(1.dp, FigmaBrandOrange, RoundedCornerShape(20.dp))
+            .padding(15.dp)
+    ) {
+        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            FigmaImage(model = iconRes, modifier = Modifier.size(24.dp))
+            Text(
+                text = text,
+                fontSize = 14.sp,
+                color = FigmaTextPrimary,
+                lineHeight = 18.2.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+    }
+}
+
+/**
+ * Маленькая кнопка действий со стрелочкой.
+ */
+@Composable
+fun ActionDetailsButton(
+    text: String,
+    onClick: () -> Unit = {},
+    iconRes: Int = R.drawable.ic_arrow_right_blue,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .height(40.dp)
+            .clip(RoundedCornerShape(20.dp))
+            .background(FigmaSecondaryBtnBg)
+            .padding(horizontal = 20.dp)
+            .clickable { onClick() },
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        Text(text = text, color = FigmaBrandBlue, fontSize = 15.sp)
+        FigmaImage(model = iconRes, modifier = Modifier.size(18.dp))
     }
 }
