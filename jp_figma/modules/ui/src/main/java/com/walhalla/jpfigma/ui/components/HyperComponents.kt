@@ -1,6 +1,7 @@
 package com.walhalla.jpfigma.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -10,23 +11,23 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
-import com.walhalla.ui0.R
 
 @Composable
 fun HyperScreenBody(
-    title: String,
     serviceInfo: HyperServiceInfo,
     maxTariffParams: List<HyperParameter>,
     aboutItems: List<String>,
-    warningText: String,
-    btnChangeSpeed: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onChangeSpeedClick: (Int) -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
     var targetSpeed by remember { mutableStateOf(serviceInfo.targetSpeed) }
@@ -39,7 +40,7 @@ fun HyperScreenBody(
             .padding(vertical = 20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        ScreenHeader(title = title)
+        ScreenHeader(title = "Услуга “Гипер”")
 
         // Speedometer Control Card
         FigmaCard(modifier = Modifier.padding(horizontal = 20.dp), cornerRadius = 30.dp) {
@@ -49,6 +50,7 @@ fun HyperScreenBody(
                 verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 Box(modifier = Modifier.size(260.dp, 200.dp)) {
+                    // Placeholder for Speedometer asset
                     FigmaImage(
                         model = "https://www.figma.com/api/mcp/asset/speedometer-full",
                         modifier = Modifier.fillMaxSize()
@@ -63,16 +65,16 @@ fun HyperScreenBody(
                 ) {
                     SpeedControlAction(
                         label = "- 50",
-                        unit = serviceInfo.speedUnit,
+                        unit = "Мбит/с",
                         iconRes = R.drawable.ic_minus_circle,
-                        onClick = { targetSpeed = (targetSpeed - serviceInfo.stepValue).coerceAtLeast(0) }
+                        onClick = { targetSpeed = (targetSpeed - 50).coerceAtLeast(0) }
                     )
                     Spacer(modifier = Modifier.width(20.dp))
                     SpeedControlAction(
                         label = "+ 50",
-                        unit = serviceInfo.speedUnit,
+                        unit = "Мбит/с",
                         iconRes = R.drawable.ic_plus_circle,
-                        onClick = { targetSpeed += serviceInfo.stepValue },
+                        onClick = { targetSpeed += 50 },
                         isPositive = true
                     )
                 }
@@ -85,24 +87,24 @@ fun HyperScreenBody(
                     InfoCounterItem(
                         label = "Скорость",
                         value = targetSpeed.toString(),
-                        unit = serviceInfo.speedUnit,
+                        unit = "Мбит/с",
                         modifier = Modifier.weight(1f)
                     )
                     InfoCounterItem(
                         label = "Будет стоить",
                         value = serviceInfo.targetPrice.toString(),
-                        unit = serviceInfo.currencyUnit,
+                        unit = "₽/30 дней",
                         modifier = Modifier.weight(1f)
                     )
                 }
 
                 Button(
-                    onClick = { },
+                    onClick = { onChangeSpeedClick(targetSpeed) },
                     modifier = Modifier.height(40.dp).padding(horizontal = 10.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandBlue),
                     shape = RoundedCornerShape(20.dp)
                 ) {
-                    Text(text = btnChangeSpeed, color = FigmaCardWhite, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "Изменить скорость", color = FigmaCardWhite, fontSize = 16.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -149,10 +151,13 @@ fun HyperScreenBody(
                 
                 Column(verticalArrangement = Arrangement.spacedBy(15.dp)) {
                     aboutItems.forEach { item ->
-                        BulletListItem(text = item, iconRes = R.drawable.ic_bullet_dot)
+                        BulletListItem(text = item)
                     }
                     
-                    WarningBox(text = warningText, iconRes = R.drawable.ic_warning)
+                    WarningBox(
+                        text = "Максимальная скорость может быть ограничена техническими параметрами и возможностями используемого клиентского оборудования",
+                        iconRes = R.drawable.ic_warning
+                    )
                 }
             }
         }

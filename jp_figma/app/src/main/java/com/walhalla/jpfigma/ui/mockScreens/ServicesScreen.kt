@@ -1,4 +1,4 @@
-package com.walhalla.jpfigma.ui.screens
+package com.walhalla.jpfigma.ui.mockScreens
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
@@ -6,12 +6,11 @@ import com.walhalla.jpfigma.ui.components.ServiceItemData
 import com.walhalla.jpfigma.ui.components.ServicesScreenBody
 import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.model.ServiceStatusType
-import com.walhalla.jpfigma.ui.theme.JpFigmaTheme
 
 @Composable
 fun ServicesScreen() {
-    val title = MockData.ServicesScreen.title
-    val paid = MockData.ServicesScreen.paid.map {
+    val data = MockData.ServicesScreen
+    val paid = data.paid.map {
         ServiceItemData(
             id = it.id,
             name = it.name,
@@ -23,7 +22,7 @@ fun ServicesScreen() {
             isFree = it.isFree
         )
     }
-    val free = MockData.ServicesScreen.free.map {
+    val free = data.free.map {
         ServiceItemData(
             id = it.id,
             name = it.name,
@@ -37,18 +36,14 @@ fun ServicesScreen() {
     }
 
     ServicesScreenBody(
-        title = title,
+        title = data.title,
         paidServices = paid,
-        freeServices = free,
-        onInfoClick = {},
-        onActionClick = {}
+        freeServices = free
     )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun ServicesScreenPreview() {
-    JpFigmaTheme {
-        ServicesScreen()
-    }
+    ServicesScreen()
 }

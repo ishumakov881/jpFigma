@@ -8,55 +8,29 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
-import  com.walhalla.ui0.R
+
 @Composable
 fun SupportScreenBody(
-    title: String,
-    phonesTitle: String,
-    phonesDescription: String,
     phones: List<SupportPhone>,
-    btnInternetCall: String,
-    btnInternetCallHint: String,
-    btnCallback: String,
-    messengersTitle: String,
-    messengersDescription: String,
     messengers: List<MessengerLink>,
-    socialChannelsTitle: String,
-    socialChannels: List<String>,
-    warningText: String,
-    writeSupportTitle: String,
-    messageLabel: String,
-    messagePlaceholder: String,
-    btnSend: String,
-    archiveTitle: String,
     chatMessages: List<SupportChatMessage>,
-    btnShowMore: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onInternetCallClick: () -> Unit = {},
+    onCallbackClick: () -> Unit = {},
+    onSendMessageClick: (String) -> Unit = {},
+    onShowMoreMessagesClick: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
 
@@ -68,59 +42,40 @@ fun SupportScreenBody(
             .padding(vertical = 20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        ScreenHeader(title = title)
+        ScreenHeader(title = "Техподдержка")
 
         FigmaCard(modifier = Modifier.padding(horizontal = 20.dp)) {
             SupportPhonesSection(
-                phonesTitle = phonesTitle,
-                phonesDescription = phonesDescription,
                 phones = phones,
-                btnInternetCall = btnInternetCall,
-                btnInternetCallHint = btnInternetCallHint,
-                btnCallback = btnCallback,
-                messengersTitle = messengersTitle,
-                messengersDescription = messengersDescription,
                 messengers = messengers,
-                socialChannelsTitle = socialChannelsTitle,
-                socialChannels = socialChannels,
-                warningText = warningText
+                onInternetCallClick = onInternetCallClick,
+                onCallbackClick = onCallbackClick
             )
         }
 
-        SupportWriteCard(
-            title = writeSupportTitle,
-            label = messageLabel,
-            placeholder = messagePlaceholder,
-            btnText = btnSend
-        )
+        SupportWriteSection(onSendClick = onSendMessageClick)
 
-        SupportArchiveCard(
-            title = archiveTitle,
+        SupportArchiveSection(
             messages = chatMessages,
-            btnText = btnShowMore
+            onShowMoreClick = onShowMoreMessagesClick
         )
     }
 }
 
 @Composable
 fun SupportPhonesSection(
-    phonesTitle: String,
-    phonesDescription: String,
     phones: List<SupportPhone>,
-    btnInternetCall: String,
-    btnInternetCallHint: String,
-    btnCallback: String,
-    messengersTitle: String,
-    messengersDescription: String,
     messengers: List<MessengerLink>,
-    socialChannelsTitle: String,
-    socialChannels: List<String>,
-    warningText: String
+    onInternetCallClick: () -> Unit,
+    onCallbackClick: () -> Unit
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = phonesTitle, fontSize = 18.sp, color = FigmaTitleColor)
-            Text(text = phonesDescription, fontSize = 12.sp, color = FigmaTextSecondary, lineHeight = 14.4.sp)
+            Text(text = "Наши телефоны 24/7", fontSize = 18.sp, color = FigmaTitleColor)
+            Text(
+                text = "Для улучшения качества обслуживания клиентов и повышения эффективности работы call-центра ваш разговор с оператором может быть записан",
+                fontSize = 12.sp, color = FigmaTextSecondary, lineHeight = 14.4.sp
+            )
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -139,32 +94,35 @@ fun SupportPhonesSection(
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Button(
-                onClick = { },
+                onClick = onInternetCallClick,
                 modifier = Modifier.fillMaxWidth().height(40.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandGreen),
                 shape = RoundedCornerShape(20.dp)
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
                     FigmaImage(model = R.drawable.ic_support_phone, modifier = Modifier.size(24.dp))
-                    Text(text = btnInternetCall, color = White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
-                    Text(text = btnInternetCallHint, color = White, fontSize = 13.sp)
+                    Text(text = "Интернет звонок", color = White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                    Text(text = "(бесплатно)", color = White, fontSize = 13.sp)
                 }
             }
             OutlinedButton(
-                onClick = { },
+                onClick = onCallbackClick,
                 modifier = Modifier.fillMaxWidth().height(40.dp),
                 border = BorderStroke(1.dp, FigmaBrandBlue),
                 shape = RoundedCornerShape(20.dp)
             ) {
-                Text(text = btnCallback, color = FigmaBrandBlue, fontSize = 14.sp)
+                Text(text = "Заказать обратный звонок", color = FigmaBrandBlue, fontSize = 14.sp)
             }
         }
 
         HorizontalDivider(color = FigmaLineColor, thickness = 1.dp)
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = messengersTitle, fontSize = 18.sp, color = FigmaTitleColor)
-            Text(text = messengersDescription, fontSize = 12.sp, color = FigmaTextSecondary, lineHeight = 14.4.sp)
+            Text(text = "Мессенджеры", fontSize = 18.sp, color = FigmaTitleColor)
+            Text(
+                text = "Для быстрого и удобного доступа к техподдержке online Вы можете воспользоваться виджетом, размещённым в нижнем правом углу сайта.",
+                fontSize = 12.sp, color = FigmaTextSecondary, lineHeight = 14.4.sp
+            )
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -181,20 +139,22 @@ fun SupportPhonesSection(
         }
 
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text(text = socialChannelsTitle, fontSize = 18.sp, color = FigmaTitleColor)
+            Text(text = "Официальные каналы", fontSize = 18.sp, color = FigmaTitleColor)
             Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                socialChannels.forEach { type ->
-                    SocialIcon(type, size = 30.dp)
-                }
+                SocialIcon("vk", size = 30.dp)
+                SocialIcon("telegramm", size = 30.dp)
             }
         }
 
-        WarningBox(text = warningText, iconRes = R.drawable.ic_support_warning)
+        WarningBox(
+            text = "Для улучшения качества обслуживания клиентов и повышения эффективности работы call-центра Ваш разговор с оператором может быть записан.",
+            iconRes = R.drawable.ic_support_warning
+        )
     }
 }
 
 @Composable
-fun SupportWriteCard(title: String, label: String, placeholder: String, btnText: String) {
+fun SupportWriteSection(onSendClick: (String) -> Unit) {
     var text by remember { mutableStateOf("") }
 
     Column(
@@ -205,20 +165,20 @@ fun SupportWriteCard(title: String, label: String, placeholder: String, btnText:
             .background(FigmaBlueGradient)
     ) {
         Text(
-            text = title,
+            text = "Написать в техподдержку",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF041E37),
+            color = FigmaDarkTitle,
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 15.dp)
         )
         FigmaCard(cornerRadius = 20.dp) {
             Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    Text(text = label, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = FigmaTextPrimary)
+                    Text(text = "Сообщение", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = FigmaTextPrimary)
                     TextField(
                         value = text,
                         onValueChange = { text = it },
-                        placeholder = { Text(text = placeholder, color = FigmaTextHint, fontSize = 15.sp) },
+                        placeholder = { Text(text = "Введите сообщение...", color = FigmaTextHint, fontSize = 15.sp) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(120.dp)
@@ -233,14 +193,14 @@ fun SupportWriteCard(title: String, label: String, placeholder: String, btnText:
                     )
                 }
                 OutlinedButton(
-                    onClick = { },
+                    onClick = { onSendClick(text) },
                     modifier = Modifier.fillMaxWidth().height(40.dp),
                     border = BorderStroke(1.dp, FigmaBrandBlue),
                     shape = RoundedCornerShape(20.dp)
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         FigmaImage(model = R.drawable.ic_support_send, modifier = Modifier.size(24.dp))
-                        Text(text = btnText, color = FigmaBrandBlue, fontSize = 15.sp)
+                        Text(text = "Отправить", color = FigmaBrandBlue, fontSize = 15.sp)
                     }
                 }
             }
@@ -249,7 +209,7 @@ fun SupportWriteCard(title: String, label: String, placeholder: String, btnText:
 }
 
 @Composable
-fun SupportArchiveCard(title: String, messages: List<SupportChatMessage>, btnText: String) {
+fun SupportArchiveSection(messages: List<SupportChatMessage>, onShowMoreClick: () -> Unit) {
     Column(
         modifier = Modifier
             .padding(horizontal = 20.dp)
@@ -258,10 +218,10 @@ fun SupportArchiveCard(title: String, messages: List<SupportChatMessage>, btnTex
             .background(FigmaBlueGradient)
     ) {
         Text(
-            text = title,
+            text = "Архив сообщений",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF041E37),
+            color = FigmaDarkTitle,
             modifier = Modifier.padding(horizontal = 20.dp, vertical = 15.dp)
         )
         FigmaCard(cornerRadius = 20.dp) {
@@ -271,12 +231,12 @@ fun SupportArchiveCard(title: String, messages: List<SupportChatMessage>, btnTex
                 }
                 
                 OutlinedButton(
-                    onClick = { },
+                    onClick = onShowMoreClick,
                     modifier = Modifier.fillMaxWidth().height(40.dp),
                     border = BorderStroke(1.dp, FigmaBrandBlue),
                     shape = RoundedCornerShape(20.dp)
                 ) {
-                    Text(text = btnText, color = FigmaBrandBlue, fontSize = 15.sp)
+                    Text(text = "Показать ещё", color = FigmaBrandBlue, fontSize = 15.sp)
                 }
             }
         }
@@ -334,7 +294,7 @@ fun OperatorIcon(type: String) {
 }
 
 @Composable
-fun SocialIcon(type: String, size: Dp) {
+fun SocialIcon(type: String, size: androidx.compose.ui.unit.Dp) {
     val iconRes = when (type) {
         "vk" -> R.drawable.ic_vk
         "telegramm" -> R.drawable.ic_telegram

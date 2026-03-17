@@ -23,12 +23,12 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.SubcomposeAsyncImage
-import com.walhalla.ui0.R
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.theme.*
 
 /**
- * Универсальный компонент для загрузки изображений. 
- * Поддерживает как URL (String), так и локальные ресурсы (Int).
+ * Универсальное изображение.
+ * model может быть Int (ресурс) или String (URL).
  */
 @Composable
 fun FigmaImage(
@@ -69,7 +69,7 @@ fun FigmaImage(
 }
 
 /**
- * Нативный пунктирный разделитель в стиле Figma.
+ * Пунктирная линия из Figma.
  */
 @Composable
 fun DashedDivider(
@@ -95,39 +95,7 @@ fun DashedDivider(
 }
 
 /**
- * Стандартный заголовок экрана с кнопкой назад.
- */
-@Composable
-fun ScreenHeader(
-    title: String,
-    onBackClick: () -> Unit = {},
-    backIconRes: Int = R.drawable.ic_back_arrow,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(15.dp)
-    ) {
-        FigmaImage(
-            model = backIconRes,
-            modifier = Modifier
-                .size(24.dp)
-                .clickable { onBackClick() }
-        )
-        Text(
-            text = title,
-            fontSize = 22.sp,
-            color = FigmaTitleColor,
-            fontWeight = FontWeight.Normal
-        )
-    }
-}
-
-/**
- * Универсальная карточка в стиле Figma.
+ * Стандартная карточка.
  */
 @Composable
 fun FigmaCard(
@@ -175,66 +143,4 @@ fun BulletListItem(
             lineHeight = 18.2.sp
         )
     }
-}
-
-/**
- * Информационный блок с предупреждением.
- */
-@Composable
-fun WarningBox(
-    text: String,
-    modifier: Modifier = Modifier,
-    iconRes: Int = R.drawable.ic_warning
-) {
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .border(1.dp, FigmaBrandOrange, RoundedCornerShape(20.dp))
-            .padding(15.dp)
-    ) {
-        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            FigmaImage(model = iconRes, modifier = Modifier.size(24.dp))
-            Text(
-                text = text,
-                fontSize = 14.sp,
-                color = FigmaTextPrimary,
-                lineHeight = 18.2.sp,
-                fontWeight = FontWeight.Bold
-            )
-        }
-    }
-}
-
-/**
- * Маленькая кнопка действий со стрелочкой.
- */
-@Composable
-fun ActionDetailsButton(
-    text: String,
-    onClick: () -> Unit = {},
-    iconRes: Int = R.drawable.ic_arrow_right_blue,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier
-            .height(40.dp)
-            .clip(RoundedCornerShape(20.dp))
-            .background(FigmaSecondaryBtnBg)
-            .padding(horizontal = 20.dp)
-            .clickable { onClick() },
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(10.dp)
-    ) {
-        Text(text = text, color = FigmaBrandBlue, fontSize = 15.sp)
-        FigmaImage(model = iconRes, modifier = Modifier.size(18.dp))
-    }
-}
-
-@Composable
-fun AsyncImageWithPlaceholder(
-    imageUrl: Int,
-    modifier: Modifier = Modifier,
-    contentScale: ContentScale = ContentScale.Fit
-) {
-    FigmaImage(model = imageUrl, modifier = modifier, contentScale = contentScale)
 }

@@ -18,23 +18,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.walhalla.ui0.R
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun LinkedAccountsScreenBody(
-    screenTitle: String,
-    descriptionPart1: String,
-    descriptionLink: String,
-    descriptionPart2: String,
-    freeServiceTitle: String,
-    freeServiceStatus: String,
     mainAccount: LinkedAccount,
     linkedAccounts: List<LinkedAccount>,
-    btnLinkAccount: String,
-
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onLinkAccountClick: () -> Unit = {},
+    onActionClick: (LinkedAccount, AccountAction) -> Unit = { _, _ -> }
 ) {
     val scrollState = rememberScrollState()
 
@@ -48,7 +42,7 @@ fun LinkedAccountsScreenBody(
     ) {
         // Title
         Text(
-            text = screenTitle,
+            text = "Услуга “Связанные аккаунты”",
             color = FigmaTitleColor,
             fontSize = 22.sp,
             lineHeight = 24.2.sp
@@ -57,11 +51,11 @@ fun LinkedAccountsScreenBody(
         // Description
         Text(
             text = buildAnnotatedString {
-                append(descriptionPart1)
+                append("\"Связанные аккаунты\" - удобное решение для управления несколькими  лицевыми счетами. Все счета в одном профиле: контролируйте баланс и  оплачивайте быстро и просто. Более подробно с услугой можно ознакомиться ")
                 withStyle(SpanStyle(color = FigmaBrandBlue)) {
-                    append(descriptionLink)
+                    append("здесь")
                 }
-                append(descriptionPart2)
+                append(".")
             },
             color = FigmaTextPrimary,
             fontSize = 14.sp,
@@ -72,10 +66,10 @@ fun LinkedAccountsScreenBody(
         Text(
             text = buildAnnotatedString {
                 withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append(freeServiceTitle)
+                    append("Услуга “Связанные аккаунты” предоставляется ")
                 }
                 withStyle(SpanStyle(color = FigmaSuccessGreen, fontWeight = FontWeight.Bold)) {
-                    append(freeServiceStatus)
+                    append("бесплатно")
                 }
             },
             color = FigmaTextPrimary,
@@ -84,8 +78,9 @@ fun LinkedAccountsScreenBody(
         )
 
         // Main Account Card
-        AccountCard(
+        AccountInfoCard(
             account = mainAccount,
+            onActionClick = { onActionClick(mainAccount, it) }
         )
 
         // Linked Accounts Section Header
@@ -102,7 +97,7 @@ fun LinkedAccountsScreenBody(
                 modifier = Modifier.weight(1f)
             )
             
-            // View Toggle Icons (List/Grid)
+            // View Toggle Icons
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Box(
                     modifier = Modifier
@@ -111,10 +106,7 @@ fun LinkedAccountsScreenBody(
                         .background(FigmaCardWhite),
                     contentAlignment = Alignment.Center
                 ) {
-                    FigmaImage(
-                        model = R.drawable.ic_list,
-                        modifier = Modifier.size(24.dp)
-                    )
+                    FigmaImage(model = R.drawable.ic_list, modifier = Modifier.size(24.dp))
                 }
                 Box(
                     modifier = Modifier
@@ -123,10 +115,7 @@ fun LinkedAccountsScreenBody(
                         .background(Color(0xFFCFDAE4)),
                     contentAlignment = Alignment.Center
                 ) {
-                    FigmaImage(
-                        model = R.drawable.ic_grid,
-                        modifier = Modifier.size(24.dp)
-                    )
+                    FigmaImage(model = R.drawable.ic_grid, modifier = Modifier.size(24.dp))
                 }
             }
         }
@@ -139,8 +128,9 @@ fun LinkedAccountsScreenBody(
                 .background(FigmaCardWhite)
         ) {
             linkedAccounts.forEachIndexed { index, account ->
-                AccountCard(
+                AccountInfoCard(
                     account = account,
+                    onActionClick = { onActionClick(account, it) },
                     modifier = Modifier.background(FigmaCardWhite)
                 )
                 if (index < linkedAccounts.size - 1) {
@@ -155,7 +145,7 @@ fun LinkedAccountsScreenBody(
 
         // Link New Account Button
         Button(
-            onClick = { },
+            onClick = onLinkAccountClick,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(40.dp),
@@ -167,12 +157,9 @@ fun LinkedAccountsScreenBody(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                FigmaImage(
-                    model = R.drawable.ic_plus,
-                    modifier = Modifier.size(24.dp)
-                )
+                FigmaImage(model = R.drawable.ic_plus, modifier = Modifier.size(24.dp))
                 Text(
-                    text = btnLinkAccount,
+                    text = "Привязать аккаунт",
                     color = FigmaCardWhite,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
@@ -185,10 +172,94 @@ fun LinkedAccountsScreenBody(
 }
 
 @Composable
-fun AccountTypeBadge(
-    type: AccountType,
+fun AccountInfoCard(
+    account: LinkedAccount,
+    onActionClick: (AccountAction) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    FigmaCard(
+        modifier = modifier,
+        cornerRadius = 20.dp,
+        padding = 20.dp
+    ) {
+        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                if (account.type != AccountType.MAIN) {
+                    FigmaImage(model = R.drawable.ic_linked, modifier = Modifier.size(24.dp))
+                }
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Text(
+                        text = account.name,
+                        color = FigmaTitleColor,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    AccountTypeBadge(type = account.type)
+                }
+            }
+
+            val contentPadding = if (account.type == AccountType.MAIN) 0.dp else 34.dp
+
+            Column(
+                modifier = Modifier.padding(start = contentPadding),
+                verticalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                AccountBalanceSection(
+                    balance = account.balance,
+                    paidUntil = account.paidUntil,
+                    colorType = if (account.isAlert) BalanceColorType.RED else account.balanceColorType,
+                    isPaidFromMain = account.isPaidFromMain
+                )
+
+                Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                    AccountDetailItem(label = "Лицевой счет:", value = account.accountNumber)
+                    AccountDetailItem(label = "Тарифный план:", value = account.tariff)
+                    if (account.linkedCount != null) {
+                        AccountDetailItem(label = "Привязанных аккаунтов:", value = account.linkedCount.toString())
+                    }
+                }
+
+                if (account.actions.isNotEmpty()) {
+                    @OptIn(ExperimentalLayoutApi::class)
+                    FlowRow(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(20.dp),
+                        verticalArrangement = Arrangement.spacedBy(15.dp)
+                    ) {
+                        account.actions.forEach { action ->
+                            Row(
+                                modifier = Modifier.clickable { onActionClick(action) },
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(5.dp)
+                            ) {
+                                FigmaImage(
+                                    model = when (action) {
+                                        AccountAction.EDIT -> R.drawable.ic_edit
+                                        AccountAction.REFILL -> R.drawable.ic_refill
+                                        AccountAction.UNLINK -> R.drawable.ic_unlink
+                                        AccountAction.GO_TO -> R.drawable.ic_goto
+                                    },
+                                    modifier = Modifier.size(20.dp)
+                                )
+                                Text(
+                                    text = action.label,
+                                    color = FigmaBrandBlue,
+                                    fontSize = 14.sp
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun AccountTypeBadge(type: AccountType) {
     val backgroundColor = when (type) {
         AccountType.MAIN -> FigmaSuccessGreen
         AccountType.VIEW_ONLY -> Color(0xFFFAEDE9)
@@ -203,7 +274,7 @@ fun AccountTypeBadge(
     }
 
     Box(
-        modifier = modifier
+        modifier = Modifier
             .clip(RoundedCornerShape(8.dp))
             .background(backgroundColor)
             .padding(horizontal = 6.dp, vertical = 2.dp)
@@ -212,19 +283,17 @@ fun AccountTypeBadge(
             text = type.label.uppercase(),
             color = textColor,
             fontSize = 11.sp,
-            fontWeight = FontWeight.Bold,
-            lineHeight = 13.75.sp
+            fontWeight = FontWeight.Bold
         )
     }
 }
 
 @Composable
-fun AccountBalance(
+fun AccountBalanceSection(
     balance: String,
     paidUntil: String,
     colorType: BalanceColorType,
-    isPaidFromMain: Boolean = false,
-    modifier: Modifier = Modifier
+    isPaidFromMain: Boolean = false
 ) {
     val balanceColor = when (colorType) {
         BalanceColorType.GREEN -> FigmaSuccessGreen
@@ -235,7 +304,7 @@ fun AccountBalance(
 
     val paidUntilColor = if (colorType == BalanceColorType.RED) Color(0xFFDB2525) else FigmaTextLight
 
-    Column(modifier = modifier) {
+    Column {
         Row(
             verticalAlignment = Alignment.Bottom,
             horizontalArrangement = Arrangement.spacedBy(5.dp)
@@ -272,133 +341,9 @@ fun AccountBalance(
 }
 
 @Composable
-fun AccountDetailRow(
-    label: String,
-    value: String,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(5.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = label,
-            color = FigmaTextLight,
-            fontSize = 14.sp
-        )
-        Text(
-            text = value,
-            color = FigmaTextPrimary,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold
-        )
+fun AccountDetailItem(label: String, value: String) {
+    Row(horizontalArrangement = Arrangement.spacedBy(5.dp)) {
+        Text(text = label, color = FigmaTextLight, fontSize = 14.sp)
+        Text(text = value, color = FigmaTextPrimary, fontSize = 14.sp, fontWeight = FontWeight.Bold)
     }
 }
-
-@OptIn(ExperimentalLayoutApi::class)
-@Composable
-fun AccountCard(
-    account: LinkedAccount,
-    modifier: Modifier = Modifier
-) {
-    FigmaCard(
-        modifier = modifier,
-        cornerRadius = 20.dp,
-        padding = 20.dp
-    ) {
-        Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                if (account.type != AccountType.MAIN) {
-                    FigmaImage(
-                        model = R.drawable.ic_linked,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
-                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                    Text(
-                        text = account.name,
-                        color = FigmaTitleColor,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    AccountTypeBadge(type = account.type)
-                }
-            }
-
-            val contentPadding = if (account.type == AccountType.MAIN) 0.dp else 34.dp
-
-            Column(
-                modifier = Modifier.padding(start = contentPadding),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
-            ) {
-                AccountBalance(
-                    balance = account.balance,
-                    paidUntil = account.paidUntil,
-                    colorType = if (account.isAlert) BalanceColorType.RED else account.balanceColorType,
-                    isPaidFromMain = account.isPaidFromMain
-                )
-
-                Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
-                    AccountDetailRow(label = "Лицевой счет:", value = account.accountNumber)
-                    AccountDetailRow(label = "Тарифный план:", value = account.tariff)
-                    if (account.linkedCount != null) {
-                        AccountDetailRow(label = "Привязанных аккаунтов:", value = account.linkedCount.toString())
-                    }
-                }
-
-                if (account.actions.isNotEmpty()) {
-                    FlowRow(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(15.dp)
-                    ) {
-                        account.actions.forEach { action ->
-                            AccountActionLink(
-                                action = action,
-                                iconRes = when (action) {
-                                    AccountAction.EDIT -> R.drawable.ic_edit
-                                    AccountAction.REFILL -> R.drawable.ic_refill
-                                    AccountAction.UNLINK -> R.drawable.ic_unlink
-                                    AccountAction.GO_TO -> R.drawable.ic_goto
-                                }
-                            )
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun AccountActionLink(
-    action: AccountAction,
-    iconRes: Int,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier.clickable { },
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(5.dp)
-    ) {
-        FigmaImage(
-            model = iconRes,
-            modifier = Modifier.size(20.dp)
-        )
-        Text(
-            text = action.label,
-            color = FigmaBrandBlue,
-            fontSize = 14.sp
-        )
-    }
-}
-data class LinkedAccount(val name: String, val type: AccountType, val balance: String, val paidUntil: String, val accountNumber: String, val tariff: String, val linkedCount: Int? = null, val actions: List<AccountAction> = emptyList(), val isAlert: Boolean = false, val balanceColorType: BalanceColorType = BalanceColorType.GREEN, val isPaidFromMain: Boolean = false)
-enum class AccountType(val label: String) { MAIN("Основной"), VIEW_ONLY("Только просмотр"), FULL_CONTROL("Полное управление"), FINANCIAL_LINK("Финансовая привязка") }
-enum class AccountAction(val label: String) { EDIT("Редактировать"), REFILL("Пополнить"), UNLINK("Отвязать"), GO_TO("Перейти") }
-enum class BalanceColorType { GREEN, RED, ORANGE, GREY }
-
-

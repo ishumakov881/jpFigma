@@ -1,106 +1,149 @@
 package com.walhalla.jpfigma.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun NewsScreenBody(
-    modifier: Modifier = Modifier,
-    title: String,
     featuredNews: List<NewsCardData>,
     otherNews: List<NewsListData>,
-    onMoreClick: () -> Unit = {}
+    modifier: Modifier = Modifier,
+    onNewsClick: (Any) -> Unit = {}
 ) {
-    val backgroundColor = Color(0xFFF4F7FB)
-    val cardPadding = 20.dp
+    val scrollState = rememberScrollState()
 
-    LazyColumn(
+    Column(
         modifier = modifier
             .fillMaxSize()
-            .background(backgroundColor),
-        contentPadding = PaddingValues(cardPadding),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+            .background(FigmaBackgroundGray)
+            .verticalScroll(scrollState)
+            .padding(vertical = 20.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        item {
-            Text(
-                text = title,
-                color = TitleColor,
-                fontSize = 22.sp,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 10.dp)
-            )
+        Text(
+            text = "Новости",
+            color = FigmaTitleColor,
+            fontSize = 22.sp,
+            modifier = Modifier.padding(horizontal = 20.dp)
+        )
+
+        // Featured News
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp),
+            horizontalArrangement = Arrangement.spacedBy(15.dp)
+        ) {
+            featuredNews.forEach { item ->
+                NewsCard(
+                    data = item,
+                    onClick = { onNewsClick(item) },
+                    modifier = Modifier.weight(1f)
+                )
+            }
         }
 
-        items(featuredNews) { news ->
-            NewsCard(
-                date = news.date,
-                title = news.title,
-                imageUrl = news.imageUrl,
-                hasDot = news.hasDot
-            )
-        }
-
-        item {
-            Spacer(modifier = Modifier.height(10.dp))
-            
-            Surface(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(20.dp),
-                color = Color.White
-            ) {
-                Column(
-                    modifier = Modifier.padding(cardPadding),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    otherNews.forEachIndexed { index, news ->
-                        NewsListItem(
-                            date = news.date,
-                            title = news.title,
-                            hasDot = news.hasDot
-                        )
-                        
-                        if (index < otherNews.size - 1) {
-                            HorizontalDivider(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 5.dp),
-                                thickness = 1.dp,
-                                color = LineColor
-                            )
-                        }
-                    }
-                    
-                    Spacer(modifier = Modifier.height(20.dp))
-                    
-                    MoreButton(onClick = onMoreClick)
+        // Other News
+        FigmaCard(modifier = Modifier.padding(horizontal = 20.dp)) {
+            otherNews.forEachIndexed { index, item ->
+                NewsListItem(
+                    data = item,
+                    onClick = { onNewsClick(item) }
+                )
+                if (index < otherNews.size - 1) {
+                    HorizontalDivider(
+                        color = FigmaLineColor,
+                        modifier = Modifier.padding(vertical = 15.dp)
+                    )
                 }
             }
         }
     }
 }
 
-data class NewsCardData(
-    val date: String,
-    val title: String,
-    val imageUrl: String? = null,
-    val hasDot: Boolean = false
-)
+@Composable
+fun NewsCard(
+    data: NewsCardData,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .clip(RoundedCornerShape(20.dp))
+            .background(FigmaCardWhite)
+            .clickable { onClick() }
+    ) {
+        FigmaImage(
+            model = data.imageUrl,
+            modifier = Modifier.fillMaxWidth().height(120.dp),
+            contentScale = ContentScale.Crop
+        )
+        Column(
+            modifier = Modifier.padding(15.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text(text = data.date, color = FigmaTextSecondary, fontSize = 12.sp)
+            Text(
+                text = data.title,
+                color = FigmaTextPrimary,
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold,
+                maxLines = 3,
+                lineHeight = 18.2.sp
+            )
+        }
+    }
+}
 
-data class NewsListData(
-    val date: String,
-    val title: String,
-    val hasDot: Boolean = false
-)
+@Composable
+fun NewsListItem(
+    data: NewsListData,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable { onClick() },
+        horizontalArrangement = Arrangement.spacedBy(15.dp),
+        verticalAlignment = Alignment.Top
+    ) {
+        Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Text(text = data.date, color = FigmaTextSecondary, fontSize = 12.sp)
+                if (data.hasDot) {
+                    Box(
+                        modifier = Modifier
+                            .size(8.dp)
+                            .clip(RoundedCornerShape(4.dp))
+                            .background(FigmaBrandOrange)
+                    )
+                }
+            }
+            Text(
+                text = data.title,
+                color = FigmaTextPrimary,
+                fontSize = 14.sp,
+                lineHeight = 18.2.sp
+            )
+        }
+    }
+}
+
+data class NewsCardData(val date: String, val title: String, val imageUrl: String, val hasDot: Boolean = false)
+data class NewsListData(val date: String, val title: String, val hasDot: Boolean = false)

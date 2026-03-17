@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.walhalla.ui0"
+    namespace = "com.walhalla.jpfigma"
     compileSdk {
         version = release(36)
     }

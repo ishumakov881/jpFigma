@@ -1,4 +1,4 @@
-package com.walhalla.jpfigma.ui.offers
+package com.walhalla.jpfigma.ui.model
 
 data class Offer(
     val imageUrl: String,

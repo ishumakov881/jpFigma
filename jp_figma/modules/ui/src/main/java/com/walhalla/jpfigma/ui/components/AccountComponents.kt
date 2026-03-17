@@ -24,7 +24,6 @@ import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun AccountScreenBody(
-    modifier: Modifier = Modifier,
     status: String,
     balance: String,
     balanceUntil: String,
@@ -37,8 +36,9 @@ fun AccountScreenBody(
     macAddress: String,
     tvStatus: String,
     totalPrice: String,
+    services: List<ServicePriceData>,
+    modifier: Modifier = Modifier,
     oldTotalPrice: String? = null,
-    services: List<com.walhalla.jpfigma.ui.components.ServicePriceData>,
     onTopUpClick: () -> Unit = {},
     onChangeTariffClick: () -> Unit = {},
     onActualizeClick: () -> Unit = {},
@@ -74,7 +74,7 @@ fun AccountScreenBody(
         }
 
         item {
-            AccountCard(
+            AccountSectionCard(
                 title = "Баланс",
                 gradient = FigmaBlueGradient
             ) {
@@ -133,15 +133,15 @@ fun AccountScreenBody(
         }
 
         item {
-            AccountCard(title = "Информация", gradient = FigmaOrangeGradient) {
-                InfoRow(label = "Лицевой счёт:", value = accountNumber)
+            AccountSectionCard(title = "Информация", gradient = FigmaOrangeGradient) {
+                InfoRowItem(label = "Лицевой счёт:", value = accountNumber)
                 HorizontalDivider(color = FigmaLineColor)
-                InfoRow(label = "Ф.И.О.:", value = fullName)
+                InfoRowItem(label = "Ф.И.О.:", value = fullName)
                 HorizontalDivider(color = FigmaLineColor)
-                InfoRow(label = "Адрес подключения:", value = address)
+                InfoRowItem(label = "Адрес подключения:", value = address)
                 HorizontalDivider(color = FigmaLineColor)
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    InfoRow(label = "Актуальный номер телефона:", value = phone)
+                    InfoRowItem(label = "Актуальный номер телефона:", value = phone)
                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                         OutlinedButton(onClick = { }, modifier = Modifier.size(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue), contentPadding = PaddingValues(0.dp)) { Text("+", color = FigmaBrandBlue, fontSize = 20.sp) }
                         OutlinedButton(onClick = onActualizeClick, modifier = Modifier.height(40.dp), shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue)) { Text(text = "Актуализировать", color = FigmaBrandBlue, fontSize = 15.sp) }
@@ -151,7 +151,7 @@ fun AccountScreenBody(
         }
 
         item {
-            AccountCard(title = "Состояние услуг", gradient = FigmaPurpleGradient) {
+            AccountSectionCard(title = "Состояние услуг", gradient = FigmaPurpleGradient) {
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     Text(text = "Состояние подключения к сети Интернет", color = FigmaTextLight, fontSize = 14.sp)
                     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -180,18 +180,22 @@ fun AccountScreenBody(
                 OutlinedButton(onClick = onAllServicesClick, shape = RoundedCornerShape(20.dp), border = BorderStroke(1.dp, FigmaBrandBlue)) { Text(text = "Все услуги", color = FigmaBrandBlue, fontSize = 15.sp) }
             }
             Spacer(Modifier.height(10.dp))
-            ServicePackageCard(
-                totalPrice = totalPrice,
-                oldTotalPrice = oldTotalPrice
-            ) {
-                services.forEach { service ->
-                    ServicePriceItem(
-                        name = service.name,
-                        price = service.price,
-                        oldPrice = service.oldPrice,
-                        hasOffer = service.hasOffer
-                    )
-                    HorizontalDivider(color = FigmaLineColor, modifier = Modifier.padding(vertical = 5.dp))
+            FigmaCard(padding = 20.dp) {
+                Column(verticalArrangement = Arrangement.spacedBy(15.dp)) {
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Text(text = "Оказываемая услуга", color = FigmaTextLight, fontSize = 14.sp, modifier = Modifier.weight(1f))
+                        Text(text = "Стоимость\nза 30 дней", color = FigmaTextLight, fontSize = 14.sp, textAlign = TextAlign.End)
+                    }
+                    HorizontalDivider(color = FigmaLineColor)
+                    services.forEach { service ->
+                        ServicePriceRow(service)
+                        HorizontalDivider(color = FigmaLineColor, modifier = Modifier.padding(vertical = 5.dp))
+                    }
+                    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                        Text(text = "Итого за 30 дней", color = FigmaTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                        if (oldTotalPrice != null) { Text(text = "$oldTotalPrice ₽", color = FigmaBrandOrange, fontSize = 15.sp, textDecoration = TextDecoration.LineThrough, modifier = Modifier.padding(end = 10.dp)) }
+                        Text(text = "$totalPrice ₽", color = FigmaTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                    }
                 }
             }
         }
@@ -199,56 +203,62 @@ fun AccountScreenBody(
 }
 
 @Composable
-fun AccountCard(modifier: Modifier = Modifier, title: String, gradient: Brush, horizontalPadding: androidx.compose.ui.unit.Dp = 30.dp, content: @Composable ColumnScope.() -> Unit) {
-    Card(modifier = modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = FigmaCardWhite), elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)) {
+fun AccountSectionCard(
+    title: String,
+    gradient: Brush,
+    modifier: Modifier = Modifier,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(20.dp),
+        colors = CardDefaults.cardColors(containerColor = FigmaCardWhite),
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+    ) {
         Column {
-            Box(modifier = Modifier.fillMaxWidth().height(50.dp).background(gradient), contentAlignment = Alignment.Center) { Text(text = title, color = FigmaDarkTitle, fontSize = 18.sp, fontWeight = FontWeight.Bold) }
-            Column(modifier = Modifier.padding(horizontal = horizontalPadding, vertical = 20.dp).fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(15.dp)) { content() }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .background(gradient),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(text = title, color = FigmaDarkTitle, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+            }
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 30.dp, vertical = 20.dp)
+                    .fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(15.dp)
+            ) {
+                content()
+            }
         }
     }
 }
 
 @Composable
-fun InfoRow(modifier: Modifier = Modifier, label: String, value: String, isBold: Boolean = true) {
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(5.dp)) {
+fun InfoRowItem(label: String, value: String, isBold: Boolean = true) {
+    Column(verticalArrangement = Arrangement.spacedBy(5.dp)) {
         Text(text = label, color = FigmaTextLight, fontSize = 14.sp)
         Text(text = value, color = FigmaTextPrimary, fontSize = 16.sp, fontWeight = if (isBold) FontWeight.Bold else FontWeight.Normal)
     }
 }
 
 @Composable
-fun ServicePackageCard(modifier: Modifier = Modifier, totalPrice: String, oldTotalPrice: String? = null, servicesContent: @Composable ColumnScope.() -> Unit) {
-    Card(modifier = modifier.fillMaxWidth(), shape = RoundedCornerShape(20.dp), colors = CardDefaults.cardColors(containerColor = FigmaCardWhite)) {
-        Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(15.dp)) {
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Оказываемая услуга", color = FigmaTextLight, fontSize = 14.sp, modifier = Modifier.weight(1f))
-                Text(text = "Стоимость\nза 30 дней", color = FigmaTextLight, fontSize = 14.sp, textAlign = TextAlign.End)
-            }
-            HorizontalDivider(color = FigmaLineColor)
-            servicesContent()
-            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                Text(text = "Итого за 30 дней", color = FigmaTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                if (oldTotalPrice != null) { Text(text = "$oldTotalPrice ₽", color = FigmaBrandOrange, fontSize = 15.sp, textDecoration = TextDecoration.LineThrough, modifier = Modifier.padding(end = 10.dp)) }
-                Text(text = "$totalPrice ₽", color = FigmaTextPrimary, fontSize = 18.sp, fontWeight = FontWeight.Bold)
-            }
-        }
-    }
-}
-
-@Composable
-fun ServicePriceItem(modifier: Modifier = Modifier, name: String, price: String, oldPrice: String? = null, hasOffer: Boolean = false) {
-    Row(modifier = modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+fun ServicePriceRow(service: ServicePriceData) {
+    Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
         Column(modifier = Modifier.weight(1f)) {
-            Text(text = name, color = FigmaTextPrimary, fontSize = 14.sp)
-            if (hasOffer) {
+            Text(text = service.name, color = FigmaTextPrimary, fontSize = 14.sp)
+            if (service.hasOffer) {
                 Surface(color = FigmaBrandOrange, shape = RoundedCornerShape(5.dp), modifier = Modifier.padding(top = 5.dp)) {
-                    Text(text = "АКЦИЯ", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp))
+                    Text(text = "АКЦИЯ", color = White, fontSize = 10.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp))
                 }
             }
         }
         Column(horizontalAlignment = Alignment.End) {
-            Text(text = "$price ₽", color = FigmaTextPrimary, fontSize = 14.sp)
-            if (oldPrice != null) { Text(text = "$oldPrice ₽", color = FigmaBrandOrange, fontSize = 12.sp, textDecoration = TextDecoration.LineThrough) }
+            Text(text = "${service.price} ₽", color = FigmaTextPrimary, fontSize = 14.sp)
+            if (service.oldPrice != null) { Text(text = "${service.oldPrice} ₽", color = FigmaBrandOrange, fontSize = 12.sp, textDecoration = TextDecoration.LineThrough) }
         }
     }
 }

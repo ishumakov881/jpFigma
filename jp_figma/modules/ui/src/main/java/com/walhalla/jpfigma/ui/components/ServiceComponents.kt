@@ -23,12 +23,12 @@ import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun ServicesScreenBody(
-    modifier: Modifier = Modifier,
     title: String,
     paidServices: List<ServiceItemData>,
     freeServices: List<ServiceItemData>,
-    onInfoClick: (Int) -> Unit = {},
-    onActionClick: (Int) -> Unit = {}
+    modifier: Modifier = Modifier,
+    onInfoClick: (ServiceItemData) -> Unit = {},
+    onActionClick: (ServiceItemData) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier
@@ -48,23 +48,16 @@ fun ServicesScreenBody(
         }
 
         item {
-            AccountCard(
+            AccountSectionCard(
                 title = "Платные услуги",
-                gradient = FigmaBlueGradient,
-                horizontalPadding = 0.dp
+                gradient = FigmaBlueGradient
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     paidServices.forEachIndexed { index, service ->
                         ServiceListItem(
-                            name = service.name,
-                            statusText = service.statusText,
-                            isActive = service.isActive,
-                            isNotAvailable = service.isNotAvailable,
-                            isNotConnected = service.isNotConnected,
-                            canOpen = service.canOpen,
-                            isFree = service.isFree,
-                            onInfoClick = { onInfoClick(service.id) },
-                            onActionClick = { onActionClick(service.id) }
+                            data = service,
+                            onInfoClick = { onInfoClick(service) },
+                            onActionClick = { onActionClick(service) }
                         )
                         if (index < paidServices.size - 1) {
                             HorizontalDivider(color = FigmaLineColor)
@@ -75,23 +68,16 @@ fun ServicesScreenBody(
         }
 
         item {
-            AccountCard(
+            AccountSectionCard(
                 title = "Бесплатные услуги",
-                gradient = FigmaBlueGradient,
-                horizontalPadding = 0.dp
+                gradient = FigmaBlueGradient
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     freeServices.forEachIndexed { index, service ->
                         ServiceListItem(
-                            name = service.name,
-                            statusText = service.statusText,
-                            isActive = service.isActive,
-                            isNotAvailable = service.isNotAvailable,
-                            isNotConnected = service.isNotConnected,
-                            canOpen = service.canOpen,
-                            isFree = service.isFree,
-                            onInfoClick = { onInfoClick(service.id) },
-                            onActionClick = { onActionClick(service.id) }
+                            data = service,
+                            onInfoClick = { onInfoClick(service) },
+                            onActionClick = { onActionClick(service) }
                         )
                         if (index < freeServices.size - 1) {
                             HorizontalDivider(color = FigmaLineColor)
@@ -105,36 +91,30 @@ fun ServicesScreenBody(
 
 @Composable
 fun ServiceListItem(
-    modifier: Modifier = Modifier,
-    name: String,
-    statusText: String? = null,
-    isActive: Boolean = false,
-    isNotAvailable: Boolean = false,
-    isNotConnected: Boolean = false,
-    canOpen: Boolean = true,
-    isFree: Boolean = false,
-    onInfoClick: () -> Unit = {},
-    onActionClick: () -> Unit = {}
+    data: ServiceItemData,
+    onInfoClick: () -> Unit,
+    onActionClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 20.dp, vertical = 15.dp),
+            .padding(vertical = 15.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(15.dp)
     ) {
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(5.dp)) {
-            Text(text = name, color = FigmaTextPrimary, fontSize = 16.sp)
-            if (statusText != null) {
+            Text(text = data.name, color = FigmaTextPrimary, fontSize = 16.sp)
+            if (data.statusText != null) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(5.dp)) {
-                    if (isActive) {
+                    if (data.isActive) {
                         Icon(Icons.Default.Check, contentDescription = null, tint = FigmaSuccessGreen, modifier = Modifier.size(18.dp))
-                        Text(text = statusText, color = FigmaSuccessGreen, fontSize = 14.sp)
-                    } else if (isNotAvailable) {
+                        Text(text = data.statusText, color = FigmaSuccessGreen, fontSize = 14.sp)
+                    } else if (data.isNotAvailable) {
                         Icon(Icons.Default.Close, contentDescription = null, tint = FigmaErrorRed, modifier = Modifier.size(18.dp))
-                        Text(text = statusText, color = FigmaTextLight, fontSize = 14.sp)
-                    } else if (isNotConnected) {
-                        Text(text = statusText, color = FigmaTextLight, fontSize = 14.sp)
+                        Text(text = data.statusText, color = FigmaTextLight, fontSize = 14.sp)
+                    } else if (data.isNotConnected) {
+                        Text(text = data.statusText, color = FigmaTextLight, fontSize = 14.sp)
                     }
                 }
             }
@@ -153,12 +133,12 @@ fun ServiceListItem(
                 onClick = onActionClick,
                 modifier = Modifier.size(40.dp),
                 shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(1.dp, if (canOpen) FigmaBrandBlue else FigmaBrandBlue.copy(alpha = 0.3f))
+                border = BorderStroke(1.dp, if (data.canOpen) FigmaBrandBlue else FigmaBrandBlue.copy(alpha = 0.3f))
             ) {
                 Icon(
-                    imageVector = if (isFree) Icons.Outlined.Settings else Icons.AutoMirrored.Outlined.ArrowForward,
+                    imageVector = if (data.isFree) Icons.Outlined.Settings else Icons.AutoMirrored.Outlined.ArrowForward,
                     contentDescription = null,
-                    tint = if (canOpen) FigmaBrandBlue else FigmaBrandBlue.copy(alpha = 0.3f)
+                    tint = if (data.canOpen) FigmaBrandBlue else FigmaBrandBlue.copy(alpha = 0.3f)
                 )
             }
         }

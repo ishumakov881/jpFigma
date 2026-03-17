@@ -20,12 +20,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.walhalla.jpfigma.ui.components.AppDrawer
+import com.walhalla.jpfigma.ui.components.AppDrawerContent
+import com.walhalla.jpfigma.ui.components.DrawerMenuItemData
 import com.walhalla.jpfigma.ui.components.MainTopAppBar
+import com.walhalla.jpfigma.ui.mockScreens.*
 import com.walhalla.jpfigma.ui.model.AppScreen
 import com.walhalla.jpfigma.ui.model.MockData
-import com.walhalla.jpfigma.ui.offers.OffersScreen
-import com.walhalla.jpfigma.ui.screens.MockScreens.PaymentsScreen
 import com.walhalla.jpfigma.ui.theme.JpFigmaTheme
 import kotlinx.coroutines.launch
 
@@ -39,16 +39,25 @@ class MainActivity : ComponentActivity() {
                 val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
                 val scope = rememberCoroutineScope()
                 var currentScreen by remember { mutableStateOf(AppScreen.PROMOTIONS) }
-                val screens = remember { AppScreen.entries.map { it.title } }
+                
+                val menuItems = remember(currentScreen) {
+                    AppScreen.entries.map { screen ->
+                        DrawerMenuItemData(
+                            title = screen.title,
+                            iconRes = screen.iconRes,
+                            isSelected = screen == currentScreen,
+                            counter = if (screen == AppScreen.MESSAGES) "52" else null
+                        )
+                    }
+                }
 
                 ModalNavigationDrawer(
                     drawerState = drawerState,
                     drawerContent = {
-                        AppDrawer(
-                            menuItems = screens,
-                            selectedItem = currentScreen.title,
-                            onItemClick = { title ->
-                                AppScreen.entries.find { it.title == title }?.let {
+                        AppDrawerContent(
+                            menuItems = menuItems,
+                            onItemClick = { item ->
+                                AppScreen.entries.find { it.title == item.title }?.let {
                                     currentScreen = it
                                 }
                                 scope.launch { drawerState.close() }
@@ -58,7 +67,10 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Scaffold(
                         topBar = {
-                            MainTopAppBar(onMenuClick = { scope.launch { drawerState.open() } })
+                            MainTopAppBar(
+                                onMenuClick = { scope.launch { drawerState.open() } },
+                                messageCount = "52"
+                            )
                         }
                     ) { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
@@ -113,7 +125,8 @@ class MainActivity : ComponentActivity() {
                                     ReferFriendScreen()
                                 }
 
-                                else -> {
+                                AppScreen.USEFUL_INFO,
+                                AppScreen.LOCAL_RESOURCES -> {
                                     Box(
                                         modifier = Modifier.fillMaxSize(),
                                         contentAlignment = Alignment.Center
@@ -121,6 +134,7 @@ class MainActivity : ComponentActivity() {
                                         Text("Экран '${currentScreen.title}' в разработке")
                                     }
                                 }
+                                else -> {}
                             }
                         }
                     }

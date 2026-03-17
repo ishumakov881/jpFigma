@@ -3,6 +3,7 @@ package com.walhalla.jpfigma.ui.components
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,43 +15,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.model.PaymentTransaction
 import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun PaymentsScreenBody(
-    modifier: Modifier = Modifier,
-    title: String,
     dateFrom: String,
     dateTo: String,
-    btnShow: String,
-    btnHistory: String,
-    headerDate: String,
-    headerDescription: String,
     transactions: List<PaymentTransaction>,
-    balanceLabel: String,
     balanceValue: String,
     balanceUntil: String,
-    btnTopUp: String,
-    iconCalendar: Int,
-    iconWallet: Int
+    modifier: Modifier = Modifier,
+    onShowClick: () -> Unit = {},
+    onHistoryClick: () -> Unit = {},
+    onTopUpClick: () -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
 
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
+            .background(FigmaBackgroundGray)
             .verticalScroll(scrollState)
             .padding(vertical = 20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         // Title
         Text(
-            text = title,
-            color = TitleColor,
+            text = "Платежи",
+            color = FigmaTitleColor,
             fontSize = 22.sp,
             modifier = Modifier.padding(horizontal = 20.dp)
         )
@@ -65,9 +62,9 @@ fun PaymentsScreenBody(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
-                DateInput(date = dateFrom, iconUrl = iconCalendar, modifier = Modifier.weight(1f))
-                Text(text = "-", color = Text2, fontSize = 16.sp)
-                DateInput(date = dateTo, iconUrl = iconCalendar, modifier = Modifier.weight(1f))
+                DateInputItem(date = dateFrom, modifier = Modifier.weight(1f))
+                Text(text = "-", color = FigmaTextPrimary, fontSize = 16.sp)
+                DateInputItem(date = dateTo, modifier = Modifier.weight(1f))
             }
 
             Row(
@@ -75,22 +72,22 @@ fun PaymentsScreenBody(
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 OutlinedButton(
-                    onClick = { },
+                    onClick = onShowClick,
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(20.dp),
-                    border = BorderStroke(1.dp, BrandColor1),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = BrandColor1)
+                    border = BorderStroke(1.dp, FigmaBrandBlue),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = FigmaBrandBlue)
                 ) {
-                    Text(text = btnShow, fontSize = 15.sp)
+                    Text(text = "Показать", fontSize = 15.sp)
                 }
                 OutlinedButton(
-                    onClick = { },
+                    onClick = onHistoryClick,
                     modifier = Modifier.weight(1f),
                     shape = RoundedCornerShape(20.dp),
-                    border = BorderStroke(1.dp, BrandColor1),
-                    colors = ButtonDefaults.outlinedButtonColors(contentColor = BrandColor1)
+                    border = BorderStroke(1.dp, FigmaBrandBlue),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = FigmaBrandBlue)
                 ) {
-                    Text(text = btnHistory, fontSize = 15.sp)
+                    Text(text = "История баланса", fontSize = 15.sp)
                 }
             }
         }
@@ -101,7 +98,7 @@ fun PaymentsScreenBody(
                 .padding(horizontal = 20.dp)
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(20.dp))
-                .background(White)
+                .background(FigmaCardWhite)
                 .padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
@@ -111,16 +108,16 @@ fun PaymentsScreenBody(
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 Text(
-                    text = headerDate,
+                    text = "Дата",
                     modifier = Modifier.width(100.dp),
-                    color = TitleColor,
+                    color = FigmaTitleColor,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    text = headerDescription,
+                    text = "Сумма и вид платежа",
                     modifier = Modifier.weight(1f),
-                    color = TitleColor,
+                    color = FigmaTitleColor,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -128,7 +125,7 @@ fun PaymentsScreenBody(
 
             // Transaction Items
             transactions.forEach { transaction ->
-                HorizontalDivider(color = LineColor, thickness = 1.dp)
+                HorizontalDivider(color = FigmaLineColor, thickness = 1.dp)
                 TransactionItemRow(transaction)
             }
 
@@ -145,20 +142,20 @@ fun PaymentsScreenBody(
                         horizontalArrangement = Arrangement.spacedBy(5.dp)
                     ) {
                         Text(
-                            text = balanceLabel,
-                            color = Text2,
+                            text = "Ваш баланс:",
+                            color = FigmaTextPrimary,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
                             text = balanceValue,
-                            color = Green,
+                            color = FigmaSuccessGreen,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
                             text = "₽",
-                            color = Green,
+                            color = FigmaSuccessGreen,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(bottom = 4.dp)
@@ -166,31 +163,31 @@ fun PaymentsScreenBody(
                     }
                     Text(
                         text = balanceUntil,
-                        color = SecondaryText,
+                        color = FigmaTextLight,
                         fontSize = 13.sp,
                         lineHeight = 16.9.sp
                     )
                 }
 
                 Button(
-                    onClick = { },
+                    onClick = onTopUpClick,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(40.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = BrandColor1),
+                    colors = ButtonDefaults.buttonColors(containerColor = FigmaBrandBlue),
                     shape = RoundedCornerShape(20.dp)
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
-                        AsyncImageWithPlaceholder(
-                            imageUrl = iconWallet,
+                        FigmaImage(
+                            model = R.drawable.ic_wallet,
                             modifier = Modifier.size(24.dp)
                         )
                         Text(
-                            text = btnTopUp,
-                            color = White,
+                            text = "Пополнить счёт",
+                            color = FigmaCardWhite,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -202,18 +199,18 @@ fun PaymentsScreenBody(
 }
 
 @Composable
-fun DateInput(date: String, iconUrl: Int, modifier: Modifier = Modifier) {
+fun DateInputItem(date: String, modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .height(40.dp)
-            .border(1.dp, Color(0xFF60778E), RoundedCornerShape(5.dp))
-            .background(White)
+            .border(1.dp, FigmaInputBorder, RoundedCornerShape(5.dp))
+            .background(FigmaCardWhite)
             .padding(horizontal = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(text = date, color = Text2, fontSize = 15.sp)
-        AsyncImageWithPlaceholder(imageUrl = iconUrl, modifier = Modifier.size(24.dp))
+        Text(text = date, color = FigmaTextPrimary, fontSize = 15.sp)
+        FigmaImage(model = R.drawable.ic_calendar, modifier = Modifier.size(24.dp))
     }
 }
 
@@ -226,26 +223,26 @@ fun TransactionItemRow(transaction: PaymentTransaction) {
         Text(
             text = transaction.date,
             modifier = Modifier.width(100.dp),
-            color = Color(0xFF60778E),
+            color = FigmaInputLabel,
             fontSize = 14.sp
         )
         Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(5.dp)) {
             Text(
                 text = "${transaction.amount} ₽",
-                color = if (transaction.isPositive) Green else Text2,
+                color = if (transaction.isPositive) FigmaSuccessGreen else FigmaTextPrimary,
                 fontSize = 14.sp,
                 fontWeight = if (transaction.isPositive) FontWeight.Bold else FontWeight.SemiBold
             )
             Column {
                 Text(
                     text = transaction.description,
-                    color = Text2,
+                    color = FigmaTextPrimary,
                     fontSize = 14.sp
                 )
                 if (transaction.hasReceipt == true) {
                     Text(
                         text = "Скачать чек",
-                        color = BrandColor1,
+                        color = FigmaBrandBlue,
                         fontSize = 14.sp,
                         modifier = Modifier.padding(top = 5.dp)
                     )

@@ -19,30 +19,24 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.walhalla.jpfigma.R
 import com.walhalla.jpfigma.ui.model.*
 import com.walhalla.jpfigma.ui.theme.*
-import com.walhalla.ui0.R
-val imgPriceUp = R.drawable.icons_1
-val imgPriceDown = R.drawable.icons_2
-val iconTv = R.drawable.ic_tariff_tv
-val iconHyper = R.drawable.ic_tariff_hyper
 
 @Composable
 fun ChangeTariffScreenBody(
-    title: String,
-    filterOptions: List<String>,
     tariffs: List<TariffInfo>,
     importantInfo: List<String>,
-    warningSpeedLimit: String,
-    localNetworkTitle: String,
     localNetworkItems: List<NetworkInfoItem>,
     localNetworkRules: List<String>,
-    additionalTitle: String,
     additionalChanges: List<NetworkInfoItem>,
     extraServices: List<String>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onTariffOrderClick: (TariffInfo) -> Unit = {},
+    onTariffDetailsClick: (TariffInfo) -> Unit = {}
 ) {
     val scrollState = rememberScrollState()
+    val filterOptions = listOf("Интернет", "Интернет и ТВ", "ТВ")
     var selectedFilter by remember { mutableStateOf(filterOptions[1]) }
 
     Column(
@@ -53,9 +47,9 @@ fun ChangeTariffScreenBody(
             .padding(vertical = 20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        ScreenHeader(title = title)
+        ScreenHeader(title = "Сменить тариф")
 
-        // Filters
+        // Filters (Static categories)
         Row(
             modifier = Modifier.padding(horizontal = 20.dp),
             horizontalArrangement = Arrangement.spacedBy(5.dp)
@@ -86,7 +80,11 @@ fun ChangeTariffScreenBody(
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             tariffs.forEach { tariff ->
-                TariffCard(tariff)
+                TariffCard(
+                    tariff = tariff,
+                    onOrderClick = { onTariffOrderClick(tariff) },
+                    onDetailsClick = { onTariffDetailsClick(tariff) }
+                )
             }
         }
 
@@ -103,9 +101,9 @@ fun ChangeTariffScreenBody(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
                 verticalAlignment = Alignment.Top
             ) {
-                AsyncImageWithPlaceholder(imageUrl = R.drawable.ic_warning, modifier = Modifier.size(24.dp))
+                FigmaImage(model = R.drawable.ic_warning, modifier = Modifier.size(24.dp))
                 Text(
-                    text = warningSpeedLimit,
+                    text = "Максимальная скорость может быть ограничена техническими параметрами и возможностями используемого клиентского оборудования",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     color = FigmaTextPrimary,
@@ -119,7 +117,7 @@ fun ChangeTariffScreenBody(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Text(text = localNetworkTitle, fontSize = 18.sp, color = FigmaTitleColor)
+            Text(text = "Локальная сеть", fontSize = 18.sp, color = FigmaTitleColor)
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -149,7 +147,7 @@ fun ChangeTariffScreenBody(
             modifier = Modifier.padding(horizontal = 20.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Text(text = additionalTitle, fontSize = 18.sp, color = FigmaTitleColor)
+            Text(text = "Дополнительно", fontSize = 18.sp, color = FigmaTitleColor)
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -160,8 +158,8 @@ fun ChangeTariffScreenBody(
                     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
                         additionalChanges.forEachIndexed { index, item ->
                             Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
-                                AsyncImageWithPlaceholder(
-                                    imageUrl = if (index == 0) imgPriceUp else imgPriceDown,
+                                FigmaImage(
+                                    model = if (index == 0) R.drawable.icons_1 else R.drawable.icons_2,
                                     modifier = Modifier.size(60.dp)
                                 )
                                 NetworkItemRow(item, modifier = Modifier.weight(1f))
@@ -183,7 +181,11 @@ fun ChangeTariffScreenBody(
 }
 
 @Composable
-fun TariffCard(tariff: TariffInfo) {
+fun TariffCard(
+    tariff: TariffInfo,
+    onOrderClick: () -> Unit,
+    onDetailsClick: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -208,21 +210,21 @@ fun TariffCard(tariff: TariffInfo) {
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 TariffMetricItem(
-                    iconUrl = null,
+                    iconRes = 0, 
                     label = "Скорость Интернет",
                     value = tariff.internetSpeed,
                     unit = tariff.internetSpeedLabel,
                     modifier = Modifier.weight(1f)
                 )
                 TariffMetricItem(
-                    iconUrl = iconTv,
+                    iconRes = R.drawable.ic_tariff_tv,
                     label = "Кабельное ТВ",
                     value = tariff.tvChannels,
                     unit = tariff.tvChannelsLabel,
                     modifier = Modifier.weight(1f)
                 )
                 TariffMetricItem(
-                    iconUrl = iconHyper,
+                    iconRes = R.drawable.ic_tariff_hyper,
                     label = "Услуга “Гипер”",
                     value = if (tariff.isHyperAvailable) "Доступна" else "Не доступна",
                     unit = "",
@@ -245,7 +247,7 @@ fun TariffCard(tariff: TariffInfo) {
                 
                 if (!tariff.isCurrent) {
                     OutlinedButton(
-                        onClick = { },
+                        onClick = onOrderClick,
                         modifier = Modifier.fillMaxWidth().height(40.dp),
                         border = BorderStroke(1.dp, FigmaBrandBlue),
                         shape = RoundedCornerShape(20.dp)
@@ -255,7 +257,7 @@ fun TariffCard(tariff: TariffInfo) {
                 }
 
                 Row(
-                    modifier = Modifier.clickable { },
+                    modifier = Modifier.clickable { onDetailsClick() },
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(5.dp)
                 ) {
@@ -265,7 +267,7 @@ fun TariffCard(tariff: TariffInfo) {
                         fontSize = 14.sp,
                         textDecoration = TextDecoration.Underline
                     )
-                    AsyncImageWithPlaceholder(imageUrl = R.drawable.ic_details_blue, modifier = Modifier.size(24.dp))
+                    FigmaImage(model = R.drawable.ic_details_blue, modifier = Modifier.size(24.dp))
                 }
             }
         }
@@ -304,7 +306,7 @@ fun TariffCard(tariff: TariffInfo) {
 
 @Composable
 fun TariffMetricItem(
-    iconUrl:Int?,
+    iconRes: Int,
     label: String,
     value: String,
     unit: String,
@@ -316,7 +318,11 @@ fun TariffMetricItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        Box(modifier = Modifier.size(44.dp).background(FigmaBackgroundGray, RoundedCornerShape(22.dp))) 
+        Box(modifier = Modifier.size(44.dp).background(FigmaBackgroundGray, RoundedCornerShape(22.dp)), contentAlignment = Alignment.Center) {
+            if (iconRes != 0) {
+                FigmaImage(model = iconRes, modifier = Modifier.size(24.dp))
+            }
+        }
         
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(5.dp)) {
             Text(text = label, fontSize = 13.sp, color = FigmaTextSecondary, textAlign = TextAlign.Center)
@@ -341,8 +347,7 @@ fun NetworkItemRow(item: NetworkInfoItem, modifier: Modifier = Modifier) {
             text = item.priceLabel,
             fontSize = 18.sp,
             fontWeight = FontWeight.Medium,
-            color = if (item.isFree) FigmaBrandOrange else FigmaBrandBlue,
-            style = androidx.compose.ui.text.TextStyle(letterSpacing = if (item.isFree) 1.sp else 0.sp)
+            color = if (item.isFree) FigmaBrandOrange else FigmaBrandBlue
         )
     }
 }
