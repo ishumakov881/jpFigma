@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.model.AppScreen
 
-import com.walhalla.ui0.R
+import com.walhalla.jpfigma.ui.R
 
 import com.walhalla.jpfigma.ui.theme.*
 
@@ -76,17 +76,17 @@ fun NavigationItem(
     val dotSize = 8.dp
 
     val iconRes = when (title) {
-        AppScreen.MY_ACCOUNT.title -> R.drawable.ic_00
-        AppScreen.PROFILE.title -> R.drawable.icons_1
-        AppScreen.SERVICES.title -> R.drawable.icons_2
+        AppScreen.MY_ACCOUNT.title -> R.drawable.ic_menu_vector
+        AppScreen.PROFILE.title -> R.drawable.ic_menu_vector1
+        AppScreen.SERVICES.title -> R.drawable.ic_menu_vector2
         AppScreen.NOTIFICATIONS.title -> R.drawable.icons_3
-        AppScreen.LINKED_ACCOUNTS.title -> R.drawable.icons_4
-        AppScreen.PAYMENT_METHODS.title -> R.drawable.icons_5
-        AppScreen.PAYMENTS.title -> R.drawable.icons_6
-        AppScreen.SUPPORT.title -> R.drawable.icons_7
-        AppScreen.MESSAGES.title -> R.drawable.icons_8
-        AppScreen.DOCUMENTS.title -> R.drawable.icons_9
-        AppScreen.NEWS.title -> R.drawable.icons_10
+        AppScreen.LINKED_ACCOUNTS.title -> R.drawable.ic_menu_vector4
+        AppScreen.PAYMENT_METHODS.title -> R.drawable.ic_menu_vector5
+        AppScreen.PAYMENTS.title -> R.drawable.ic_menu_vector6
+        AppScreen.SUPPORT.title -> R.drawable.ic_menu_vector7
+        AppScreen.MESSAGES.title -> R.drawable.ic_menu_vector8
+        AppScreen.DOCUMENTS.title -> R.drawable.ic_menu_vector9
+        AppScreen.NEWS.title -> R.drawable.ic_menu_vector10
         else -> R.drawable.ic_00
     }
 

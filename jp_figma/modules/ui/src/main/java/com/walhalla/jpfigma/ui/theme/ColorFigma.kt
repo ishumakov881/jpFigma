@@ -22,6 +22,7 @@ val FigmaBrandOrange = Color(0xFFF04E23)
 val FigmaBrandGreen = Color(0xFF0FB752)
 val FigmaSuccessGreen = Color(0xFF2EA201)
 val FigmaErrorRed = Color(0xFFDB2525)
+val FigmaInfoBlue = Color(0xFF0880C5)
 
 // Поверхности
 val FigmaBackgroundGray = Color(0xFFF5F5F5)
@@ -32,6 +33,11 @@ val FigmaSecondaryBtnBg = Color(0xFFE4F2FF)
 val FigmaStatusGrayBg = Color(0xFFF1F1F1)
 val FigmaFilterSelectedBg = Color(0xFFFFFFFF)
 val FigmaFilterUnselectedBg = Color(0xFFE8EFF6)
+
+// Инпуты
+val FigmaInputBg = Color(0xFFFBFDFF)
+val FigmaInputBorder = Color(0xFF839AB1)
+val FigmaInputLabel = Color(0xFF60778E)
 
 // Тени
 val FigmaShadowColor = Color(0x40000000)

@@ -1,8 +1,4 @@
 package com.walhalla.jpfigma.ui.components
-import androidx.compose.ui.text.style.TextAlign
-import com.walhalla.jpfigma.ui.theme.*
-
-import com.walhalla.jpfigma.ui.components.*
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -19,10 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.walhalla.jpfigma.ui.R
-import com.walhalla.jpfigma.ui.model.PaymentTransaction
+import com.walhalla.jpfigma.ui.model.*
+import com.walhalla.jpfigma.ui.theme.*
 
 @Composable
 fun PaymentsScreenBody(
@@ -146,7 +144,7 @@ fun PaymentsScreenBody(
                         Text(
                             text = "Ваш баланс:",
                             color = FigmaTextPrimary,
-                            fontSize = 16.sp,
+                            fontSize = 14.sp,
                             fontWeight = FontWeight.Bold
                         )
                         Text(
@@ -189,7 +187,7 @@ fun PaymentsScreenBody(
                         )
                         Text(
                             text = "Пополнить счёт",
-                            color = FigmaCardWhite,
+                            color = Color.White,
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         )
@@ -206,7 +204,7 @@ fun DateInputItem(date: String, modifier: Modifier = Modifier) {
         modifier = modifier
             .height(40.dp)
             .border(1.dp, FigmaInputBorder, RoundedCornerShape(5.dp))
-            .background(FigmaCardWhite)
+            .background(Color.White)
             .padding(horizontal = 10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween

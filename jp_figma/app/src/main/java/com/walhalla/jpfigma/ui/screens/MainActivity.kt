@@ -76,10 +76,7 @@ class MainActivity : ComponentActivity() {
                         Box(modifier = Modifier.padding(innerPadding)) {
                             when (currentScreen) {
                                 AppScreen.PROMOTIONS -> {
-                                    OffersScreen(
-                                        offers = MockData.OffersScreen.offers,
-                                        onOfferClick = {}
-                                    )
+                                    OffersScreen()
                                 }
                                 AppScreen.MY_ACCOUNT -> {
                                     AccountScreen()

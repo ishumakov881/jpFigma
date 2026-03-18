@@ -1,0 +1,43 @@
+{
+  "node_id": "799:25123",
+  "file_key": "8981JjRKHeGxu3LHr3UxrH",
+  "timestamp": "2026-03-17T12:00:00Z",
+  "design_context": {
+    "framework": "react",
+    "language": "typescript",
+    "raw_output": "const imgVector = \"https://www.figma.com/api/mcp/asset/fb897efe-72e4-4311-adce-f41634391ccb\";\nconst imgVector1 = \"https://www.figma.com/api/mcp/asset/986b12f0-0f5a-4b13-857e-2070b3f44322\";\nconst imgVectorStroke = \"https://www.figma.com/api/mcp/asset/3a620b83-2974-4fca-b0d2-9395ef56c9f8\";\nconst imgVectorStroke1 = \"https://www.figma.com/api/mcp/asset/299f264f-2f2d-4601-9965-a6c0573ff3c9\";\nconst imgGroup = \"https://www.figma.com/api/mcp/asset/05f68e92-d025-4d7e-a8cc-4a2626aa8c68\";\nconst imgArrow3 = \"https://www.figma.com/api/mcp/asset/f51637bf-6dec-4c63-91f0-37b1e6ab51ec\";\nconst imgArrowCircle2 = \"https://www.figma.com/api/mcp/asset/0d41a78a-43ae-46da-85fe-e39a38dbb2f3\";\nconst imgArrowCircle1 = \"https://www.figma.com/api/mcp/asset/0ddeaf84-15d4-4a64-9a66-c54e0110d40f\";\nconst imgBar = \"https://www.figma.com/api/mcp/asset/c28e3b2c-4445-40c7-974a-8dc37c34345b\";\nconst imgBarMetric = \"https://www.figma.com/api/mcp/asset/bee4a7f1-9f86-41c3-8562-65c90d3c7c64\";\nconst imgSpeed3Stroke = \"https://www.figma.com/api/mcp/asset/1ce0b0c7-cbb4-4c64-81f7-85f32092e8a6\";\nconst imgArrow5 = \"https://www.figma.com/api/mcp/asset/9d206602-272a-4a24-b6e9-430a7fa77b49\";\nconst imgSpeed5Stroke = \"https://www.figma.com/api/mcp/asset/b4c0597b-2f75-482d-95e5-7f3cfd463de6\";\nconst imgArrow7 = \"https://www.figma.com/api/mcp/asset/a90ff164-3f03-402c-95ac-1c5bff3383b1\";\nconst imgSpeed7Stroke = \"https://www.figma.com/api/mcp/asset/a4404d4b-1329-4ea1-8ce3-0e7d7d1578cf\";\nconst imgArrow8 = \"https://www.figma.com/api/mcp/asset/c07e7038-1713-4fac-b157-582526f0b1a0\";\nconst imgFlame1 = \"https://www.figma.com/api/mcp/asset/5f9b3e72-ac65-4721-bd0d-6d8e1d0e562c\";\nconst imgSpeed8Stroke = \"https://www.figma.com/api/mcp/asset/986749f9-fa06-4493-b89f-aee3259e544d\";\nconst imgArrow9 = \"https://www.figma.com/api/mcp/asset/c56ff25c-a4fd-4b9e-a5f1-6ba1bdc8da09\";\nconst imgSpeed9Stroke = \"https://www.figma.com/api/mcp/asset/78436624-6a83-4c5a-9112-f095fda8e741\";\nconst imgVector2 = \"https://www.figma.com/api/mcp/asset/e8033226-fd58-4d7d-975b-f5aea788f950\";\nconst imgVector3 = \"https://www.figma.com/api/mcp/asset/87321b24-d67f-40c4-9409-1b80c377cdbe\";\nconst imgEllipse = \"https://www.figma.com/api/mcp/asset/23ad344e-b22b-46b1-a643-84c2bb2c1a08\";\nconst imgWarning = \"https://www.figma.com/api/mcp/asset/f4f60810-8751-4c54-bcb3-40c99a81218a\";\nconst imgMainLogo = \"https://www.figma.com/api/mcp/asset/09900a42-fbb9-4e06-8385-23f234e19367\";\nconst imgGroup1 = \"https://www.figma.com/api/mcp/asset/e6d0331a-04a2-4320-a505-365e4eac35b0\";\nconst imgShape = \"https://www.figma.com/api/mcp/asset/a3eeb1b5-71f7-4dd4-bad3-8e71246677a8\";\nconst imgEllipse4 = \"https://www.figma.com/api/mcp/asset/631a8f9d-3f47-476e-b476-c3ffb23cb0cf\";\nconst imgWarning1 = \"https://www.figma.com/api/mcp/asset/3f452ff9-f7c2-4048-8221-cc5bfe96e544\";\nconst imgPriceUp = \"https://www.figma.com/api/mcp/asset/956401da-29d1-4fec-bea6-2a1f5d39a733\";\nconst imgPriceDown = \"https://www.figma.com/api/mcp/asset/cdd0a7ea-62a6-4772-b4fa-6e395f0af2ed\";\n\n// (React components go here)\nexport default function Component() {\n  // Mobile 480px version root\n  return <div data-node-id=\"799:25123\">...</div>\n}",
+    "assets": {
+      "imgVector": "https://www.figma.com/api/mcp/asset/fb897efe-72e4-4311-adce-f41634391ccb",
+      "imgVector1": "https://www.figma.com/api/mcp/asset/986b12f0-0f5a-4b13-857e-2070b3f44322",
+      "imgVectorStroke": "https://www.figma.com/api/mcp/asset/3a620b83-2974-4fca-b0d2-9395ef56c9f8",
+      "imgVectorStroke1": "https://www.figma.com/api/mcp/asset/299f264f-2f2d-4601-9965-a6c0573ff3c9",
+      "imgGroup": "https://www.figma.com/api/mcp/asset/05f68e92-d025-4d7e-a8cc-4a2626aa8c68",
+      "imgArrow3": "https://www.figma.com/api/mcp/asset/f51637bf-6dec-4c63-91f0-37b1e6ab51ec",
+      "imgArrowCircle2": "https://www.figma.com/api/mcp/asset/0d41a78a-43ae-46da-85fe-e39a38dbb2f3",
+      "imgArrowCircle1": "https://www.figma.com/api/mcp/asset/0ddeaf84-15d4-4a64-9a66-c54e0110d40f",
+      "imgBar": "https://www.figma.com/api/mcp/asset/c28e3b2c-4445-40c7-974a-8dc37c34345b",
+      "imgBarMetric": "https://www.figma.com/api/mcp/asset/bee4a7f1-9f86-41c3-8562-65c90d3c7c64",
+      "imgSpeed3Stroke": "https://www.figma.com/api/mcp/asset/1ce0b0c7-cbb4-4c64-81f7-85f32092e8a6",
+      "imgArrow5": "https://www.figma.com/api/mcp/asset/9d206602-272a-4a24-b6e9-430a7fa77b49",
+      "imgSpeed5Stroke": "https://www.figma.com/api/mcp/asset/b4c0597b-2f75-482d-95e5-7f3cfd463de6",
+      "imgArrow7": "https://www.figma.com/api/mcp/asset/a90ff164-3f03-402c-95ac-1c5bff3383b1",
+      "imgSpeed7Stroke": "https://www.figma.com/api/mcp/asset/a4404d4b-1329-4ea1-8ce3-0e7d7d1578cf",
+      "imgArrow8": "https://www.figma.com/api/mcp/asset/c07e7038-1713-4fac-b157-582526f0b1a0",
+      "imgFlame1": "https://www.figma.com/api/mcp/asset/5f9b3e72-ac65-4721-bd0d-6d8e1d0e562c",
+      "imgSpeed8Stroke": "https://www.figma.com/api/mcp/asset/986749f9-fa06-4493-b89f-aee3259e544d",
+      "imgArrow9": "https://www.figma.com/api/mcp/asset/c56ff25c-a4fd-4b9e-a5f1-6ba1bdc8da09",
+      "imgSpeed9Stroke": "https://www.figma.com/api/mcp/asset/78436624-6a83-4c5a-9112-f095fda8e741",
+      "imgVector2": "https://www.figma.com/api/mcp/asset/e8033226-fd58-4d7d-975b-f5aea788f950",
+      "imgVector3": "https://www.figma.com/api/mcp/asset/87321b24-d67f-40c4-9409-1b80c377cdbe",
+      "imgEllipse": "https://www.figma.com/api/mcp/asset/23ad344e-b22b-46b1-a643-84c2bb2c1a08",
+      "imgWarning": "https://www.figma.com/api/mcp/asset/f4f60810-8751-4c54-bcb3-40c99a81218a",
+      "imgMainLogo": "https://www.figma.com/api/mcp/asset/09900a42-fbb9-4e06-8385-23f234e19367",
+      "imgGroup1": "https://www.figma.com/api/mcp/asset/e6d0331a-04a2-4320-a505-365e4eac35b0",
+      "imgShape": "https://www.figma.com/api/mcp/asset/a3eeb1b5-71f7-4dd4-bad3-8e71246677a8",
+      "imgEllipse4": "https://www.figma.com/api/mcp/asset/631a8f9d-3f47-476e-b476-c3ffb23cb0cf",
+      "imgWarning1": "https://www.figma.com/api/mcp/asset/3f452ff9-f7c2-4048-8221-cc5bfe96e544",
+      "imgPriceUp": "https://www.figma.com/api/mcp/asset/956401da-29d1-4fec-bea6-2a1f5d39a733",
+      "imgPriceDown": "https://www.figma.com/api/mcp/asset/cdd0a7ea-62a6-4772-b4fa-6e395f0af2ed"
+    }
+  }
+}
