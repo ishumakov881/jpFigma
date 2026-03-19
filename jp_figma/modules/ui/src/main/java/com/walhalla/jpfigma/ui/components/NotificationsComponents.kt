@@ -160,10 +160,7 @@ fun SettingsGroupBlock(
     onActivateClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(20.dp),
+    Column(modifier = modifier.fillMaxWidth().padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Text(

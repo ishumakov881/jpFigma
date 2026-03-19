@@ -4,6 +4,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import com.walhalla.jpfigma.ui.components.LinkAccountScreenBody
 
+
+
+///** Диалог добавления нового связанного акка *
+
 @Composable
 fun LinkAccountScreen() {
     var accountNumber by remember { mutableStateOf("") }

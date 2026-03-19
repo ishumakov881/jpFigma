@@ -223,11 +223,10 @@ fun AccountInfoCard(
                 }
 
                 if (account.actions.isNotEmpty()) {
-                    @OptIn(ExperimentalLayoutApi::class)
-                    FlowRow(
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(15.dp)
+                        //verticalArrangement = Arrangement.spacedBy(15.dp)
                     ) {
                         account.actions.forEach { action ->
                             Row(
