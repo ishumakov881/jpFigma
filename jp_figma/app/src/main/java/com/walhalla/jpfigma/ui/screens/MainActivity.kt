@@ -20,10 +20,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.walhalla.jpfigma.ui.components.AppDrawerContent
-import com.walhalla.jpfigma.ui.components.DrawerMenuItemData
-import com.walhalla.jpfigma.ui.components.MainTopAppBar
-import com.walhalla.jpfigma.ui.mockScreens.*
+
 import com.walhalla.jpfigma.ui.model.AppScreen
 import com.walhalla.jpfigma.ui.model.MockData
 import com.walhalla.jpfigma.ui.theme.JpFigmaTheme
@@ -42,95 +39,40 @@ class MainActivity : ComponentActivity() {
                 
                 val menuItems = remember(currentScreen) {
                     AppScreen.entries.map { screen ->
-                        DrawerMenuItemData(
-                            title = screen.title,
-                            iconRes = screen.iconRes,
-                            isSelected = screen == currentScreen,
-                            counter = if (screen == AppScreen.MESSAGES) "52" else null
-                        )
+//                        DrawerMenuItemData(
+//                            title = screen.title,
+//                            iconRes = screen.iconRes,
+//                            isSelected = screen == currentScreen,
+//                            counter = if (screen == AppScreen.MESSAGES) "52" else null
+//                        )
                     }
                 }
 
                 ModalNavigationDrawer(
                     drawerState = drawerState,
                     drawerContent = {
-                        AppDrawerContent(
-                            menuItems = menuItems,
-                            onItemClick = { item ->
-                                AppScreen.entries.find { it.title == item.title }?.let {
-                                    currentScreen = it
-                                }
-                                scope.launch { drawerState.close() }
-                            }
-                        )
+//                        AppDrawerContent(
+//                            menuItems = menuItems,
+//                            onItemClick = { item ->
+//                                AppScreen.entries.find { it.title == item.title }?.let {
+//                                    currentScreen = it
+//                                }
+//                                scope.launch { drawerState.close() }
+//                            }
+//                        )
                     }
                 ) {
                     Scaffold(
                         topBar = {
-                            MainTopAppBar(
-                                onMenuClick = { scope.launch { drawerState.open() } },
-                                messageCount = "52"
-                            )
+//                            MainTopAppBar(
+//                                onMenuClick = { scope.launch { drawerState.open() } },
+//                                messageCount = "52"
+//                            )
                         }
                     ) { innerPadding ->
                         Box(modifier = Modifier.padding(innerPadding)) {
                             when (currentScreen) {
-                                AppScreen.PROMOTIONS -> {
-                                    OffersScreen()
-                                }
-                                AppScreen.MY_ACCOUNT -> {
-                                    AccountScreen()
-                                }
-
-                                AppScreen.PROFILE -> {
-                                    ProfileScreen()
-                                }
-
-                                AppScreen.SERVICES -> {
-                                    ServicesScreen()
-                                }
-
-                                AppScreen.NOTIFICATIONS -> {
-                                    NotificationsScreen()
-                                }
-
-                                AppScreen.LINKED_ACCOUNTS -> {
-                                    LinkedAccountsScreen()
-                                }
-
-                                AppScreen.MESSAGES -> {
-                                    MessagesScreen()
-                                }
-
-                                AppScreen.NEWS -> {
-                                    NewsScreen()
-                                }
-
-                                AppScreen.PAYMENT_METHODS -> {
-                                    PaymentScreen()
-                                }
-
-                                AppScreen.PAYMENTS -> {
-                                    PaymentsScreen()
-                                }
-
-                                AppScreen.SUPPORT -> {
-                                    SupportScreen()
-                                }
-
-                                AppScreen.REFER_FRIEND -> {
-                                    ReferFriendScreen()
-                                }
-
-                                AppScreen.USEFUL_INFO,
-                                AppScreen.LOCAL_RESOURCES -> {
-                                    Box(
-                                        modifier = Modifier.fillMaxSize(),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Text("Экран '${currentScreen.title}' в разработке")
-                                    }
-                                }
+                               //@@@
                                 else -> {}
                             }
                         }
