@@ -1,0 +1,5 @@
+C:\GEMINI\lk0_ai\jp_figma\app\src\main\java\com\walhalla\jpfigma\ui\model\AppScreen.kt
+C:\GEMINI\lk0_ai\jp_figma\app\src\main\java\com\walhalla\jpfigma\ui\screens\MockScreens.kt
+C:\GEMINI\lk0_ai\jp_figma\app\src\main\java\com\walhalla\jpfigma\ui\model\MockData.kt
+C:\GEMINI\lk0_ai\jp_figma\app\src\main\java\com\walhalla\jpfigma\ui\screens\MainActivity.kt
+C:\GEMINI\lk0_ai\jp_figma\app\src\main\java\com\walhalla\jpfigma\ui\components\AppDrawer.kt

@@ -1,0 +1,181 @@
+const imgOfferHeader2Serv1 = "https://www.figma.com/api/mcp/asset/9e09e961-35c8-4638-9017-77dafff0c3a6";
+const imgVector = "https://www.figma.com/api/mcp/asset/be1216d3-cab7-43f4-b047-4b48a6cc09b9";
+const imgOfferHeader2Serv2 = "https://www.figma.com/api/mcp/asset/28343cd5-42fa-41eb-9b52-7d2fa8b97e6a";
+const imgOfferHeader2Serv3 = "https://www.figma.com/api/mcp/asset/61d88109-dc18-4ece-8f12-58b41aedf0d7";
+const imgOfferHeader2Serv4 = "https://www.figma.com/api/mcp/asset/987b56e3-c9b5-4305-a5e0-c26687d8d0a3";
+
+function OfferCard({ className }: { className?: string }) {
+  return (
+    <div className={className || ""} data-name="Offer-Card" data-node-id="783:24728">
+      <div className="bg-white content-stretch flex flex-col items-start overflow-clip relative rounded-[20px] shadow-[0px_3px_10px_0px_rgba(0,0,0,0.08)] w-[500px]" data-name="Property 1=mob" data-node-id="783:25639">
+        <div className="aspect-[500/250] relative shrink-0 w-full" data-name="offer-header--2serv 1" data-node-id="783:25640">
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgOfferHeader2Serv1} />
+        </div>
+        <div className="bg-[#f04e23] content-stretch flex flex-col h-[4px] items-start justify-center relative shrink-0 w-full" data-node-id="783:25641">
+          <div className="bg-[#f04e23] content-stretch flex items-start px-[20px] py-[2px] relative rounded-br-[5px] rounded-tr-[5px] shrink-0" data-node-id="783:25642">
+            <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[14px] text-white whitespace-nowrap" data-node-id="783:25643" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <p className="leading-[1.25]">Бессрочно</p>
+            </div>
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[10px] items-start pb-[15px] pt-[20px] px-[15px] relative shrink-0 w-full" data-node-id="783:25644">
+          <div className="flex flex-col font-['Roboto:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#060606] text-[17px] w-full" data-node-id="783:25645" style={{ fontVariationSettings: "'wdth' 100" }}>
+            <p className="leading-[normal]">Подключи 2 услуги</p>
+          </div>
+          <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="783:25646">
+            <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] overflow-hidden relative shrink-0 text-[#313e49] text-[14px] text-ellipsis w-full" data-node-id="783:25647" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <p className="leading-[1.3]">{`Получи скидку на интернет и бесплатное кабельное ТВ до 8ми месяцев `}</p>
+            </div>
+            <div className="content-stretch flex flex-col items-end justify-end relative shrink-0 w-full" data-node-id="783:25648">
+              <div className="bg-[#e4f2ff] content-stretch flex gap-[10px] h-[32px] items-center justify-center px-[20px] relative rounded-[20px] shrink-0" data-name="buttons" data-node-id="785:23668">
+                <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#1880d0] text-[14px] text-center whitespace-nowrap" data-node-id="785:23669" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[normal]">Детальнее</p>
+                </div>
+                <div className="relative shrink-0 size-[18px]" data-name="icons" data-node-id="785:23670">
+                  <div className="absolute inset-[22.22%_16.67%_22.22%_11.11%]" data-name="Vector" data-node-id="I785:23670;615:17021">
+                    <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Body() {
+  return (
+    <div className="content-stretch flex items-center justify-center py-[20px] relative size-full" data-name="BODY - 100%" data-node-id="783:22259">
+      <div className="content-stretch flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-px min-w-px px-[20px] relative" data-name="Content" data-node-id="783:22260">
+        <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="783:22261">
+          <div className="content-stretch flex flex-col items-start justify-center relative shrink-0 w-full" data-node-id="783:22262">
+            <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#060606] text-[22px] w-full" data-node-id="783:22263" style={{ fontVariationSettings: "'wdth' 100" }}>
+              <p className="leading-[1.1]">Доступные акции</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#313e49] text-[16px] w-full" data-node-id="783:22264" style={{ fontVariationSettings: "'wdth' 100" }}>
+          <p className="leading-[1.3]">Вам доступны следующие акции и предложения</p>
+        </div>
+        <div className="content-start flex flex-wrap gap-[20px] items-start relative shrink-0 w-full" data-node-id="783:25557">
+          <OfferCard className="bg-white content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-[360px] overflow-clip relative rounded-[20px] shadow-[0px_3px_10px_0px_rgba(0,0,0,0.08)]" />
+          <div className="bg-white content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-[360px] overflow-clip relative rounded-[20px] shadow-[0px_3px_10px_0px_rgba(0,0,0,0.08)]" data-name="Offer-Card" data-node-id="783:25559">
+            <div className="aspect-[500/250] relative shrink-0 w-full" data-name="offer-header--2serv 1" data-node-id="I783:25559;783:25640">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgOfferHeader2Serv2} />
+            </div>
+            <div className="bg-[#f04e23] content-stretch flex flex-col h-[4px] items-start justify-center relative shrink-0 w-full" data-node-id="I783:25559;783:25641">
+              <div className="bg-[#f04e23] content-stretch flex items-start px-[20px] py-[2px] relative rounded-br-[5px] rounded-tr-[5px] shrink-0" data-node-id="I783:25559;783:25642">
+                <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[14px] text-white whitespace-nowrap" data-node-id="I783:25559;783:25643" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[1.25]">Бессрочно</p>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col gap-[10px] items-start pb-[15px] pt-[20px] px-[15px] relative shrink-0 w-full" data-node-id="I783:25559;783:25644">
+              <div className="flex flex-col font-['Roboto:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#060606] text-[17px] w-full" data-node-id="I783:25559;783:25645" style={{ fontVariationSettings: "'wdth' 100" }}>
+                <p className="leading-[normal]">Бери гигабит</p>
+              </div>
+              <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="I783:25559;783:25646">
+                <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] overflow-hidden relative shrink-0 text-[#313e49] text-[14px] text-ellipsis w-full" data-node-id="I783:25559;783:25647" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[1.3]">{`Получи скидку на интернет и бесплатное кабельное ТВ до 8ми месяцев `}</p>
+                </div>
+                <div className="content-stretch flex flex-col items-end justify-end relative shrink-0 w-full" data-node-id="I783:25559;783:25648">
+                  <div className="bg-[#e4f2ff] content-stretch flex gap-[10px] h-[32px] items-center justify-center px-[20px] relative rounded-[20px] shrink-0" data-name="buttons" data-node-id="I783:25559;785:23668">
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#1880d0] text-[14px] text-center whitespace-nowrap" data-node-id="I783:25559;785:23669" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Детальнее</p>
+                    </div>
+                    <div className="relative shrink-0 size-[18px]" data-name="icons" data-node-id="I783:25559;785:23670">
+                      <div className="absolute inset-[22.22%_16.67%_22.22%_11.11%]" data-name="Vector" data-node-id="I783:25559;785:23670;615:17021">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-[360px] overflow-clip relative rounded-[20px] shadow-[0px_3px_10px_0px_rgba(0,0,0,0.08)]" data-name="Offer-Card" data-node-id="783:25560">
+            <div className="aspect-[500/250] relative shrink-0 w-full" data-name="offer-header--2serv 1" data-node-id="I783:25560;783:25640">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgOfferHeader2Serv3} />
+            </div>
+            <div className="bg-[#f04e23] content-stretch flex flex-col h-[4px] items-start justify-center relative shrink-0 w-full" data-node-id="I783:25560;783:25641">
+              <div className="bg-[#f04e23] content-stretch flex items-start px-[20px] py-[2px] relative rounded-br-[5px] rounded-tr-[5px] shrink-0" data-node-id="I783:25560;783:25642">
+                <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[14px] text-white whitespace-nowrap" data-node-id="I783:25560;783:25643" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[1.25]">Бессрочно</p>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col gap-[10px] items-start pb-[15px] pt-[20px] px-[15px] relative shrink-0 w-full" data-node-id="I783:25560;783:25644">
+              <div className="flex flex-col font-['Roboto:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#060606] text-[17px] w-full" data-node-id="I783:25560;783:25645" style={{ fontVariationSettings: "'wdth' 100" }}>
+                <p className="leading-[normal]">Приведи друга</p>
+              </div>
+              <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="I783:25560;783:25646">
+                <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] overflow-hidden relative shrink-0 text-[#313e49] text-[14px] text-ellipsis w-full" data-node-id="I783:25560;783:25647" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[1.3]">{`Получи скидку на интернет и бесплатное кабельное ТВ до 8ми месяцев `}</p>
+                </div>
+                <div className="content-stretch flex flex-col items-end justify-end relative shrink-0 w-full" data-node-id="I783:25560;783:25648">
+                  <div className="bg-[#e4f2ff] content-stretch flex gap-[10px] h-[32px] items-center justify-center px-[20px] relative rounded-[20px] shrink-0" data-name="buttons" data-node-id="I783:25560;785:23668">
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#1880d0] text-[14px] text-center whitespace-nowrap" data-node-id="I783:25560;785:23669" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Детальнее</p>
+                    </div>
+                    <div className="relative shrink-0 size-[18px]" data-name="icons" data-node-id="I783:25560;785:23670">
+                      <div className="absolute inset-[22.22%_16.67%_22.22%_11.11%]" data-name="Vector" data-node-id="I783:25560;785:23670;615:17021">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white content-stretch flex flex-[1_0_0] flex-col items-start min-h-px min-w-[360px] overflow-clip relative rounded-[20px] shadow-[0px_3px_10px_0px_rgba(0,0,0,0.08)]" data-name="Offer-Card" data-node-id="783:25561">
+            <div className="aspect-[500/250] relative shrink-0 w-full" data-name="offer-header--2serv 1" data-node-id="I783:25561;783:25640">
+              <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgOfferHeader2Serv4} />
+            </div>
+            <div className="bg-[#f04e23] content-stretch flex flex-col h-[4px] items-start justify-center relative shrink-0 w-full" data-node-id="I783:25561;783:25641">
+              <div className="bg-[#f04e23] content-stretch flex items-start px-[20px] py-[2px] relative rounded-br-[5px] rounded-tr-[5px] shrink-0" data-node-id="I783:25561;783:25642">
+                <div className="flex flex-col font-['Roboto:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[14px] text-white whitespace-nowrap" data-node-id="I783:25561;783:25643" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[1.25]">Бессрочно</p>
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col gap-[10px] items-start pb-[15px] pt-[20px] px-[15px] relative shrink-0 w-full" data-node-id="I783:25561;783:25644">
+              <div className="flex flex-col font-['Roboto:SemiBold',sans-serif] font-semibold justify-center leading-[0] relative shrink-0 text-[#060606] text-[17px] w-full" data-node-id="I783:25561;783:25645" style={{ fontVariationSettings: "'wdth' 100" }}>
+                <p className="leading-[normal]">Бонус за друга</p>
+              </div>
+              <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="I783:25561;783:25646">
+                <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] overflow-hidden relative shrink-0 text-[#313e49] text-[14px] text-ellipsis w-full" data-node-id="I783:25561;783:25647" style={{ fontVariationSettings: "'wdth' 100" }}>
+                  <p className="leading-[1.3]">{`Получи скидку на интернет и бесплатное кабельное ТВ до 8ми месяцев `}</p>
+                </div>
+                <div className="content-stretch flex flex-col items-end justify-end relative shrink-0 w-full" data-node-id="I783:25561;783:25648">
+                  <div className="bg-[#e4f2ff] content-stretch flex gap-[10px] h-[32px] items-center justify-center px-[20px] relative rounded-[20px] shrink-0" data-name="buttons" data-node-id="I783:25561;785:23668">
+                    <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#1880d0] text-[14px] text-center whitespace-nowrap" data-node-id="I783:25561;785:23669" style={{ fontVariationSettings: "'wdth' 100" }}>
+                      <p className="leading-[normal]">Детальнее</p>
+                    </div>
+                    <div className="relative shrink-0 size-[18px]" data-name="icons" data-node-id="I783:25561;785:23670">
+                      <div className="absolute inset-[22.22%_16.67%_22.22%_11.11%]" data-name="Vector" data-node-id="I783:25561;785:23670;615:17021">
+                        <img alt="" className="absolute block max-w-none size-full" src={imgVector} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: TitleColor: #060606, H1 - mob: Font(family: "Roboto", style: Regular, size: 22, weight: 400, lineHeight: 1.100000023841858, letterSpacing: 0), Text - 2: #313E49, White: #FFFFFF, BrandColor2: #F04E23, Text - 1: #060606, Brand Color - 1: #1880D0, btn-second: #E4F2FF, block shadow: Effect(type: DROP_SHADOW, color: #00000014, offset: (0, 3), radius: 10, spread: 0).
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.
+[Tool 'get_design_context' provided the following image data with mime-type: image/png]
